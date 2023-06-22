@@ -78,72 +78,22 @@
                                                     </attributedString>
                                                 </buttonConfiguration>
                                             </button>
-                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="9xi-Sa-8b4">
-                                                <rect key="frame" x="138" y="303.66666666666669" width="117" height="26"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="pageIndicatorTintColor" red="1" green="0.067222408280000007" blue="0.084257401400000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </pageControl>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jPV-6X-IqT">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="303.66666666666669"/>
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z7S-Pi-vuv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="399" height="301"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQn-tq-5GG">
-                                                                <rect key="frame" x="86" y="7.3333333333332575" width="226" height="22"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <attributedString key="attributedText">
-                                                                    <fragment content="Trying to join NetflixDB?">
-                                                                        <attributes>
-                                                                            <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <font key="NSFont" size="19" name="Arial-BoldMT"/>
-                                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                        </attributes>
-                                                                    </fragment>
-                                                                </attributedString>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s06-A4-xNu">
-                                                                <rect key="frame" x="62" y="38" width="274" height="118"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                <attributedString key="attributedText">
-                                                                    <fragment>
-                                                                        <string key="content">You can't sign up for Netflix in the app. We know it's a hassle. After you're a member, you can start watching in the app. Scroll &gt; to learn more</string>
-                                                                        <attributes>
-                                                                            <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                            <font key="NSFont" size="15" name="Arial-BoldMT"/>
-                                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                        </attributes>
-                                                                    </fragment>
-                                                                </attributedString>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="z7S-Pi-vuv" firstAttribute="leading" secondItem="338-Bw-VZT" secondAttribute="leading" id="C4g-2i-dC4"/>
-                                                    <constraint firstItem="z7S-Pi-vuv" firstAttribute="height" secondItem="v0T-SX-OYq" secondAttribute="height" multiplier="0.991218" id="KPF-uq-tGd"/>
-                                                    <constraint firstItem="z7S-Pi-vuv" firstAttribute="bottom" secondItem="338-Bw-VZT" secondAttribute="bottom" id="hti-D2-ef7"/>
-                                                    <constraint firstItem="z7S-Pi-vuv" firstAttribute="top" secondItem="338-Bw-VZT" secondAttribute="top" id="sLF-Gt-9Uf"/>
-                                                </constraints>
-                                                <viewLayoutGuide key="contentLayoutGuide" id="338-Bw-VZT"/>
-                                                <viewLayoutGuide key="frameLayoutGuide" id="v0T-SX-OYq"/>
-                                            </scrollView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO0-6S-SrU">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="340"/>
+                                                <connections>
+                                                    <segue destination="0Pn-J6-sS5" kind="embed" id="uNl-Ff-Bft"/>
+                                                </connections>
+                                            </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="V36-Nr-V7d" secondAttribute="bottom" constant="10" id="4aM-8p-WXg"/>
-                                            <constraint firstItem="9xi-Sa-8b4" firstAttribute="top" secondItem="jPV-6X-IqT" secondAttribute="bottom" id="CVp-d9-chA"/>
-                                            <constraint firstAttribute="trailing" secondItem="9xi-Sa-8b4" secondAttribute="trailing" constant="138" id="DXW-z0-YJ6"/>
-                                            <constraint firstItem="jPV-6X-IqT" firstAttribute="top" secondItem="VIC-al-utg" secondAttribute="top" id="VAL-df-uya"/>
-                                            <constraint firstAttribute="trailing" secondItem="jPV-6X-IqT" secondAttribute="trailing" id="cjP-Se-nj5"/>
-                                            <constraint firstItem="9xi-Sa-8b4" firstAttribute="leading" secondItem="VIC-al-utg" secondAttribute="leading" constant="138" id="dsE-rg-QCd"/>
-                                            <constraint firstItem="V36-Nr-V7d" firstAttribute="top" secondItem="9xi-Sa-8b4" secondAttribute="bottom" constant="10" id="lei-QU-bQF"/>
-                                            <constraint firstItem="jPV-6X-IqT" firstAttribute="leading" secondItem="VIC-al-utg" secondAttribute="leading" id="lpi-qM-2Ap"/>
+                                            <constraint firstItem="V36-Nr-V7d" firstAttribute="top" secondItem="MO0-6S-SrU" secondAttribute="bottom" id="Otu-aI-Xck"/>
+                                            <constraint firstItem="MO0-6S-SrU" firstAttribute="top" secondItem="VIC-al-utg" secondAttribute="top" id="UEO-BP-mlE"/>
                                             <constraint firstItem="V36-Nr-V7d" firstAttribute="leading" secondItem="VIC-al-utg" secondAttribute="leading" constant="8" id="nC1-8B-eva"/>
+                                            <constraint firstAttribute="trailing" secondItem="MO0-6S-SrU" secondAttribute="trailing" id="v5U-Ek-EWI"/>
                                             <constraint firstAttribute="trailing" secondItem="V36-Nr-V7d" secondAttribute="trailing" constant="8" id="wbL-Jg-Nbf"/>
+                                            <constraint firstItem="MO0-6S-SrU" firstAttribute="leading" secondItem="VIC-al-utg" secondAttribute="leading" id="z35-xS-LIk"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -175,7 +125,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jr0-Mh-RF3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="159.54198473282443" y="-94.366197183098592"/>
+            <point key="canvasLocation" x="158.01526717557252" y="-94.366197183098592"/>
+        </scene>
+        <!--Blocks Page View Controller-->
+        <scene sceneID="3Hg-V2-Itr">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0Pn-J6-sS5" customClass="BlocksPageViewController" customModule="NetflixDB" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6UB-Cq-iBv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908" y="64"/>
         </scene>
     </scenes>
     <resources>
