@@ -34,6 +34,10 @@ class LoginViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func didTapOnLoginButton(_ sender: UIButton) {
+        let mainTabBarController = MainTabBarController()
+        self.navigationController?.pushViewController(mainTabBarController, animated: true)
+    }
 }
 
 //MARK: - UITextFieldDelegate

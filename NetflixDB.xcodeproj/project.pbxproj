@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F32CEB7B2A458F3B003028A8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32CEB7A2A458F3B003028A8 /* MainTabBarController.swift */; };
 		F3333DD02A44678B006BFA7F /* BlocksPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */; };
 		F3333DD32A44681A006BFA7F /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */; };
 		F3333DD72A44688E006BFA7F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DD62A44688E006BFA7F /* SignUpViewController.swift */; };
@@ -14,7 +15,14 @@
 		F3333DDB2A446B94006BFA7F /* DescriptionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3333DDA2A446B94006BFA7F /* DescriptionViewController.storyboard */; };
 		F33C9CDB2A432D4A00781F70 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C9CDA2A432D4A00781F70 /* SplashViewController.swift */; };
 		F33C9CDD2A432D5A00781F70 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33C9CDC2A432D5A00781F70 /* SplashViewController.storyboard */; };
-		F36D5E282A4444950007B763 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D5E272A4444950007B763 /* PosterCollectionViewCell.swift */; };
+		F36028EC2A45947300D98F25 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36028EB2A45947300D98F25 /* HomeViewController.swift */; };
+		F36028EE2A45948100D98F25 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36028ED2A45948100D98F25 /* HomeViewController.storyboard */; };
+		F36028F02A4599B700D98F25 /* ComingSoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36028EF2A4599B700D98F25 /* ComingSoonViewController.swift */; };
+		F36028F22A4599CD00D98F25 /* ComingSoonViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36028F12A4599CD00D98F25 /* ComingSoonViewController.storyboard */; };
+		F36028F42A4599E400D98F25 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36028F32A4599E400D98F25 /* FavoritesViewController.swift */; };
+		F36028F62A4599F200D98F25 /* FavoritesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36028F52A4599F200D98F25 /* FavoritesViewController.storyboard */; };
+		F36028F92A45BE2E00D98F25 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36028F82A45BE2E00D98F25 /* Movies.swift */; };
+		F36028FB2A45C8C900D98F25 /* MoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36028FA2A45C8C900D98F25 /* MoyaProvider.swift */; };
 		F3D22BF82A42ECA00014F799 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22BF72A42ECA00014F799 /* AppDelegate.swift */; };
 		F3D22BFA2A42ECA00014F799 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22BF92A42ECA00014F799 /* SceneDelegate.swift */; };
 		F3D22BFC2A42ECA00014F799 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22BFB2A42ECA00014F799 /* OnboardingViewController.swift */; };
@@ -28,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F32CEB7A2A458F3B003028A8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksPageViewController.swift; sourceTree = "<group>"; };
 		F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		F3333DD62A44688E006BFA7F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -35,7 +44,14 @@
 		F3333DDA2A446B94006BFA7F /* DescriptionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DescriptionViewController.storyboard; sourceTree = "<group>"; };
 		F33C9CDA2A432D4A00781F70 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		F33C9CDC2A432D5A00781F70 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
-		F36D5E272A4444950007B763 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
+		F36028EB2A45947300D98F25 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F36028ED2A45948100D98F25 /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
+		F36028EF2A4599B700D98F25 /* ComingSoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonViewController.swift; sourceTree = "<group>"; };
+		F36028F12A4599CD00D98F25 /* ComingSoonViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComingSoonViewController.storyboard; sourceTree = "<group>"; };
+		F36028F32A4599E400D98F25 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		F36028F52A4599F200D98F25 /* FavoritesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FavoritesViewController.storyboard; sourceTree = "<group>"; };
+		F36028F82A45BE2E00D98F25 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
+		F36028FA2A45C8C900D98F25 /* MoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProvider.swift; sourceTree = "<group>"; };
 		F3D22BF42A42ECA00014F799 /* NetflixDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetflixDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D22BF72A42ECA00014F799 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D22BF92A42ECA00014F799 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,12 +77,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F32CEB782A458E49003028A8 /* InitialScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F33C9CDA2A432D4A00781F70 /* SplashViewController.swift */,
+				F33C9CDC2A432D5A00781F70 /* SplashViewController.storyboard */,
+				F3D22C022A42ECA20014F799 /* LaunchScreen.storyboard */,
+				F3333DD12A4467D3006BFA7F /* OnboardingScreen */,
+				F36028EA2A4593E600D98F25 /* LoginScreen */,
+			);
+			path = InitialScreen;
+			sourceTree = "<group>";
+		};
+		F32CEB792A458E7A003028A8 /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F32CEB7A2A458F3B003028A8 /* MainTabBarController.swift */,
+				F36028EB2A45947300D98F25 /* HomeViewController.swift */,
+				F36028ED2A45948100D98F25 /* HomeViewController.storyboard */,
+				F36028EF2A4599B700D98F25 /* ComingSoonViewController.swift */,
+				F36028F12A4599CD00D98F25 /* ComingSoonViewController.storyboard */,
+				F36028F32A4599E400D98F25 /* FavoritesViewController.swift */,
+				F36028F52A4599F200D98F25 /* FavoritesViewController.storyboard */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
 		F3333DD12A4467D3006BFA7F /* OnboardingScreen */ = {
 			isa = PBXGroup;
 			children = (
 				F3D22BFB2A42ECA00014F799 /* OnboardingViewController.swift */,
 				F3D22BFD2A42ECA00014F799 /* OnboardingViewController.storyboard */,
-				F36D5E272A4444950007B763 /* PosterCollectionViewCell.swift */,
 				F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */,
 				F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */,
 				F3333DDA2A446B94006BFA7F /* DescriptionViewController.storyboard */,
@@ -74,6 +115,25 @@
 				F3333DD82A44689F006BFA7F /* SignUpViewController.storyboard */,
 			);
 			path = OnboardingScreen;
+			sourceTree = "<group>";
+		};
+		F36028EA2A4593E600D98F25 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F3D22C0E2A42F9AC0014F799 /* LoginViewController.swift */,
+				F3D22C122A43081A0014F799 /* LoginViewController.storyboard */,
+				F3D22C142A4315400014F799 /* LoginTextField.swift */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		F36028F72A45B0DD00D98F25 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F36028F82A45BE2E00D98F25 /* Movies.swift */,
+				F36028FA2A45C8C900D98F25 /* MoyaProvider.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		F3D22BEB2A42ECA00014F799 = {
@@ -97,13 +157,9 @@
 			children = (
 				F3D22BF72A42ECA00014F799 /* AppDelegate.swift */,
 				F3D22BF92A42ECA00014F799 /* SceneDelegate.swift */,
-				F33C9CDA2A432D4A00781F70 /* SplashViewController.swift */,
-				F33C9CDC2A432D5A00781F70 /* SplashViewController.storyboard */,
-				F3D22C022A42ECA20014F799 /* LaunchScreen.storyboard */,
-				F3333DD12A4467D3006BFA7F /* OnboardingScreen */,
-				F3D22C0E2A42F9AC0014F799 /* LoginViewController.swift */,
-				F3D22C122A43081A0014F799 /* LoginViewController.storyboard */,
-				F3D22C142A4315400014F799 /* LoginTextField.swift */,
+				F36028F72A45B0DD00D98F25 /* Data */,
+				F32CEB782A458E49003028A8 /* InitialScreen */,
+				F32CEB792A458E7A003028A8 /* MainScreen */,
 				F3D22C052A42ECA20014F799 /* Info.plist */,
 				F3D22C002A42ECA20014F799 /* Assets.xcassets */,
 			);
@@ -175,6 +231,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3333DDB2A446B94006BFA7F /* DescriptionViewController.storyboard in Resources */,
+				F36028F22A4599CD00D98F25 /* ComingSoonViewController.storyboard in Resources */,
+				F36028EE2A45948100D98F25 /* HomeViewController.storyboard in Resources */,
+				F36028F62A4599F200D98F25 /* FavoritesViewController.storyboard in Resources */,
 				F3D22C042A42ECA20014F799 /* LaunchScreen.storyboard in Resources */,
 				F3D22C132A43081A0014F799 /* LoginViewController.storyboard in Resources */,
 				F33C9CDD2A432D5A00781F70 /* SplashViewController.storyboard in Resources */,
@@ -191,16 +250,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36D5E282A4444950007B763 /* PosterCollectionViewCell.swift in Sources */,
+				F36028F02A4599B700D98F25 /* ComingSoonViewController.swift in Sources */,
+				F36028F42A4599E400D98F25 /* FavoritesViewController.swift in Sources */,
 				F3D22C102A42F9AC0014F799 /* LoginViewController.swift in Sources */,
+				F32CEB7B2A458F3B003028A8 /* MainTabBarController.swift in Sources */,
 				F3D22BFC2A42ECA00014F799 /* OnboardingViewController.swift in Sources */,
 				F3333DD02A44678B006BFA7F /* BlocksPageViewController.swift in Sources */,
 				F3333DD72A44688E006BFA7F /* SignUpViewController.swift in Sources */,
 				F3D22BF82A42ECA00014F799 /* AppDelegate.swift in Sources */,
 				F33C9CDB2A432D4A00781F70 /* SplashViewController.swift in Sources */,
 				F3333DD32A44681A006BFA7F /* DescriptionViewController.swift in Sources */,
+				F36028FB2A45C8C900D98F25 /* MoyaProvider.swift in Sources */,
 				F3D22BFA2A42ECA00014F799 /* SceneDelegate.swift in Sources */,
 				F3D22C152A4315400014F799 /* LoginTextField.swift in Sources */,
+				F36028F92A45BE2E00D98F25 /* Movies.swift in Sources */,
+				F36028EC2A45947300D98F25 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

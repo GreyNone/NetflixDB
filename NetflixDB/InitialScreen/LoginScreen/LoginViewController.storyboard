@@ -78,11 +78,10 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapOnLoginButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="4K1-fJ-uF9"/>
+                                </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="netflixLabelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="FYO-qe-fKG">
-                                <rect key="frame" x="124.66666666666669" y="59" width="144" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEJ-gs-cGY">
                                 <rect key="frame" x="30" y="535" width="333" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -103,6 +102,10 @@
                                     <action selector="didTapOnBackButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Pty-C7-4wh"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="netflixLabelLogo" translatesAutoresizingMaskIntoConstraints="NO" id="FYO-qe-fKG">
+                                <rect key="frame" x="124" y="59" width="144" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
