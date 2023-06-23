@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,44 +16,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ENk-mP-31x">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Zh7-1Y-HAg">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="n4Z-NM-fwR" customClass="PosterCollectionViewCell" customModule="NetflixDB" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cgn-XX-coS">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mIr-cB-oxJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="mIr-cB-oxJ" secondAttribute="trailing" id="2dB-5M-gni"/>
-                                                <constraint firstAttribute="bottom" secondItem="mIr-cB-oxJ" secondAttribute="bottom" id="OwW-c8-ORF"/>
-                                                <constraint firstItem="mIr-cB-oxJ" firstAttribute="leading" secondItem="cgn-XX-coS" secondAttribute="leading" id="lHY-mO-duA"/>
-                                                <constraint firstItem="mIr-cB-oxJ" firstAttribute="top" secondItem="cgn-XX-coS" secondAttribute="top" id="yDh-uf-JTp"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <connections>
-                                            <outlet property="imageView" destination="mIr-cB-oxJ" id="mNb-zl-eNR"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="yHh-nf-X6d" id="OBs-nl-ccx"/>
-                                    <outlet property="delegate" destination="yHh-nf-X6d" id="bBx-SB-7tP"/>
-                                </connections>
-                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2Ne-Tv-EFk" userLabel="Left Stack View">
+                                <rect key="frame" x="0.0" y="59" width="137.66666666666666" height="759"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rFa-wX-jkq">
+                                <rect key="frame" x="145.66666666666666" y="59" width="101.66666666666666" height="759"/>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zWz-1L-n61" userLabel="Right Stack View">
+                                <rect key="frame" x="255.33333333333337" y="59" width="137.66666666666663" height="759"/>
+                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyR-hX-ySR" userLabel="BlurView">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
@@ -112,18 +82,29 @@
                         <viewLayoutGuide key="safeArea" id="I0B-Bn-idZ"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="zWz-1L-n61" firstAttribute="top" secondItem="I0B-Bn-idZ" secondAttribute="top" id="06V-Nf-6vm"/>
                             <constraint firstItem="I0B-Bn-idZ" firstAttribute="bottom" secondItem="oyR-hX-ySR" secondAttribute="bottom" id="BBC-KR-QCn"/>
-                            <constraint firstItem="I0B-Bn-idZ" firstAttribute="trailing" secondItem="ENk-mP-31x" secondAttribute="trailing" id="HSL-mF-NrZ"/>
-                            <constraint firstItem="ENk-mP-31x" firstAttribute="top" secondItem="I0B-Bn-idZ" secondAttribute="top" id="JDq-hI-cCB"/>
+                            <constraint firstItem="rFa-wX-jkq" firstAttribute="leading" secondItem="2Ne-Tv-EFk" secondAttribute="trailing" constant="8" symbolic="YES" id="HzY-BE-W6w"/>
+                            <constraint firstItem="zWz-1L-n61" firstAttribute="leading" secondItem="rFa-wX-jkq" secondAttribute="trailing" constant="8" symbolic="YES" id="Muq-IQ-PP0"/>
                             <constraint firstItem="oyR-hX-ySR" firstAttribute="top" secondItem="2So-Lx-vGC" secondAttribute="topMargin" id="P3I-Wx-z8W"/>
-                            <constraint firstItem="I0B-Bn-idZ" firstAttribute="bottom" secondItem="ENk-mP-31x" secondAttribute="bottom" id="X2e-qi-da6"/>
+                            <constraint firstItem="rFa-wX-jkq" firstAttribute="bottom" secondItem="I0B-Bn-idZ" secondAttribute="bottom" id="Pvf-hT-GlA"/>
+                            <constraint firstItem="2Ne-Tv-EFk" firstAttribute="top" secondItem="I0B-Bn-idZ" secondAttribute="top" id="R1k-sQ-LWs"/>
+                            <constraint firstItem="2Ne-Tv-EFk" firstAttribute="bottom" secondItem="I0B-Bn-idZ" secondAttribute="bottom" id="Xpu-kO-l7Q"/>
+                            <constraint firstItem="zWz-1L-n61" firstAttribute="trailing" secondItem="I0B-Bn-idZ" secondAttribute="trailing" id="Z3K-Ls-rCZ"/>
+                            <constraint firstItem="zWz-1L-n61" firstAttribute="width" secondItem="2So-Lx-vGC" secondAttribute="width" multiplier="0.35" id="aVr-hU-ed8"/>
                             <constraint firstItem="I0B-Bn-idZ" firstAttribute="trailing" secondItem="oyR-hX-ySR" secondAttribute="trailing" id="bKN-3e-Jer"/>
-                            <constraint firstItem="ENk-mP-31x" firstAttribute="leading" secondItem="I0B-Bn-idZ" secondAttribute="leading" id="qvv-Wp-W5D"/>
+                            <constraint firstItem="zWz-1L-n61" firstAttribute="leading" secondItem="rFa-wX-jkq" secondAttribute="trailing" constant="8" symbolic="YES" id="kfw-CM-HTZ"/>
+                            <constraint firstItem="rFa-wX-jkq" firstAttribute="top" secondItem="I0B-Bn-idZ" secondAttribute="top" id="nxp-7V-2M0"/>
+                            <constraint firstItem="2Ne-Tv-EFk" firstAttribute="leading" secondItem="I0B-Bn-idZ" secondAttribute="leading" id="qOd-ee-CTu"/>
+                            <constraint firstItem="zWz-1L-n61" firstAttribute="bottom" secondItem="I0B-Bn-idZ" secondAttribute="bottom" id="wWQ-mJ-NPj"/>
+                            <constraint firstItem="2Ne-Tv-EFk" firstAttribute="width" secondItem="2So-Lx-vGC" secondAttribute="width" multiplier="0.35" id="wad-cD-ASg"/>
                             <constraint firstItem="oyR-hX-ySR" firstAttribute="leading" secondItem="I0B-Bn-idZ" secondAttribute="leading" id="xcc-xe-K7a"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="ENk-mP-31x" id="D0a-b6-Zzg"/>
+                        <outlet property="centralStackView" destination="rFa-wX-jkq" id="C83-3K-iKu"/>
+                        <outlet property="leftStackView" destination="2Ne-Tv-EFk" id="dbB-xU-Cfh"/>
+                        <outlet property="rightStackView" destination="zWz-1L-n61" id="Uhh-nx-yw8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jr0-Mh-RF3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

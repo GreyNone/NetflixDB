@@ -28,15 +28,15 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-dC-UpK">
-                                <rect key="frame" x="41" y="112" width="311" height="95"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-dC-UpK">
+                                <rect key="frame" x="46" y="112" width="301" height="112"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">You can't sign up for Netflix in the app. We know it's a hassle. After you're a member, you can start watching in the app. Scroll &gt; to learn more</string>
+                                        <string key="content">You can't sign up for Netflix in the app. We know it's a hassle. After you're a member, you can start watching in the app. Scroll &gt; to learn more </string>
                                         <attributes>
                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="17" name="ArialMT"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <font key="NSFont" size="20" name="ArialMT"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -46,11 +46,10 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PBQ-dC-UpK" secondAttribute="trailing" constant="41" id="39x-O2-Oqm"/>
                             <constraint firstItem="PBQ-dC-UpK" firstAttribute="centerX" secondItem="ZD9-vU-icM" secondAttribute="centerX" id="3su-xc-Evq"/>
                             <constraint firstItem="ZD9-vU-icM" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="IKj-x3-YHK"/>
-                            <constraint firstItem="PBQ-dC-UpK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="41" id="OeU-eV-H9M"/>
                             <constraint firstItem="ZD9-vU-icM" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="c5J-nh-6O9"/>
+                            <constraint firstItem="PBQ-dC-UpK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="46" id="fPq-2b-jTv"/>
                             <constraint firstItem="PBQ-dC-UpK" firstAttribute="top" secondItem="ZD9-vU-icM" secondAttribute="bottom" constant="25" id="ofA-ND-uhH"/>
                         </constraints>
                     </view>

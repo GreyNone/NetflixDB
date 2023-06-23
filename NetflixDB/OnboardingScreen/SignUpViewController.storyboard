@@ -16,8 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXO-E5-htI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXO-E5-htI">
                                 <rect key="frame" x="124.66666666666667" y="59" width="143.66666666666663" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="That's right!">
                                         <attributes>
@@ -29,8 +30,9 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rg8-JQ-Uun">
-                                <rect key="frame" x="63" y="102" width="267" height="40.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rg8-JQ-Uun">
+                                <rect key="frame" x="65.333333333333343" y="102" width="262.66666666666663" height="40.666666666666657"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Please go to the movieDB website and create an account here">
                                         <attributes>
@@ -42,8 +44,9 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RhC-LF-5gt">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RhC-LF-5gt">
                                 <rect key="frame" x="120" y="164" width="153" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
@@ -61,18 +64,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="RhC-LF-5gt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="120" id="7fQ-GR-v61"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="RhC-LF-5gt" secondAttribute="trailing" constant="120" id="Dx1-np-r4i"/>
-                            <constraint firstItem="RhC-LF-5gt" firstAttribute="centerX" secondItem="SXO-E5-htI" secondAttribute="centerX" id="HQO-PP-QEj"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="RhC-LF-5gt" secondAttribute="bottom" constant="170" id="Lqu-TO-Qh2"/>
-                            <constraint firstItem="Rg8-JQ-Uun" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="63" id="Pt6-nF-0J1"/>
-                            <constraint firstItem="SXO-E5-htI" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" id="auO-EX-zFm"/>
-                            <constraint firstItem="SXO-E5-htI" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="g9l-zy-pUi"/>
-                            <constraint firstItem="Rg8-JQ-Uun" firstAttribute="top" secondItem="SXO-E5-htI" secondAttribute="bottom" constant="15" id="okT-VO-drt"/>
-                            <constraint firstItem="Rg8-JQ-Uun" firstAttribute="centerX" secondItem="SXO-E5-htI" secondAttribute="centerX" id="t4S-Ne-NTc"/>
-                            <constraint firstItem="RhC-LF-5gt" firstAttribute="top" secondItem="Rg8-JQ-Uun" secondAttribute="bottom" constant="21.333333333333343" id="wk5-Km-eKf"/>
-                        </constraints>
                     </view>
                     <size key="freeformSize" width="393" height="393"/>
                 </viewController>
