@@ -77,9 +77,12 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="didTapOnSignInButton:" destination="yHh-nf-X6d" eventType="touchUpInside" id="M3U-NG-4cS"/>
+                                                </connections>
                                             </button>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO0-6S-SrU">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="340"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="339.66666666666669"/>
                                                 <connections>
                                                     <segue destination="0Pn-J6-sS5" kind="embed" id="uNl-Ff-Bft"/>
                                                 </connections>
@@ -97,7 +100,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="VIC-al-utg" firstAttribute="leading" secondItem="oyR-hX-ySR" secondAttribute="leading" id="LmB-rJ-ffY"/>
                                     <constraint firstItem="VIC-al-utg" firstAttribute="height" secondItem="oyR-hX-ySR" secondAttribute="height" multiplier="0.5" id="TRo-5h-Hw6"/>
@@ -133,7 +136,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="0Pn-J6-sS5" customClass="BlocksPageViewController" customModule="NetflixDB" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6UB-Cq-iBv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="64"/>
+            <point key="canvasLocation" x="944" y="58"/>
         </scene>
     </scenes>
     <resources>

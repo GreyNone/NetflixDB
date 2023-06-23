@@ -29,6 +29,11 @@ class LoginViewController: UIViewController {
         loginButton.layer.borderWidth = 2
     }
     
+    //MARK: - IBActions
+    @IBAction func didTapOnBackButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 }
 
 //MARK: - UITextFieldDelegate

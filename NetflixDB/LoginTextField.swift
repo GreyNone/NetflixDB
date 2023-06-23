@@ -16,7 +16,7 @@ class LoginTextField: UITextField {
     private var isShowPassword: Bool = true
     
     func addShowButton() {
-        showButton = UIButton(frame: CGRect(x: self.bounds.width - showButtonWidth - leftPadding,
+        showButton = UIButton(frame: CGRect(x: self.bounds.width,
                                             y: self.bounds.height / 2 - showButtonHeight,
                                             width: showButtonWidth,
                                             height: showButtonHeight))

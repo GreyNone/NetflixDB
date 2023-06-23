@@ -18,15 +18,18 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let loginStoryboard = UIStoryboard(name: "LoginViewController", bundle: nil)
-//        let loginViewController = loginStoryboard.instantiateViewController(identifier: "LoginViewController")
-//        self.navigationController?.pushViewController(loginViewController, animated: true)
-        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    //MARK: - IBActions
+    @IBAction func didTapOnSignInButton(_ sender: Any) {
+        let loginStoryboard = UIStoryboard(name: "LoginViewController", bundle: nil)
+        let loginViewController = loginStoryboard.instantiateViewController(identifier: "LoginViewController")
+        self.navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
 
@@ -38,7 +41,7 @@ extension OnboardingViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return posters.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

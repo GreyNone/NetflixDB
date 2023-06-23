@@ -21,6 +21,9 @@ class BlocksPageViewController: UIPageViewController {
             setViewControllers([firstViewController], direction: .forward, animated: true)
         }
         
+        let pageControl = UIPageControl.appearance(whenContainedInInstancesOf: [BlocksPageViewController.self])
+        pageControl.currentPageIndicatorTintColor = .red
+        pageControl.pageIndicatorTintColor = .lightGray
     }
     
     private func createViewControllers() -> [UIViewController] {
