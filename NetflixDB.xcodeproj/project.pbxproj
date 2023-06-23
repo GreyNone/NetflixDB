@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3333DD02A44678B006BFA7F /* BlocksPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */; };
+		F3333DD32A44681A006BFA7F /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */; };
+		F3333DD72A44688E006BFA7F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DD62A44688E006BFA7F /* SignUpViewController.swift */; };
+		F3333DD92A44689F006BFA7F /* SignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3333DD82A44689F006BFA7F /* SignUpViewController.storyboard */; };
+		F3333DDB2A446B94006BFA7F /* DescriptionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3333DDA2A446B94006BFA7F /* DescriptionViewController.storyboard */; };
 		F33C9CDB2A432D4A00781F70 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33C9CDA2A432D4A00781F70 /* SplashViewController.swift */; };
 		F33C9CDD2A432D5A00781F70 /* SplashViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F33C9CDC2A432D5A00781F70 /* SplashViewController.storyboard */; };
 		F36D5E282A4444950007B763 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36D5E272A4444950007B763 /* PosterCollectionViewCell.swift */; };
@@ -23,6 +28,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksPageViewController.swift; sourceTree = "<group>"; };
+		F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		F3333DD62A44688E006BFA7F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		F3333DD82A44689F006BFA7F /* SignUpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpViewController.storyboard; sourceTree = "<group>"; };
+		F3333DDA2A446B94006BFA7F /* DescriptionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DescriptionViewController.storyboard; sourceTree = "<group>"; };
 		F33C9CDA2A432D4A00781F70 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		F33C9CDC2A432D5A00781F70 /* SplashViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SplashViewController.storyboard; sourceTree = "<group>"; };
 		F36D5E272A4444950007B763 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -51,6 +61,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3333DD12A4467D3006BFA7F /* OnboardingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F3D22BFB2A42ECA00014F799 /* OnboardingViewController.swift */,
+				F3D22BFD2A42ECA00014F799 /* OnboardingViewController.storyboard */,
+				F36D5E272A4444950007B763 /* PosterCollectionViewCell.swift */,
+				F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */,
+				F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */,
+				F3333DDA2A446B94006BFA7F /* DescriptionViewController.storyboard */,
+				F3333DD62A44688E006BFA7F /* SignUpViewController.swift */,
+				F3333DD82A44689F006BFA7F /* SignUpViewController.storyboard */,
+			);
+			path = OnboardingScreen;
+			sourceTree = "<group>";
+		};
 		F3D22BEB2A42ECA00014F799 = {
 			isa = PBXGroup;
 			children = (
@@ -75,9 +100,7 @@
 				F33C9CDA2A432D4A00781F70 /* SplashViewController.swift */,
 				F33C9CDC2A432D5A00781F70 /* SplashViewController.storyboard */,
 				F3D22C022A42ECA20014F799 /* LaunchScreen.storyboard */,
-				F36D5E272A4444950007B763 /* PosterCollectionViewCell.swift */,
-				F3D22BFB2A42ECA00014F799 /* OnboardingViewController.swift */,
-				F3D22BFD2A42ECA00014F799 /* OnboardingViewController.storyboard */,
+				F3333DD12A4467D3006BFA7F /* OnboardingScreen */,
 				F3D22C0E2A42F9AC0014F799 /* LoginViewController.swift */,
 				F3D22C122A43081A0014F799 /* LoginViewController.storyboard */,
 				F3D22C142A4315400014F799 /* LoginTextField.swift */,
@@ -151,10 +174,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3333DDB2A446B94006BFA7F /* DescriptionViewController.storyboard in Resources */,
 				F3D22C042A42ECA20014F799 /* LaunchScreen.storyboard in Resources */,
 				F3D22C132A43081A0014F799 /* LoginViewController.storyboard in Resources */,
 				F33C9CDD2A432D5A00781F70 /* SplashViewController.storyboard in Resources */,
 				F3D22C012A42ECA20014F799 /* Assets.xcassets in Resources */,
+				F3333DD92A44689F006BFA7F /* SignUpViewController.storyboard in Resources */,
 				F3D22BFF2A42ECA00014F799 /* OnboardingViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,8 +194,11 @@
 				F36D5E282A4444950007B763 /* PosterCollectionViewCell.swift in Sources */,
 				F3D22C102A42F9AC0014F799 /* LoginViewController.swift in Sources */,
 				F3D22BFC2A42ECA00014F799 /* OnboardingViewController.swift in Sources */,
+				F3333DD02A44678B006BFA7F /* BlocksPageViewController.swift in Sources */,
+				F3333DD72A44688E006BFA7F /* SignUpViewController.swift in Sources */,
 				F3D22BF82A42ECA00014F799 /* AppDelegate.swift in Sources */,
 				F33C9CDB2A432D4A00781F70 /* SplashViewController.swift in Sources */,
+				F3333DD32A44681A006BFA7F /* DescriptionViewController.swift in Sources */,
 				F3D22BFA2A42ECA00014F799 /* SceneDelegate.swift in Sources */,
 				F3D22C152A4315400014F799 /* LoginTextField.swift in Sources */,
 			);
