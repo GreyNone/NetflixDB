@@ -17,8 +17,9 @@ extension MyService: TargetType {
     var headers: [String : String]? {
         switch self {
         case .popularMovies:
-            return   ["accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MGNhZGEwMmVlMDNkMGY2NGI2OTUyZmM1ZTRjYjY5MyIsInN1YiI6IjY0OTU3NGEzZDVmZmNiMDBjNTk0YjM3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SYCl9DneiRF3uQ7rbXeRp1JEJ52-3h3ODaBLBhWDy4c"]
+            let headers = ["accept": "application/json",
+                           "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MGNhZGEwMmVlMDNkMGY2NGI2OTUyZmM1ZTRjYjY5MyIsInN1YiI6IjY0OTU3NGEzZDVmZmNiMDBjNTk0YjM3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SYCl9DneiRF3uQ7rbXeRp1JEJ52-3h3ODaBLBhWDy4c"]
+            return headers
         }
     }
     
@@ -50,4 +51,29 @@ extension MyService: TargetType {
         }
     }
     
+}
+
+protocol CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy { get }
+}
+
+final class CachePolicyPlugin: PluginType {
+    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        if let cachePolicyGettable = target as? CachePolicyGettable {
+            var mutableRequest = request
+            mutableRequest.cachePolicy = cachePolicyGettable.cachePolicy
+            return mutableRequest
+        }
+        
+        return request
+    }
+}
+
+extension MyService: CachePolicyGettable {
+    var cachePolicy: URLRequest.CachePolicy {
+        switch self {
+        case .popularMovies:
+            return .useProtocolCachePolicy
+        }
+    }
 }
