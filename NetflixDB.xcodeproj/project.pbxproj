@@ -29,6 +29,8 @@
 		F36028F92A45BE2E00D98F25 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36028F82A45BE2E00D98F25 /* Movies.swift */; };
 		F36028FB2A45C8C900D98F25 /* MoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36028FA2A45C8C900D98F25 /* MoyaProvider.swift */; };
 		F38650292A4AC23F008C9F41 /* UpcomingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38650282A4AC23F008C9F41 /* UpcomingCollectionViewCell.swift */; };
+		F38650302A4AD759008C9F41 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F386502F2A4AD759008C9F41 /* ImageService.swift */; };
+		F38650322A4AF0AC008C9F41 /* MoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38650312A4AF0AC008C9F41 /* MoviesService.swift */; };
 		F3D22BF82A42ECA00014F799 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22BF72A42ECA00014F799 /* AppDelegate.swift */; };
 		F3D22BFA2A42ECA00014F799 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22BF92A42ECA00014F799 /* SceneDelegate.swift */; };
 		F3D22BFC2A42ECA00014F799 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22BFB2A42ECA00014F799 /* OnboardingViewController.swift */; };
@@ -64,6 +66,8 @@
 		F36028F82A45BE2E00D98F25 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		F36028FA2A45C8C900D98F25 /* MoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProvider.swift; sourceTree = "<group>"; };
 		F38650282A4AC23F008C9F41 /* UpcomingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCollectionViewCell.swift; sourceTree = "<group>"; };
+		F386502F2A4AD759008C9F41 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		F38650312A4AF0AC008C9F41 /* MoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesService.swift; sourceTree = "<group>"; };
 		F3D22BF42A42ECA00014F799 /* NetflixDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetflixDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D22BF72A42ECA00014F799 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D22BF92A42ECA00014F799 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +185,8 @@
 			children = (
 				F36028FA2A45C8C900D98F25 /* MoyaProvider.swift */,
 				F306FA812A4996E5006C20D9 /* CacheManager.swift */,
+				F386502F2A4AD759008C9F41 /* ImageService.swift */,
+				F38650312A4AF0AC008C9F41 /* MoviesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -327,8 +333,10 @@
 				F38650292A4AC23F008C9F41 /* UpcomingCollectionViewCell.swift in Sources */,
 				F3D22C152A4315400014F799 /* LoginTextField.swift in Sources */,
 				F306FA802A498159006C20D9 /* PosterCollectionViewCell.swift in Sources */,
+				F38650322A4AF0AC008C9F41 /* MoviesService.swift in Sources */,
 				F36028F92A45BE2E00D98F25 /* Movies.swift in Sources */,
 				F36028EC2A45947300D98F25 /* HomeViewController.swift in Sources */,
+				F38650302A4AD759008C9F41 /* ImageService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

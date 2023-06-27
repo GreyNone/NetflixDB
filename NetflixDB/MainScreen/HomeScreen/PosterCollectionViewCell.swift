@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class PosterCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var posterImageView: UIImageView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     static let identifier = "PosterCollectionViewCell"
+    private var request: DataRequest?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,7 +21,25 @@ class PosterCollectionViewCell: UICollectionViewCell {
         posterImageView.layer.cornerRadius = 10
     }
     
+    override func prepareForReuse() {
+        posterImageView.image = nil
+        request?.cancel()
+    }
+    
+    //MARK: - Configuration
     func configure(image: UIImage) {
         posterImageView.image = image
     }
+    
+    func configure(url: URL, for key: String) {
+        request = AF.request(url, method: HTTPMethod.get, headers: ImageService.shared.headers)
+        if let request = request {
+            ImageService.shared.image(request: request, key: key) { [weak self] image in
+                self?.posterImageView.image = image
+                self?.activityIndicatorView.stopAnimating()
+            }
+        }
+    }
+
 }
+

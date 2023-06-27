@@ -7,15 +7,13 @@
 
 import Foundation
 import UIKit
-import Moya
+import Alamofire
 
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mainPosterImageView: UIImageView!
-    var movies = [Movie]()
-    var posters = [UIImage]()
-    var genres = [Genre]()
+    var movies: [Movie]?
     let insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     
     override func viewDidLoad() {
@@ -33,88 +31,27 @@ class HomeViewController: UIViewController {
 //            }
 //        }
         
-        let headers = [
-            "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MGNhZGEwMmVlMDNkMGY2NGI2OTUyZmM1ZTRjYjY5MyIsInN1YiI6IjY0OTU3NGEzZDVmZmNiMDBjNTk0YjM3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SYCl9DneiRF3uQ7rbXeRp1JEJ52-3h3ODaBLBhWDy4c"
-        ]
-        
-        let moviesRequest = NSMutableURLRequest(url: NSURL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")! as URL,
-                                                cachePolicy: .useProtocolCachePolicy,
-                                                timeoutInterval: 10.0)
-        moviesRequest.httpMethod = "GET"
-        moviesRequest.allHTTPHeaderFields = headers
-        
-        let session = URLSession.shared
-        let moviesDataTask = session.dataTask(with: moviesRequest as URLRequest, completionHandler: { [weak self] (data, response, error) -> Void in
-            guard let data = data,
-                  error == nil,
-                  let movies = try? JSONDecoder().decode(Movies.self, from: data).movies,
-                  let self = self else { return }
-            
-            self.movies = self.sort(movies: movies)
-            
-            let lastRelease = self.movies[0]
-            self.movies.remove(at: 0)
-            
-            let mainPosterRequest = NSMutableURLRequest(url: NSURL(string:"https://image.tmdb.org/t/p/"
-                                                                   + "original"
-                                                                   + (lastRelease.posterPath))! as URL,
-                                                        cachePolicy: .useProtocolCachePolicy,
-                                                        timeoutInterval: 10)
-            mainPosterRequest.httpMethod = "GET"
-            mainPosterRequest.allHTTPHeaderFields = headers
-            
-            let mainPosterDataTask = session.dataTask(with: mainPosterRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
-                guard error == nil,
-                      let data = data,
-                      let image = UIImage(data: data) else { return }
-                DispatchQueue.main.async {
-                    self.mainPosterImageView.image = image
-                }
-            })
-            mainPosterDataTask.resume()
-            
-            for movie in self.movies {
-                let postersRequest = NSMutableURLRequest(url: NSURL(string:"https://image.tmdb.org/t/p/"
-                                                                    + "w400"
-                                                                    + (movie.posterPath))! as URL,
-                                                         cachePolicy: .useProtocolCachePolicy,
-                                                         timeoutInterval: 10)
-                postersRequest.httpMethod = "GET"
-                postersRequest.allHTTPHeaderFields = headers
-                
-                let posterDataTask = session.dataTask(with: postersRequest as URLRequest, completionHandler: { (data, response, error) -> Void in
-                    guard let data = data,
-                          error == nil,
-                          let image = UIImage(data: data) else { return }
-                    
-                    self.posters.append(image)
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                })
-                posterDataTask.resume()
+        guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
+        let request = AF.request(moviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+        MoviesService.shared.movies(request: request) { movies in
+            self.movies = self.sort(movies: movies.movies)
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
-        })
-        moviesDataTask.resume()
         
-        let genresRequest = NSMutableURLRequest(url: NSURL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en")! as URL,
-                                                cachePolicy: .useProtocolCachePolicy,
-                                                timeoutInterval: 10.0)
-        genresRequest.httpMethod = "GET"
-        genresRequest.allHTTPHeaderFields = headers
-        
-        let genresDataTask = session.dataTask(with: genresRequest as URLRequest, completionHandler: { [weak self] (data, response, error) -> Void in
-            guard let data = data,
-                  error == nil,
-                  let self = self else { return }
-            
-            let responseData = try? JSONDecoder().decode(Genres.self, from: data)
-            self.genres = responseData?.genres ?? []
-        })
-        genresDataTask.resume()
+            let lastRelease = self.movies![0]
+            self.movies?.remove(at: 0)
+
+            guard let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + lastRelease.posterPath) else { return }
+            let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+            ImageService.shared.image(request: request, key: lastRelease.posterPath) { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.mainPosterImageView.image = image
+                }
+            }
+        }
     }
-    
+
     private func sort(movies: [Movie]) -> [Movie] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -123,22 +60,45 @@ class HomeViewController: UIViewController {
     }
 }
 
+//MARK: = UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posters.count
+        guard let count = movies?.count else { return 0 }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath)
-                as? PosterCollectionViewCell else { return PosterCollectionViewCell() }
+                as? PosterCollectionViewCell,
+              let movie = movies?[indexPath.row] else { return PosterCollectionViewCell() }
         
-        cell.configure(image: posters[indexPath.row])
-        
+        cell.activityIndicatorView.startAnimating()
+
+        if let image = CacheManager.shared.getValue(for: movie.posterPath) {
+            cell.configure(image: image)
+            cell.activityIndicatorView.stopAnimating()
+            return cell
+        }
+
+        let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + movie.posterPath)
+        if let url = url {
+            cell.configure(url: url, for: movie.posterPath)
+        }
+
         return cell
     }
 }
 
+//MARK: - UICollectionViewDelegate
+extension HomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+}
+
+//MARK: - UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -50,6 +50,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
+                                            <outlet property="activityIndicatorView" destination="qX0-Us-YRy" id="7BZ-LP-BSp"/>
                                             <outlet property="posterImageView" destination="8L6-px-uND" id="llB-1G-ws7"/>
                                         </connections>
                                     </collectionViewCell>
