@@ -16,47 +16,95 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMk-Ra-IfS">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMk-Ra-IfS" userLabel="ContainerView">
                                 <rect key="frame" x="0.0" y="59" width="393" height="456"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-b6-hxX">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="456"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njd-HO-fZU">
-                                        <rect key="frame" x="19.999999999999996" y="421.33333333333331" width="54.666666666666657" height="54.666666666666686"/>
-                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" imagePlacement="top" title="Like"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeM-L6-aAe">
-                                        <rect key="frame" x="140" y="431" width="113" height="34"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="Play">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="18" name="Arial-BoldMT"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </buttonConfiguration>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ClH-x0-P7k" customClass="GradientView" customModule="NetflixDB" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="136.66666666666666"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="netfilixLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OwZ-PC-AQQ">
+                                                <rect key="frame" x="10" y="10" width="70" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Ylv-P9-5wz"/>
+                                                    <constraint firstAttribute="width" constant="70" id="woJ-WG-Ru3"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU5-hd-xc5">
+                                                <rect key="frame" x="313" y="10" width="70" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="70" id="LLl-Re-Omv"/>
+                                                    <constraint firstAttribute="height" constant="60" id="gRm-CD-goh"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="person" catalog="system">
+                                                    <color key="baseForegroundColor" red="1" green="0.061325244899999999" blue="0.16115276379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="OwZ-PC-AQQ" firstAttribute="top" secondItem="ClH-x0-P7k" secondAttribute="top" constant="10" id="3BX-53-hpx"/>
+                                            <constraint firstItem="aU5-hd-xc5" firstAttribute="top" secondItem="ClH-x0-P7k" secondAttribute="top" constant="10" id="P3W-uR-9wP"/>
+                                            <constraint firstAttribute="trailing" secondItem="aU5-hd-xc5" secondAttribute="trailing" constant="10" id="laL-Rq-2uJ"/>
+                                            <constraint firstItem="OwZ-PC-AQQ" firstAttribute="leading" secondItem="ClH-x0-P7k" secondAttribute="leading" constant="10" id="y1B-J6-XrD"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRe-tQ-BEd" customClass="GradientView" customModule="NetflixDB" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="319.33333333333331" width="393" height="136.66666666666669"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeM-L6-aAe">
+                                                <rect key="frame" x="133" y="112.66666666666669" width="127" height="34"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="127" id="aZv-Bg-Sha"/>
+                                                </constraints>
+                                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system">
+                                                    <attributedString key="attributedTitle">
+                                                        <fragment content="Play">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="18" name="Arial-BoldMT"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njd-HO-fZU">
+                                                <rect key="frame" x="24.999999999999996" y="102.00000000000001" width="54.666666666666657" height="54.666666666666671"/>
+                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" imagePlacement="top" title="Like"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="MeM-L6-aAe" secondAttribute="bottom" constant="-10" id="ELK-RD-SEl"/>
+                                            <constraint firstItem="Njd-HO-fZU" firstAttribute="leading" secondItem="mRe-tQ-BEd" secondAttribute="leading" constant="25" id="T1R-9m-1DB"/>
+                                            <constraint firstAttribute="bottom" secondItem="Njd-HO-fZU" secondAttribute="bottom" constant="-20" id="YOP-LR-GRM"/>
+                                            <constraint firstItem="MeM-L6-aAe" firstAttribute="centerX" secondItem="mRe-tQ-BEd" secondAttribute="centerX" id="whe-0O-I4u"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Vde-b6-hxX" secondAttribute="bottom" id="6o6-iq-MQC"/>
-                                    <constraint firstItem="MeM-L6-aAe" firstAttribute="width" secondItem="Vde-b6-hxX" secondAttribute="width" multiplier="0.330789" constant="-17" id="AS7-S2-L1M"/>
-                                    <constraint firstItem="MeM-L6-aAe" firstAttribute="centerX" secondItem="Vde-b6-hxX" secondAttribute="centerX" id="CmK-xK-gYr"/>
-                                    <constraint firstItem="Njd-HO-fZU" firstAttribute="leading" secondItem="AMk-Ra-IfS" secondAttribute="leading" constant="20" id="TG7-4p-jDQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="mRe-tQ-BEd" secondAttribute="trailing" id="Aqh-YY-piX"/>
+                                    <constraint firstAttribute="trailing" secondItem="ClH-x0-P7k" secondAttribute="trailing" id="MOF-ey-ka8"/>
+                                    <constraint firstItem="ClH-x0-P7k" firstAttribute="height" secondItem="AMk-Ra-IfS" secondAttribute="height" multiplier="0.3" id="UJX-oQ-a8T"/>
+                                    <constraint firstItem="ClH-x0-P7k" firstAttribute="leading" secondItem="AMk-Ra-IfS" secondAttribute="leading" id="Vq2-or-lda"/>
                                     <constraint firstAttribute="trailing" secondItem="Vde-b6-hxX" secondAttribute="trailing" id="YFP-VF-BDb"/>
                                     <constraint firstItem="Vde-b6-hxX" firstAttribute="leading" secondItem="AMk-Ra-IfS" secondAttribute="leading" id="Zdp-3s-oaQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="MeM-L6-aAe" secondAttribute="bottom" constant="-9" id="oXb-lG-i9n"/>
-                                    <constraint firstAttribute="bottom" secondItem="Njd-HO-fZU" secondAttribute="bottom" constant="-20" id="wdK-TT-Sj3"/>
+                                    <constraint firstItem="ClH-x0-P7k" firstAttribute="top" secondItem="AMk-Ra-IfS" secondAttribute="top" id="e2Q-nX-MYE"/>
+                                    <constraint firstAttribute="bottom" secondItem="mRe-tQ-BEd" secondAttribute="bottom" id="eNj-eG-2hc"/>
+                                    <constraint firstItem="mRe-tQ-BEd" firstAttribute="height" secondItem="Vde-b6-hxX" secondAttribute="height" multiplier="0.3" id="uJq-to-Mjh"/>
                                     <constraint firstItem="Vde-b6-hxX" firstAttribute="top" secondItem="AMk-Ra-IfS" secondAttribute="top" id="yR5-od-zBe"/>
+                                    <constraint firstItem="mRe-tQ-BEd" firstAttribute="leading" secondItem="AMk-Ra-IfS" secondAttribute="leading" id="z5k-pm-6RC"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eYX-bn-xXl">
@@ -146,6 +194,8 @@
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="netfilixLogo" width="284" height="517"/>
+        <image name="person" catalog="system" width="128" height="121"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
     </resources>
 </document>

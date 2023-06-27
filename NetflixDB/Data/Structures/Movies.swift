@@ -41,9 +41,11 @@ struct Movie: Decodable {
 
 struct Movies: Decodable {
     var movies: [Movie]
+    var page: Int
     
     enum CodingKeys: String, CodingKey {
         case movies = "results"
+        case page
     }
 }
 

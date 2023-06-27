@@ -60,6 +60,9 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapOnSignUpButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="MtP-Nn-yS2"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

@@ -9,5 +9,8 @@ import Foundation
 import UIKit
 
 class SignUpViewController: UIViewController {
-    
+
+    @IBAction func didTapOnSignUpButton(_ sender: Any) {
+        print("a")
+    }
 }

@@ -33,16 +33,15 @@ class HomeViewController: UIViewController {
         
         guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
         let request = AF.request(moviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
-        MoviesService.shared.movies(request: request) { movies in
-            self.movies = self.sort(movies: movies.movies)
+        MoviesService.shared.movies(request: request) { fetchedMovies in
+            self.movies = self.sort(movies: fetchedMovies.movies)
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         
-            let lastRelease = self.movies![0]
+            guard let lastRelease = self.movies?[0],
+                      let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + lastRelease.posterPath) else { return }
             self.movies?.remove(at: 0)
-
-            guard let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + lastRelease.posterPath) else { return }
             let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
             ImageService.shared.image(request: request, key: lastRelease.posterPath) { [weak self] image in
                 DispatchQueue.main.async {
@@ -101,15 +100,21 @@ extension HomeViewController: UICollectionViewDelegate {
 //MARK: - UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: 125, height: self.collectionView.bounds.height)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return insets
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return insets.left
     }
 }

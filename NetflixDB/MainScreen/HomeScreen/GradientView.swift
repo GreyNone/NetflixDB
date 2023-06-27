@@ -30,16 +30,15 @@ class GradientView: UIView {
         Bundle.main.loadNibNamed("GradientView", owner: self)
         
         contentView?.frame = self.bounds
-        contentView.backgroundColor = .clear
- 
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = contentView.bounds
         gradientLayer.locations = [0.7,1]
         gradientLayer.colors = [
-            UIColor.black.withAlphaComponent(0.4).cgColor,
-            UIColor.lightGray.withAlphaComponent(0.4).cgColor
+            UIColor.black.withAlphaComponent(0.3).cgColor,
+            UIColor.lightGray.withAlphaComponent(0.3).cgColor
         ]
-        contentView?.layer.addSublayer(gradientLayer)
+        contentView.layer.addSublayer(gradientLayer)
         addSubview(contentView)
     }
 }
