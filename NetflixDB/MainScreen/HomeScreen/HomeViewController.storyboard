@@ -16,11 +16,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-b6-hxX">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMk-Ra-IfS">
                                 <rect key="frame" x="0.0" y="59" width="393" height="456"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-b6-hxX">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="456"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njd-HO-fZU">
+                                        <rect key="frame" x="19.999999999999996" y="421.33333333333331" width="54.666666666666657" height="54.666666666666686"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" imagePlacement="top" title="Like"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MeM-L6-aAe">
+                                        <rect key="frame" x="140" y="431" width="113" height="34"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="Play">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="18" name="Arial-BoldMT"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Vde-b6-hxX" secondAttribute="bottom" id="6o6-iq-MQC"/>
+                                    <constraint firstItem="MeM-L6-aAe" firstAttribute="width" secondItem="Vde-b6-hxX" secondAttribute="width" multiplier="0.330789" constant="-17" id="AS7-S2-L1M"/>
+                                    <constraint firstItem="MeM-L6-aAe" firstAttribute="centerX" secondItem="Vde-b6-hxX" secondAttribute="centerX" id="CmK-xK-gYr"/>
+                                    <constraint firstItem="Njd-HO-fZU" firstAttribute="leading" secondItem="AMk-Ra-IfS" secondAttribute="leading" constant="20" id="TG7-4p-jDQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vde-b6-hxX" secondAttribute="trailing" id="YFP-VF-BDb"/>
+                                    <constraint firstItem="Vde-b6-hxX" firstAttribute="leading" secondItem="AMk-Ra-IfS" secondAttribute="leading" id="Zdp-3s-oaQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="MeM-L6-aAe" secondAttribute="bottom" constant="-9" id="oXb-lG-i9n"/>
+                                    <constraint firstAttribute="bottom" secondItem="Njd-HO-fZU" secondAttribute="bottom" constant="-20" id="wdK-TT-Sj3"/>
+                                    <constraint firstItem="Vde-b6-hxX" firstAttribute="top" secondItem="AMk-Ra-IfS" secondAttribute="top" id="yR5-od-zBe"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eYX-bn-xXl">
-                                <rect key="frame" x="0.0" y="572" width="393" height="246"/>
+                                <rect key="frame" x="0.0" y="564.33333333333337" width="393" height="253.66666666666663"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Kbv-Js-aFp">
                                     <size key="itemSize" width="149" height="138"/>
@@ -30,7 +70,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PosterCollectionViewCell" id="PDf-Sg-bQF" customClass="PosterCollectionViewCell" customModule="NetflixDB" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="54" width="149" height="138"/>
+                                        <rect key="frame" x="0.0" y="57.666666666666664" width="149" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E4q-ng-fCd">
                                             <rect key="frame" x="0.0" y="0.0" width="149" height="138"/>
@@ -59,7 +99,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04B-wx-a1M">
-                                <rect key="frame" x="10" y="540" width="383" height="24"/>
+                                <rect key="frame" x="20" y="535" width="373" height="21.333333333333371"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Popular Movies">
                                         <attributes>
@@ -76,17 +116,16 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="eYX-bn-xXl" secondAttribute="bottom" id="6NH-y1-sZd"/>
-                            <constraint firstItem="Vde-b6-hxX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Fwz-BE-k4l"/>
+                            <constraint firstItem="04B-wx-a1M" firstAttribute="top" secondItem="AMk-Ra-IfS" secondAttribute="bottom" constant="20" id="HIY-bV-4LJ"/>
                             <constraint firstItem="eYX-bn-xXl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="IBc-0z-Pog"/>
-                            <constraint firstItem="Vde-b6-hxX" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="N90-Oh-FyW"/>
-                            <constraint firstItem="eYX-bn-xXl" firstAttribute="top" secondItem="Vde-b6-hxX" secondAttribute="bottom" constant="57" id="NfR-Cb-eSY"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eYX-bn-xXl" secondAttribute="trailing" id="Ohk-Zx-pwu"/>
                             <constraint firstItem="eYX-bn-xXl" firstAttribute="top" secondItem="04B-wx-a1M" secondAttribute="bottom" constant="8" symbolic="YES" id="P9W-9e-9G4"/>
-                            <constraint firstItem="04B-wx-a1M" firstAttribute="top" secondItem="Vde-b6-hxX" secondAttribute="bottom" constant="25" id="WYd-Pa-Zqm"/>
-                            <constraint firstItem="04B-wx-a1M" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="Wkg-vp-qqa"/>
-                            <constraint firstItem="Vde-b6-hxX" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.503521" constant="27" id="XVh-TL-pa7"/>
+                            <constraint firstItem="AMk-Ra-IfS" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="WHS-1g-MSu"/>
+                            <constraint firstItem="04B-wx-a1M" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Wkg-vp-qqa"/>
+                            <constraint firstItem="AMk-Ra-IfS" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.535211" id="Zsw-3C-jD9"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="04B-wx-a1M" secondAttribute="trailing" id="a3Q-mq-0B5"/>
-                            <constraint firstItem="Vde-b6-hxX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cww-75-bdH"/>
+                            <constraint firstItem="AMk-Ra-IfS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="dIg-4L-aP0"/>
+                            <constraint firstItem="AMk-Ra-IfS" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="yFa-0r-ChK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uao-Lh-KK2"/>
@@ -100,4 +139,8 @@
             <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="play.fill" catalog="system" width="117" height="128"/>
+    </resources>
 </document>
