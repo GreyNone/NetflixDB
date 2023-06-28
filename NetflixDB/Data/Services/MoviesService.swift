@@ -22,4 +22,11 @@ final class MoviesService {
             completion(movies)
         }
     }
+    
+    func genres(request: DataRequest, complection: @escaping ([Genre]) -> Void) {
+        request.validate().responseDecodable(of: Genres.self) { (response) in
+            guard let genres = response.value else { return }
+            complection(genres.genres)
+        }
+    }
 }

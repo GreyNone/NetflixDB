@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mainPosterImageView: UIImageView!
+    @IBOutlet weak var lastReleaseTitleLabel: UILabel!
+    @IBOutlet weak var genresLabel: UILabel!
     var movies: [Movie]?
     let insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     
@@ -32,21 +34,37 @@ class HomeViewController: UIViewController {
 //        }
         
         guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
-        let request = AF.request(moviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
-        MoviesService.shared.movies(request: request) { fetchedMovies in
-            self.movies = self.sort(movies: fetchedMovies.movies)
+        let moviesRequest = AF.request(moviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+        MoviesService.shared.movies(request: moviesRequest) { [weak self] fetchedMovies in
+            self?.movies = self?.sort(movies: fetchedMovies.movies)
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
+                self?.collectionView.reloadData()
             }
         
-            guard let lastRelease = self.movies?[0],
+            guard let lastRelease = self?.movies?[0],
                       let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + lastRelease.posterPath) else { return }
-            self.movies?.remove(at: 0)
+            self?.movies?.remove(at: 0)
             let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
-            ImageService.shared.image(request: request, key: lastRelease.posterPath) { [weak self] image in
+            ImageService.shared.image(request: request, key: lastRelease.posterPath) { image in
                 DispatchQueue.main.async {
                     self?.mainPosterImageView.image = image
+                    self?.lastReleaseTitleLabel.text = lastRelease.title
                 }
+            }
+            
+            guard let genresUrl = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en") else { return }
+            let genresRequest = AF.request(genresUrl, method: HTTPMethod.get, headers: MoviesService.shared.headers)
+            MoviesService.shared.genres(request: genresRequest) { fetchedGenres in
+                self?.genresLabel.text = ""
+                for lastReleaseGenre in lastRelease.genreIds {
+                    for genre in fetchedGenres {
+                        if lastReleaseGenre == genre.id {
+                            self?.genresLabel.text?.append(genre.name + " ")
+                        }
+                    }
+                }
+//                self?.genresLabel.text = ""
+//                let commonGenres: Array = Set(fetchedGenres).filter(Set(lastRelease.genreIds).contains)
             }
         }
     }
@@ -84,7 +102,7 @@ extension HomeViewController: UICollectionViewDataSource {
         if let url = url {
             cell.configure(url: url, for: movie.posterPath)
         }
-
+        
         return cell
     }
 }

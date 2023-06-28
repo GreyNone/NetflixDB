@@ -22,7 +22,7 @@ extension MyService: TargetType {
             return headers
         }
     }
-    
+
     var baseURL: URL {
         switch self {
         case .popularMovies:

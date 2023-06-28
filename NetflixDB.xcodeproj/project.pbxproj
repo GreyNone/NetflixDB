@@ -12,6 +12,8 @@
 		F306FA842A49B60E006C20D9 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA832A49B60E006C20D9 /* Genres.swift */; };
 		F306FA862A49C067006C20D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA852A49C067006C20D9 /* GradientView.swift */; };
 		F306FA8A2A49C09B006C20D9 /* GradientView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F306FA892A49C09B006C20D9 /* GradientView.xib */; };
+		F31CA0A92A4C36A800965F29 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31CA0A82A4C36A800965F29 /* MovieDetailsViewController.swift */; };
+		F31CA0AB2A4C36BB00965F29 /* MovieDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31CA0AA2A4C36BB00965F29 /* MovieDetailsViewController.storyboard */; };
 		F32CEB7B2A458F3B003028A8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32CEB7A2A458F3B003028A8 /* MainTabBarController.swift */; };
 		F3333DD02A44678B006BFA7F /* BlocksPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */; };
 		F3333DD32A44681A006BFA7F /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */; };
@@ -49,6 +51,8 @@
 		F306FA832A49B60E006C20D9 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		F306FA852A49C067006C20D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F306FA892A49C09B006C20D9 /* GradientView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradientView.xib; sourceTree = "<group>"; };
+		F31CA0A82A4C36A800965F29 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		F31CA0AA2A4C36BB00965F29 /* MovieDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieDetailsViewController.storyboard; sourceTree = "<group>"; };
 		F32CEB7A2A458F3B003028A8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F3333DCF2A44678B006BFA7F /* BlocksPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlocksPageViewController.swift; sourceTree = "<group>"; };
 		F3333DD22A44681A006BFA7F /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				F386502A2A4ACF10008C9F41 /* HomeScreen */,
 				F386502B2A4ACF1F008C9F41 /* ComingSoonScreen */,
 				F386502C2A4ACF50008C9F41 /* FavoritesScreen */,
+				F31CA0A82A4C36A800965F29 /* MovieDetailsViewController.swift */,
+				F31CA0AA2A4C36BB00965F29 /* MovieDetailsViewController.storyboard */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 				F3D22C132A43081A0014F799 /* LoginViewController.storyboard in Resources */,
 				F33C9CDD2A432D5A00781F70 /* SplashViewController.storyboard in Resources */,
 				F3D22C012A42ECA20014F799 /* Assets.xcassets in Resources */,
+				F31CA0AB2A4C36BB00965F29 /* MovieDetailsViewController.storyboard in Resources */,
 				F3333DD92A44689F006BFA7F /* SignUpViewController.storyboard in Resources */,
 				F3D22BFF2A42ECA00014F799 /* OnboardingViewController.storyboard in Resources */,
 			);
@@ -329,6 +336,7 @@
 				F33C9CDB2A432D4A00781F70 /* SplashViewController.swift in Sources */,
 				F3333DD32A44681A006BFA7F /* DescriptionViewController.swift in Sources */,
 				F36028FB2A45C8C900D98F25 /* MoyaProvider.swift in Sources */,
+				F31CA0A92A4C36A800965F29 /* MovieDetailsViewController.swift in Sources */,
 				F3D22BFA2A42ECA00014F799 /* SceneDelegate.swift in Sources */,
 				F38650292A4AC23F008C9F41 /* UpcomingCollectionViewCell.swift in Sources */,
 				F3D22C152A4315400014F799 /* LoginTextField.swift in Sources */,
