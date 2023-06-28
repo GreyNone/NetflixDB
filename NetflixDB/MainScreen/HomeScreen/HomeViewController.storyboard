@@ -53,10 +53,10 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                                <color key="value" white="0.0" alpha="0.35042712153220662" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.0" alpha="0.64940565459582267" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                                <color key="value" red="0.87897345845918096" green="0.88282977183921185" blue="0.89439871197930487" alpha="0.34916873854033803" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.87897345845918096" green="0.88282977183921185" blue="0.89439871197930487" alpha="0.14885280894584396" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
                                                 <point key="value" x="0.0" y="0.0"/>
@@ -135,10 +135,10 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                                <color key="value" red="0.88967747704035749" green="0.89358075207739573" blue="0.90529057718851069" alpha="0.35159509360384772" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.88967747704035749" green="0.89358075207739573" blue="0.90529057718851069" alpha="0.1483542513685161" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                                <color key="value" white="0.0" alpha="0.34944329294217685" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" white="0.0" alpha="0.64900228279788474" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
                                                 <point key="value" x="0.0" y="0.0"/>

@@ -44,7 +44,7 @@ class ComingSoonViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchTextField.backgroundColor = .systemGray2
-        searchController.searchBar.searchTextField.textAlignment = .center
+//        searchController.searchBar.searchTextField.textAlignment = .center
         self.navigationItem.searchController = searchController
         
         guard let upcomingMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1") else { return }
@@ -142,7 +142,25 @@ extension ComingSoonViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieDetailsViewControllerStoryboard = UIStoryboard(name: "MovieDetailsViewController", bundle: nil)
+        let movieDetailsViewController = movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController") as? MovieDetailsViewController
+        var movie: Movie
         
+        if isFiltering {
+            guard let filteredMovies = filteredMovies else { return }
+            movie = filteredMovies[indexPath.row]
+        } else {
+            guard let upcomingMovies = upcomingMovies else { return }
+            movie = upcomingMovies[indexPath.row]
+        }
+        
+        movieDetailsViewController?.overview = movie.overview
+        movieDetailsViewController?.movieTitle = movie.title
+        movieDetailsViewController?.releaseDate = movie.releaseDate
+        movieDetailsViewController?.vote = movie.voteAverage
+        movieDetailsViewController?.backdropPath = movie.backdropPath
+        
+        self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)
     }
 }
 

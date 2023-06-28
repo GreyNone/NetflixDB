@@ -63,8 +63,6 @@ class HomeViewController: UIViewController {
                         }
                     }
                 }
-//                self?.genresLabel.text = ""
-//                let commonGenres: Array = Set(fetchedGenres).filter(Set(lastRelease.genreIds).contains)
             }
         }
     }
@@ -121,6 +119,7 @@ extension HomeViewController: UICollectionViewDelegate {
         movieDetailsViewController.releaseDate = movie.releaseDate
         movieDetailsViewController.vote = movie.voteAverage
         movieDetailsViewController.backdropPath = movie.backdropPath
+        movieDetailsViewController.movieId = movie.id
         
         self.navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }

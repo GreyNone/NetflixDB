@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nah-iM-gix" userLabel="ImageViewContainer">
-                                <rect key="frame" x="0.0" y="59" width="393" height="300"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="350"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="99U-tE-00M">
-                                        <rect key="frame" x="0.0" y="2" width="393" height="297"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="99U-tE-00M">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHB-Ux-DFg">
-                                        <rect key="frame" x="157.33333333333334" y="245.66666666666671" width="78.333333333333343" height="34.333333333333343"/>
+                                        <rect key="frame" x="157.33333333333334" y="295.66666666666669" width="78.333333333333343" height="34.333333333333314"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system">
@@ -51,7 +51,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBw-3E-SMC">
-                                <rect key="frame" x="0.0" y="359" width="393" height="641"/>
+                                <rect key="frame" x="0.0" y="409" width="393" height="591"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-gg-bOJ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="561"/>
@@ -186,7 +186,7 @@
                                                         <rect key="frame" x="0.0" y="37" width="396" height="128"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="1" green="0.061325244899999999" blue="0.16115276379999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Gt-U8-tCW">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Gt-U8-tCW">
                                                             <size key="itemSize" width="128" height="128"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -202,6 +202,10 @@
                                                                 </collectionViewCellContentView>
                                                             </collectionViewCell>
                                                         </cells>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Y6W-OH-hqX" id="tAg-Cd-0LF"/>
+                                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="UCm-M2-U0L"/>
+                                                        </connections>
                                                     </collectionView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVb-bf-gpk">
                                                         <rect key="frame" x="21" y="0.0" width="158" height="21"/>
@@ -241,7 +245,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nah-iM-gix" firstAttribute="bottom" secondItem="uBw-3E-SMC" secondAttribute="top" id="0pe-nD-sMe"/>
-                            <constraint firstItem="nah-iM-gix" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.3" id="5aH-8Y-fqv"/>
+                            <constraint firstItem="nah-iM-gix" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.35" id="5aH-8Y-fqv"/>
                             <constraint firstItem="nah-iM-gix" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="BpU-RN-RpS"/>
                             <constraint firstItem="nah-iM-gix" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Bpd-5U-yox"/>
                             <constraint firstAttribute="bottom" secondItem="uBw-3E-SMC" secondAttribute="bottom" id="NcR-sb-l20"/>
@@ -267,7 +271,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="play.fill" catalog="system" width="117" height="128"/>
     </resources>
 </document>
