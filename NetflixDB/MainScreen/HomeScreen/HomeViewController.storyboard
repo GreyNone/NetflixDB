@@ -51,6 +51,20 @@
                                             <constraint firstAttribute="trailing" secondItem="aU5-hd-xc5" secondAttribute="trailing" constant="10" id="laL-Rq-2uJ"/>
                                             <constraint firstItem="OwZ-PC-AQQ" firstAttribute="leading" secondItem="ClH-x0-P7k" secondAttribute="leading" constant="10" id="y1B-J6-XrD"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" white="0.0" alpha="0.35042712153220662" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" red="0.87897345845918096" green="0.88282977183921185" blue="0.89439871197930487" alpha="0.34916873854033803" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                                <point key="value" x="0.0" y="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                                <point key="value" x="0.0" y="0.80000000000000004"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRe-tQ-BEd" customClass="GradientView" customModule="NetflixDB" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="273.66666666666669" width="393" height="182.33333333333331"/>
@@ -119,6 +133,20 @@
                                             <constraint firstItem="3Pe-ip-5yq" firstAttribute="top" secondItem="mRe-tQ-BEd" secondAttribute="top" constant="15" id="bYg-uV-rws"/>
                                             <constraint firstItem="MeM-L6-aAe" firstAttribute="centerX" secondItem="mRe-tQ-BEd" secondAttribute="centerX" id="whe-0O-I4u"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="0.88967747704035749" green="0.89358075207739573" blue="0.90529057718851069" alpha="0.35159509360384772" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" white="0.0" alpha="0.34944329294217685" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                                <point key="value" x="0.0" y="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                                <point key="value" x="0.0" y="0.80000000000000004"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

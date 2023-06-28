@@ -11,7 +11,6 @@
 		F306FA822A4996E5006C20D9 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA812A4996E5006C20D9 /* CacheManager.swift */; };
 		F306FA842A49B60E006C20D9 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA832A49B60E006C20D9 /* Genres.swift */; };
 		F306FA862A49C067006C20D9 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA852A49C067006C20D9 /* GradientView.swift */; };
-		F306FA8A2A49C09B006C20D9 /* GradientView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F306FA892A49C09B006C20D9 /* GradientView.xib */; };
 		F31CA0A92A4C36A800965F29 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31CA0A82A4C36A800965F29 /* MovieDetailsViewController.swift */; };
 		F31CA0AB2A4C36BB00965F29 /* MovieDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31CA0AA2A4C36BB00965F29 /* MovieDetailsViewController.storyboard */; };
 		F32CEB7B2A458F3B003028A8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32CEB7A2A458F3B003028A8 /* MainTabBarController.swift */; };
@@ -50,7 +49,6 @@
 		F306FA812A4996E5006C20D9 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		F306FA832A49B60E006C20D9 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		F306FA852A49C067006C20D9 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		F306FA892A49C09B006C20D9 /* GradientView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradientView.xib; sourceTree = "<group>"; };
 		F31CA0A82A4C36A800965F29 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		F31CA0AA2A4C36BB00965F29 /* MovieDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MovieDetailsViewController.storyboard; sourceTree = "<group>"; };
 		F32CEB7A2A458F3B003028A8 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 				F36028ED2A45948100D98F25 /* HomeViewController.storyboard */,
 				F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */,
 				F306FA852A49C067006C20D9 /* GradientView.swift */,
-				F306FA892A49C09B006C20D9 /* GradientView.xib */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -304,7 +301,6 @@
 				F36028F22A4599CD00D98F25 /* ComingSoonViewController.storyboard in Resources */,
 				F36028EE2A45948100D98F25 /* HomeViewController.storyboard in Resources */,
 				F36028F62A4599F200D98F25 /* FavoritesViewController.storyboard in Resources */,
-				F306FA8A2A49C09B006C20D9 /* GradientView.xib in Resources */,
 				F3D22C042A42ECA20014F799 /* LaunchScreen.storyboard in Resources */,
 				F3D22C132A43081A0014F799 /* LoginViewController.storyboard in Resources */,
 				F33C9CDD2A432D5A00781F70 /* SplashViewController.storyboard in Resources */,

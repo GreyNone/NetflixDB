@@ -111,7 +111,18 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieDetailsViewControllerStoryboard = UIStoryboard(name: "MovieDetailsViewController", bundle: nil)
+        guard let movie = movies?[indexPath.row],
+              let movieDetailsViewController = movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController")
+                as? MovieDetailsViewController else { return }
         
+        movieDetailsViewController.overview = movie.overview
+        movieDetailsViewController.movieTitle = movie.title
+        movieDetailsViewController.releaseDate = movie.releaseDate
+        movieDetailsViewController.vote = movie.voteAverage
+        movieDetailsViewController.backdropPath = movie.backdropPath
+        
+        self.navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
 }
 
