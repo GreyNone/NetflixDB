@@ -18,7 +18,6 @@ class PosterCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        posterImageView.layer.cornerRadius = 10
     }
     
     override func prepareForReuse() {

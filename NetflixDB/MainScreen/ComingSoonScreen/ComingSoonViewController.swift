@@ -70,41 +70,45 @@ extension ComingSoonViewController: UICollectionViewDataSource {
             guard let count = filteredMovies?.count else { return 0 }
             return count
         }
-        
         guard let count = upcomingMovies?.count else { return 0 }
         return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingCollectionViewCell.identifier, for: indexPath)
-                as? UpcomingCollectionViewCell else { return UpcomingCollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PosterCollectionViewCell.identifier, for: indexPath)
+                as? PosterCollectionViewCell else { return PosterCollectionViewCell() }
         
         var movie: Movie
         
         if isFiltering {
-            guard let filteredMovies = filteredMovies else { return UpcomingCollectionViewCell() }
+            guard let filteredMovies = filteredMovies else { return PosterCollectionViewCell() }
             movie = filteredMovies[indexPath.row]
         } else {
-            guard let upcomingMovies = upcomingMovies else { return UpcomingCollectionViewCell() }
+            guard let upcomingMovies = upcomingMovies else { return PosterCollectionViewCell() }
             movie = upcomingMovies[indexPath.row]
         }
         
-        cell.activityIndicatorView.startAnimating()
+        let poster = movie.posterPath ?? movie.backdropPath
         
-        if let image = CacheManager.shared.getValue(for: movie.posterPath) {
-            cell.configure(image: image)
-            cell.activityIndicatorView.stopAnimating()
-            return cell
+        if let poster = poster {
+            cell.activityIndicatorView.startAnimating()
+            
+            if let image = CacheManager.shared.getValue(for: poster) {
+                cell.configure(image: image)
+                cell.activityIndicatorView.stopAnimating()
+                return cell
+            }
+            
+            let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + poster)
+            if let url = url {
+                cell.configure(url: url, for: poster)
+                return cell
+            }
         }
-        
-        let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + movie.posterPath)
-        if let url = url {
-            cell.configure(url: url, for: movie.posterPath)
-        }
-        
+        cell.configure(image: UIImage(systemName: "questionmark")!)
         return cell
+        
     }
-    
 }
 
 //MARK: - UICollectionViewDelegate
@@ -159,6 +163,7 @@ extension ComingSoonViewController: UICollectionViewDelegate {
         movieDetailsViewController?.releaseDate = movie.releaseDate
         movieDetailsViewController?.vote = movie.voteAverage
         movieDetailsViewController?.backdropPath = movie.backdropPath
+        movieDetailsViewController?.movieId = movie.id
         
         self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)
     }
@@ -211,10 +216,13 @@ extension ComingSoonViewController: UISearchResultsUpdating {
     }
     
     private func filterDataForSearchText(searchText: String) {
+        guard let upcomingMovies = upcomingMovies else { return }
         filteredMovies = []
-        upcomingMovies?.forEach({ movie in
-            if movie.title.lowercased().contains(searchText.lowercased()) {
-                filteredMovies?.append(movie)
+        upcomingMovies.forEach({ movie in
+            if let title = movie.title {
+                if title.lowercased().contains(searchText.lowercased()) {
+                    filteredMovies?.append(movie)
+                }
             }
         })
         collectionView.reloadData()
@@ -230,4 +238,5 @@ extension ComingSoonViewController: UISearchControllerDelegate {
 extension ComingSoonViewController: UISearchBarDelegate {
     
 }
+
 

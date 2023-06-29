@@ -20,19 +20,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let provider = MoyaProvider<MyService>(plugins: [CachePolicyPlugin()])
-//        provider.request(.popularMovies) { [weak self] result in
-//            switch result {
-//            case .success(let response):
-//                let data = try? response.map(Movies.self)
-//                self?.movies = data?.movies ?? []
-//                print(self?.movies as Any)
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-        
+
         guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
         let moviesRequest = AF.request(moviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
         MoviesService.shared.movies(request: moviesRequest) { [weak self] fetchedMovies in
@@ -42,10 +30,10 @@ class HomeViewController: UIViewController {
             }
         
             guard let lastRelease = self?.movies?[0],
-                      let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + lastRelease.posterPath) else { return }
+                  let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + (lastRelease.posterPath ?? "")) else { return }
             self?.movies?.remove(at: 0)
             let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
-            ImageService.shared.image(request: request, key: lastRelease.posterPath) { image in
+            ImageService.shared.image(request: request, key: lastRelease.posterPath ?? "") { image in
                 DispatchQueue.main.async {
                     self?.mainPosterImageView.image = image
                     self?.lastReleaseTitleLabel.text = lastRelease.title
@@ -56,7 +44,7 @@ class HomeViewController: UIViewController {
             let genresRequest = AF.request(genresUrl, method: HTTPMethod.get, headers: MoviesService.shared.headers)
             MoviesService.shared.genres(request: genresRequest) { fetchedGenres in
                 self?.genresLabel.text = ""
-                for lastReleaseGenre in lastRelease.genreIds {
+                for lastReleaseGenre in lastRelease.genreIds! {
                     for genre in fetchedGenres {
                         if lastReleaseGenre == genre.id {
                             self?.genresLabel.text?.append(genre.name + " ")
@@ -71,7 +59,7 @@ class HomeViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        return movies.sorted {dateFormatter.date(from: $0.releaseDate)! > dateFormatter.date(from: $1.releaseDate)!}
+        return movies.sorted {dateFormatter.date(from: $0.releaseDate ?? "")! > dateFormatter.date(from: $1.releaseDate ?? "")!}
     }
 }
 
@@ -90,15 +78,15 @@ extension HomeViewController: UICollectionViewDataSource {
         
         cell.activityIndicatorView.startAnimating()
 
-        if let image = CacheManager.shared.getValue(for: movie.posterPath) {
+        if let image = CacheManager.shared.getValue(for: movie.posterPath ?? "") {
             cell.configure(image: image)
             cell.activityIndicatorView.stopAnimating()
             return cell
         }
 
-        let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + movie.posterPath)
+        let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + (movie.posterPath ?? ""))
         if let url = url {
-            cell.configure(url: url, for: movie.posterPath)
+            cell.configure(url: url, for: movie.posterPath ?? "")
         }
         
         return cell
@@ -131,7 +119,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 125, height: self.collectionView.bounds.height)
+        return .init(width: 175, height: self.collectionView.bounds.height)
     }
 
     func collectionView(_ collectionView: UICollectionView,

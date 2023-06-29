@@ -8,19 +8,19 @@
 import Foundation
 
 struct Movie: Decodable {
-    var isAdult: Bool
-    var backdropPath: String
-    var genreIds: [Int]
-    var id: Int
-    var originalLanguage: String
-    var originalTitle: String
-    var overview: String
-    var popularity: CGFloat
-    var posterPath: String
-    var releaseDate: String
-    var title: String
-    var voteAverage: CGFloat
-    var voteCount: Int
+    var isAdult: Bool?
+    var backdropPath: String?
+    var genreIds: [Int]?
+    var id: Int?
+    var originalLanguage: String?
+    var originalTitle: String?
+    var overview: String?
+    var popularity: CGFloat?
+    var posterPath: String?
+    var releaseDate: String?
+    var title: String?
+    var voteAverage: CGFloat?
+    var voteCount: Int?
     
     enum CodingKeys: String,CodingKey {
         case isAdult = "adult"

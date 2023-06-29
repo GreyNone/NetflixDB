@@ -23,16 +23,15 @@ final class ImageService {
             
             defer {
                 DispatchQueue.main.async {
+                    if let image = image {
+                        CacheManager.shared.write(value: image, for: key)
+                    }
                     completion(image)
                 }
             }
             
             guard let data = response.data else { return }
             image = UIImage(data: data)
-            
-            if let image = image {
-                CacheManager.shared.write(value: image, for: key)
-            }
         }
     }
     

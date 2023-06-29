@@ -1,42 +1,47 @@
 //
-//  UpcomingPostersCollectionViewCell.swift
+//  MovieCollectionViewCell.swift
 //  NetflixDB
 //
-//  Created by Aliaksandr Vasilevich on 6/27/23.
+//  Created by Aliaksandr Vasilevich on 6/28/23.
 //
 
 import Foundation
 import UIKit
 import Alamofire
 
-class UpcomingCollectionViewCell: UICollectionViewCell {
+class MovieCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "UpcomingCollectionViewCell"
-    private var request: DataRequest?
     @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var titleLabel: UILabel!
+    static let identifier = "MovieCollectionViewCell"
+    private var request: DataRequest?
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         
+        posterImageView.layer.cornerRadius = 20
     }
     
     override func prepareForReuse() {
         posterImageView.image = nil
+        titleLabel.text = nil
         request?.cancel()
     }
     
     //MARK: - Configuration
-    func configure(image: UIImage) {
+    func configure(image: UIImage, title: String) {
         posterImageView.image = image
+        titleLabel.text = title
     }
     
-    func configure(url: URL, for key: String) {
+    func configure(url: URL, for key: String, title: String) {
         request = AF.request(url, method: HTTPMethod.get, headers: ImageService.shared.headers)
         if let request = request {
             ImageService.shared.image(request: request, key: key) { [weak self] image in
                 self?.posterImageView.image = image
-                self?.activityIndicatorView.stopAnimating()
+                self?.titleLabel.text = title
             }
         }
     }
 }
+
