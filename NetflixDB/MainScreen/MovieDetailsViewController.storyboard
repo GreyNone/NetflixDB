@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nah-iM-gix" userLabel="ImageViewContainer">
-                                <rect key="frame" x="0.0" y="59" width="393" height="350"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="300"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="99U-tE-00M">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SHB-Ux-DFg">
-                                        <rect key="frame" x="157.33333333333334" y="295.66666666666669" width="78.333333333333343" height="34.333333333333314"/>
+                                        <rect key="frame" x="157.33333333333334" y="245.66666666666674" width="78.333333333333343" height="34.333333333333258"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system">
@@ -45,13 +45,14 @@
                                     <constraint firstItem="99U-tE-00M" firstAttribute="leading" secondItem="nah-iM-gix" secondAttribute="leading" id="5cD-dA-aSG"/>
                                     <constraint firstItem="99U-tE-00M" firstAttribute="top" secondItem="nah-iM-gix" secondAttribute="top" id="LL2-qh-fet"/>
                                     <constraint firstAttribute="trailing" secondItem="99U-tE-00M" secondAttribute="trailing" id="jX9-ef-59v"/>
+                                    <constraint firstAttribute="height" constant="300" id="mY6-u4-N6W"/>
                                     <constraint firstAttribute="bottom" secondItem="99U-tE-00M" secondAttribute="bottom" id="qNs-hU-zf6"/>
                                     <constraint firstItem="SHB-Ux-DFg" firstAttribute="centerX" secondItem="99U-tE-00M" secondAttribute="centerX" id="wsh-vg-Bwa"/>
                                     <constraint firstAttribute="bottom" secondItem="SHB-Ux-DFg" secondAttribute="bottom" constant="20" id="zdO-d6-HyF"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uBw-3E-SMC">
-                                <rect key="frame" x="0.0" y="409" width="393" height="591"/>
+                                <rect key="frame" x="0.0" y="359" width="393" height="641"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-gg-bOJ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="619.66666666666663"/>
@@ -312,7 +313,6 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="nah-iM-gix" firstAttribute="bottom" secondItem="uBw-3E-SMC" secondAttribute="top" id="0pe-nD-sMe"/>
-                            <constraint firstItem="nah-iM-gix" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.35" id="5aH-8Y-fqv"/>
                             <constraint firstItem="nah-iM-gix" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="BpU-RN-RpS"/>
                             <constraint firstItem="nah-iM-gix" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Bpd-5U-yox"/>
                             <constraint firstAttribute="bottom" secondItem="uBw-3E-SMC" secondAttribute="bottom" id="NcR-sb-l20"/>
@@ -325,10 +325,12 @@
                     <connections>
                         <outlet property="collectionView" destination="Mww-8K-WFu" id="1MS-2K-7gh"/>
                         <outlet property="durationLabel" destination="gAg-87-psZ" id="rCU-5q-bg1"/>
+                        <outlet property="heightConstraint" destination="mY6-u4-N6W" id="WLO-ms-tSv"/>
                         <outlet property="imageViewContainer" destination="nah-iM-gix" id="GMx-bb-e6V"/>
                         <outlet property="overviewLabel" destination="k7U-2f-tIQ" id="Hmd-mp-3Te"/>
                         <outlet property="posterImageView" destination="99U-tE-00M" id="hjM-OY-FPz"/>
                         <outlet property="releaseDateLabel" destination="5a2-KK-IwE" id="5Wa-eN-bqB"/>
+                        <outlet property="scrollView" destination="uBw-3E-SMC" id="Ygh-dz-pOl"/>
                         <outlet property="titleLabel" destination="b2V-fY-usd" id="CHI-mm-OUr"/>
                         <outlet property="voteLabel" destination="QoZ-e2-b4H" id="F0x-oY-EAY"/>
                     </connections>

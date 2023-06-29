@@ -19,7 +19,11 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak private var overviewLabel: UILabel!
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak private var imageViewContainer: UIView!
-    let insets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 0)
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    private var maximumContentHeight: CGFloat = 0
+    private let minimumContentHeight: CGFloat = 225
+    let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     var overview: String?
     var movieTitle: String?
     var vote: CGFloat?
@@ -27,9 +31,12 @@ class MovieDetailsViewController: UIViewController {
     var backdropPath: String?
     var movieId: Int?
     var relatedMovies: [Movie]?
+    var observer: NSKeyValueObservation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        maximumContentHeight = heightConstraint.constant
         
         if let backdropPath = backdropPath {
             guard let backdropUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + backdropPath) else { return }
@@ -57,31 +64,54 @@ class MovieDetailsViewController: UIViewController {
             self?.relatedMovies = fetchedMovies.movies
             self?.collectionView.reloadData()
         }
+    
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        maximumContentHeight = imageViewContainer.frame.height
+        subscribeOnUpdates()
     }
     
-//    func subscribeOnUpdates(view: UIView) {
-//        observers.append(view.observe(\UIView.contentOffset, options: [.new, .old], changeHandler: { [weak self](_, change) in
-//            guard let self = self else { return }
-//            if let newY = change.newValue?.y, let oldY = change.oldValue?.y {
-//                // maximum used to ignore overscroll in constraint calculation
-//                let change = CGFloat.maximum(newY, -self.maximumContentHeight) - CGFloat.maximum(oldY, -self.maximumContentHeight)
+    func subscribeOnUpdates() {
+        observer = scrollView.observe(\.contentOffset, options: [.new, .old], changeHandler: { [weak self](_, change) in
+            guard let self = self else { return }
+            if let newY = change.newValue?.y, let oldY = change.oldValue?.y {
+//                 maximum used to ignore overscroll in constraint calculation
+                let change = CGFloat.maximum(newY, -self.maximumContentHeight) - CGFloat.maximum(oldY, -self.maximumContentHeight)
 //                if change < 0 {
-//                    // scroll up logic
+//                     scroll up logic
 //                    if newY < -self.composeContentHeight {
 //                        self.heightConstraint.constant = CGFloat.minimum(self.heightConstraint.constant - change, self.maximumContentHeight)
 //                    }
 //                } else if change > 0 {
 //                    self.heightConstraint.constant = CGFloat.maximum(self.heightConstraint.constant - change, self.minimumContentHeight)
 //                } else {
-//                    // possibly inset change, recheck state
+//                     possibly inset change, recheck state
 //                    if newY <= 0 {
 //                        self.heightConstraint.constant = CGFloat.minimum(-newY, self.maximumContentHeight)
 //                    }
 //                }
 //                self.didChangeStretchFactor((self.heightConstraint.constant - self.minimumContentHeight) / (self.maximumContentHeight - self.minimumContentHeight))
-//            }
-//        }))
-//    }
+                
+//                if newY == 0 && oldY != 0 {
+//                    return
+//                }
+                
+                if change > 0 {
+                    self.heightConstraint.constant = CGFloat.minimum(self.heightConstraint.constant - change, self.maximumContentHeight)
+                } else if change < 0 {
+                    self.heightConstraint.constant = CGFloat.maximum(self.heightConstraint.constant - change, self.minimumContentHeight)
+                } else if self.heightConstraint.constant == minimumContentHeight {
+                    return
+                }  else {
+                    if newY <= 0 {
+                       // self.heightConstraint.constant = CGFloat.minimum(-newY, self.maximumContentHeight)
+                    }
+                }
+            }
+        })
+    }
 
 //    func didChangeStretchFactor(_ stretchFactor: CGFloat) {
 //        let limitedStretchFactor = min(1.0, max(stretchFactor, 0.0))
@@ -104,7 +134,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        var date = dateFormatter.date(from: relatedMovie.releaseDate ?? "") ?? Date()
+        let date = dateFormatter.date(from: relatedMovie.releaseDate ?? "") ?? Date()
         dateFormatter.dateFormat = "yyyy"
 
         let fullMovieTitle = (relatedMovie.title ?? "placeholder") + "(" + dateFormatter.string(from: date) + ")"

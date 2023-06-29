@@ -76,11 +76,8 @@ extension HomeViewController: UICollectionViewDataSource {
                 as? PosterCollectionViewCell,
               let movie = movies?[indexPath.row] else { return PosterCollectionViewCell() }
         
-        cell.activityIndicatorView.startAnimating()
-
         if let image = CacheManager.shared.getValue(for: movie.posterPath ?? "") {
             cell.configure(image: image)
-            cell.activityIndicatorView.stopAnimating()
             return cell
         }
 
@@ -119,7 +116,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 175, height: self.collectionView.bounds.height)
+        return .init(width: 150, height: self.collectionView.bounds.height)
     }
 
     func collectionView(_ collectionView: UICollectionView,

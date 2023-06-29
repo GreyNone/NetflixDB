@@ -11,7 +11,6 @@ import Alamofire
 class PosterCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     static let identifier = "PosterCollectionViewCell"
     private var request: DataRequest?
     
@@ -35,7 +34,6 @@ class PosterCollectionViewCell: UICollectionViewCell {
         if let request = request {
             ImageService.shared.image(request: request, key: key) { [weak self] image in
                 self?.posterImageView.image = image
-                self?.activityIndicatorView.stopAnimating()
             }
         }
     }

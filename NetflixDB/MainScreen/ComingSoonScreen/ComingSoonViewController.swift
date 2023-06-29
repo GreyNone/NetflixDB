@@ -91,11 +91,8 @@ extension ComingSoonViewController: UICollectionViewDataSource {
         let poster = movie.posterPath ?? movie.backdropPath
         
         if let poster = poster {
-            cell.activityIndicatorView.startAnimating()
-            
             if let image = CacheManager.shared.getValue(for: poster) {
                 cell.configure(image: image)
-                cell.activityIndicatorView.stopAnimating()
                 return cell
             }
             
