@@ -15,9 +15,18 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var mainPosterImageView: UIImageView!
     @IBOutlet weak var lastReleaseTitleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
-    var movies: [Movie]?
-    let insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-    
+    private var movies: [Movie]?
+    private let insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    private var itemWidth: CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            return 250
+        case .phone:
+            return 175
+        default:
+            return 150
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -116,7 +125,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 150, height: self.collectionView.bounds.height)
+        return .init(width: itemWidth, height: self.collectionView.bounds.height)
     }
 
     func collectionView(_ collectionView: UICollectionView,
