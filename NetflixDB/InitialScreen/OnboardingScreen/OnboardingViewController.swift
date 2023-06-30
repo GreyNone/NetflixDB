@@ -21,16 +21,19 @@ class OnboardingViewController: UIViewController {
         
         for leftPoster in leftPosters {
             let imageView = UIImageView(image: leftPoster)
+//            imageView.contentMode = .scaleAspectFill
             leftStackView.addArrangedSubview(imageView)
         }
         
         for centralPoster in centralPosters {
             let imageView = UIImageView(image: centralPoster)
+//            imageView.contentMode = .scaleAspectFill
             centralStackView.addArrangedSubview(imageView)
         }
         
         for rightPoster in rightPosters {
             let imageView = UIImageView(image: rightPoster)
+//            imageView.contentMode = .scaleAspectFill
             rightStackView.addArrangedSubview(imageView)
         }
     }

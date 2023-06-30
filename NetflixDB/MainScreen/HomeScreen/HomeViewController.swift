@@ -15,8 +15,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var mainPosterImageView: UIImageView!
     @IBOutlet weak var lastReleaseTitleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     private var movies: [Movie]?
-    private let insets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    private let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     private var itemWidth: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:
@@ -27,9 +28,13 @@ class HomeViewController: UIViewController {
             return 150
         }
     }
+    
+    //MARK: - ControllerLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationController?.navigationBar.isHidden = true
+        
         guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
         let moviesRequest = AF.request(moviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
         MoviesService.shared.movies(request: moviesRequest) { [weak self] fetchedMovies in
@@ -37,16 +42,28 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
-        
-            guard let lastRelease = self?.movies?[0],
-                  let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + (lastRelease.posterPath ?? "")) else { return }
-            self?.movies?.remove(at: 0)
-            let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
-            ImageService.shared.image(request: request, key: lastRelease.posterPath ?? "") { image in
-                DispatchQueue.main.async {
-                    self?.mainPosterImageView.image = image
-                    self?.lastReleaseTitleLabel.text = lastRelease.title
+            
+            guard let lastRelease = self?.movies?[0] else { return }
+            
+            if let isAdult = lastRelease.isAdult, !isAdult {
+                self?.visualEffectView.removeFromSuperview()
+            }
+            
+            let poster = lastRelease.posterPath ?? lastRelease.backdropPath
+            
+            if let poster = poster {
+                guard let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + (poster)) else { return }
+                self?.movies?.remove(at: 0)
+                let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+                ImageService.shared.image(request: request, key: poster) { image in
+                    DispatchQueue.main.async {
+                        self?.mainPosterImageView.image = image
+                        self?.lastReleaseTitleLabel.text = lastRelease.title
+                    }
                 }
+            } else {
+                self?.mainPosterImageView.image = UIImage(systemName: "questionmark")
+                self?.lastReleaseTitleLabel.text = lastRelease.title
             }
             
             guard let genresUrl = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en") else { return }
@@ -63,7 +80,8 @@ class HomeViewController: UIViewController {
             }
         }
     }
-
+    
+    //MARK: - AdditionalMethod
     private func sort(movies: [Movie]) -> [Movie] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -125,7 +143,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: itemWidth, height: self.collectionView.bounds.height)
+        
+        return .init(width: itemWidth, height: self.collectionView.bounds.height - insets.top - insets.bottom)
     }
 
     func collectionView(_ collectionView: UICollectionView,

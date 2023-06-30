@@ -36,6 +36,7 @@ class ComingSoonViewController: UIViewController {
     }
     private let minWidthPerItem: CGFloat = 125
     
+    //MARK: - ControllerLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,8 +57,13 @@ class ComingSoonViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+//        self.collectionView.collectionViewLayout.invalidateLayout()
     }
     
 }

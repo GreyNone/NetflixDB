@@ -11,10 +11,6 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        tabBar.backgroundColor = .black
-        tabBar.scrollEdgeAppearance?.backgroundColor = .black
-        tabBar.standardAppearance.backgroundColor = .black
         
         let homeViewControllerStoryboard = UIStoryboard(name: "HomeViewController", bundle: nil)
         let homeViewController = homeViewControllerStoryboard.instantiateViewController(withIdentifier: "HomeViewController")

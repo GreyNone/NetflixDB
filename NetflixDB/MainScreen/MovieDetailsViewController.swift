@@ -19,12 +19,13 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak private var overviewLabel: UILabel!
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak private var imageViewContainer: UIView!
+    @IBOutlet weak var likeImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     private var maxStretchHeight: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
-            return 300
+            return 350
         case .pad:
             return 700
         default:
@@ -41,7 +42,17 @@ class MovieDetailsViewController: UIViewController {
             return 50
         }
     }
-    let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    private var itemWidth: CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            return 300
+        case .phone:
+            return 225
+        default:
+            return 150
+        }
+    }
+    let insets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
     var overview: String?
     var movieTitle: String?
     var vote: CGFloat?
@@ -50,9 +61,13 @@ class MovieDetailsViewController: UIViewController {
     var movieId: Int?
     var relatedMovies: [Movie]?
     
+    //MARK: - ControllerLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
+    
         scrollView.contentInset = UIEdgeInsets(top: initialViewHeight, left: 0, bottom: 0, right: 0)
         
         if let backdropPath = backdropPath {
@@ -81,13 +96,26 @@ class MovieDetailsViewController: UIViewController {
             self?.relatedMovies = fetchedMovies.movies
             self?.collectionView.reloadData()
         }
-    
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         heightConstraint.constant = initialViewHeight
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+
+    //MARK: - Actions
+    @IBAction func didTapOnBack(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func didTapOnLike(_ sender: UITapGestureRecognizer) {
+        likeImageView.image = UIImage(systemName: "heart.fill")
     }
 }
 
@@ -95,9 +123,12 @@ class MovieDetailsViewController: UIViewController {
 extension MovieDetailsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yoffset = initialViewHeight - (scrollView.contentOffset.y + initialViewHeight)
-        let headerHeight = min(max(yoffset, initialViewHeight), maxStretchHeight)
-        heightConstraint.constant = headerHeight
+        if scrollView == self.scrollView {
+            let yoffset = initialViewHeight - (scrollView.contentOffset.y + initialViewHeight)
+            let headerHeight = min(max(yoffset, initialViewHeight), maxStretchHeight)
+            heightConstraint.constant = headerHeight
+        }
+
     }
 }
 
@@ -136,18 +167,16 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
-//extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let avaibleWidth = self.view.bounds.width - insets.left * 3
-//        let widthPerItem = avaibleWidth / 2
-//        return .init(width: widthPerItem, height: self.collectionView.bounds.height - insets.top)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return insets
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return insets.left
-//    }
-//}
+extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: itemWidth, height: self.collectionView.bounds.height - insets.top - insets.bottom)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return insets
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return insets.left
+    }
+}
