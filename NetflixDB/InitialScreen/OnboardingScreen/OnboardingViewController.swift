@@ -12,9 +12,9 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var leftStackView: UIStackView!
     @IBOutlet weak var centralStackView: UIStackView!
     @IBOutlet weak var rightStackView: UIStackView!
-    let leftPosters = (1...4).compactMap({ UIImage(named: "poster\($0)")})
-    let centralPosters = (5...10).compactMap({ UIImage(named: "poster\($0)")})
-    let rightPosters = (11...14).compactMap({ UIImage(named: "poster\($0)")})
+    private let leftPosters = (1...4).compactMap({ UIImage(named: "poster\($0)")})
+    private let centralPosters = (5...10).compactMap({ UIImage(named: "poster\($0)")})
+    private let rightPosters = (11...14).compactMap({ UIImage(named: "poster\($0)")})
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,4 +49,5 @@ class OnboardingViewController: UIViewController {
         let loginViewController = loginStoryboard.instantiateViewController(identifier: "LoginViewController")
         self.navigationController?.pushViewController(loginViewController, animated: true)
     }
+    
 }
