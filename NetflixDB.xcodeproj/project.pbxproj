@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		973367902A5D49B700DD1ECC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733678F2A5D49B700DD1ECC /* AccountViewController.swift */; };
+		973367922A5D49C900DD1ECC /* AccountViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 973367912A5D49C900DD1ECC /* AccountViewController.storyboard */; };
+		975633D62A5D8005002886B6 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975633D52A5D8005002886B6 /* GenreView.swift */; };
 		F306FA802A498159006C20D9 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */; };
 		F306FA822A4996E5006C20D9 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA812A4996E5006C20D9 /* CacheManager.swift */; };
 		F306FA842A49B60E006C20D9 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA832A49B60E006C20D9 /* Genres.swift */; };
@@ -47,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9733678F2A5D49B700DD1ECC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		973367912A5D49C900DD1ECC /* AccountViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountViewController.storyboard; sourceTree = "<group>"; };
+		975633D52A5D8005002886B6 /* GenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreView.swift; sourceTree = "<group>"; };
 		F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		F306FA812A4996E5006C20D9 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		F306FA832A49B60E006C20D9 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
@@ -164,8 +170,11 @@
 			children = (
 				F36028EB2A45947300D98F25 /* HomeViewController.swift */,
 				F36028ED2A45948100D98F25 /* HomeViewController.storyboard */,
+				9733678F2A5D49B700DD1ECC /* AccountViewController.swift */,
+				973367912A5D49C900DD1ECC /* AccountViewController.storyboard */,
 				F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */,
 				F306FA852A49C067006C20D9 /* GradientView.swift */,
+				975633D52A5D8005002886B6 /* GenreView.swift */,
 			);
 			path = HomeScreen;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 			files = (
 				F3333DDB2A446B94006BFA7F /* DescriptionViewController.storyboard in Resources */,
 				F36028F22A4599CD00D98F25 /* ComingSoonViewController.storyboard in Resources */,
+				973367922A5D49C900DD1ECC /* AccountViewController.storyboard in Resources */,
 				F36028EE2A45948100D98F25 /* HomeViewController.storyboard in Resources */,
 				F36028F62A4599F200D98F25 /* FavoritesViewController.storyboard in Resources */,
 				F3D22C042A42ECA20014F799 /* LaunchScreen.storyboard in Resources */,
@@ -324,8 +334,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				975633D62A5D8005002886B6 /* GenreView.swift in Sources */,
 				F306FA862A49C067006C20D9 /* GradientView.swift in Sources */,
 				F36028F02A4599B700D98F25 /* ComingSoonViewController.swift in Sources */,
+				973367902A5D49B700DD1ECC /* AccountViewController.swift in Sources */,
 				F36028F42A4599E400D98F25 /* FavoritesViewController.swift in Sources */,
 				F3247BE62A54216800E3FFFC /* SessionManager.swift in Sources */,
 				F3D22C102A42F9AC0014F799 /* LoginViewController.swift in Sources */,

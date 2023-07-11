@@ -12,9 +12,9 @@ import Alamofire
 class ComingSoonViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var upcomingMovies: [Movie]?
-    var filteredMovies: [Movie]?
-    var currentPage = 0
+    private var upcomingMovies: [Movie]?
+    private var filteredMovies: [Movie]?
+    private var currentPage = 0
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -23,7 +23,7 @@ class ComingSoonViewController: UIViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
-    let insets = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
+    private let insets = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
     private var columns: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:
@@ -31,12 +31,27 @@ class ComingSoonViewController: UIViewController {
         case .phone:
             return 3
         default:
-            return 3
+            return 1
         }
     }
-    private let minWidthPerItem: CGFloat = 125
+    private var minWidthPerItem: CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
+            return 200
+        case .phone:
+            return 125
+        default:
+            return 50
+        }
+    }
+    private var isVisible = false
     
     //MARK: - ControllerLifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        isVisible = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,15 +72,17 @@ class ComingSoonViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-//        self.collectionView.collectionViewLayout.invalidateLayout()
+        if isVisible {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isVisible = false
+    }
 }
 
 //MARK: - UICollectionViewDataSource
@@ -178,7 +195,7 @@ extension ComingSoonViewController: UICollectionViewDelegateFlowLayout {
     private func calculateWidth(columns: CGFloat, avaliableWidth: CGFloat) -> CGFloat {
         var width = avaliableWidth / columns
         var columns = columns
-        if width < minWidthPerItem - 10 {
+        if width < minWidthPerItem {
             columns = columns - 1
             let paddingSpace = insets.left * (columns + 1)
             let newAvailableWidth = view.frame.width - paddingSpace

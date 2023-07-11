@@ -49,3 +49,27 @@ struct Movies: Decodable {
     }
 }
 
+struct MovieDetail: Decodable {
+    var isAdult: Bool?
+    var backdropPath: String?
+    var budget: CGFloat?
+    var originalTitle: String?
+    var overview: String?
+    var popularity: CGFloat?
+    var releaseData: String?
+    var revenue: CGFloat?
+    var runtime: CGFloat?
+    var voteAverage: CGFloat?
+    
+    enum CodingKeys: String, CodingKey {
+        case isAdult = "adult"
+        case backdropPath = "backdrop_path"
+        case budget
+        case originalTitle = "original_title"
+        case overview
+        case popularity
+        case revenue
+        case runtime
+        case voteAverage = "vote_average"
+    }
+}

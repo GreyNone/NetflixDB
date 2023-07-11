@@ -22,24 +22,24 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var likeImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
-    private var maxStretchHeight: CGFloat {
+    private var minStretchHeight: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
-            return 350
-        case .pad:
-            return 700
-        default:
             return 100
+        case .pad:
+            return 450
+        default:
+            return 50
         }
     }
     private var initialViewHeight: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
-            return 200
+            return 250
         case .pad:
             return 600
         default:
-            return 50
+            return 100
         }
     }
     private var itemWidth: CGFloat {
@@ -82,7 +82,7 @@ class MovieDetailsViewController: UIViewController {
         
         overviewLabel.text = overview
         titleLabel.text = movieTitle
-        voteLabel.text = "\(vote ?? 10) (IMDb)"
+        voteLabel.text = "\(vote ?? 0.0) (IMDb)"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -125,10 +125,9 @@ extension MovieDetailsViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView {
             let yoffset = initialViewHeight - (scrollView.contentOffset.y + initialViewHeight)
-            let headerHeight = min(max(yoffset, initialViewHeight), maxStretchHeight)
+            let headerHeight = max(min(yoffset, initialViewHeight), minStretchHeight)
             heightConstraint.constant = headerHeight
         }
-
     }
 }
 

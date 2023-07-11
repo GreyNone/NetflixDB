@@ -283,10 +283,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="175"/>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdQ-G1-vt0">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="35"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="26.333333333333332"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.backward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NAD-k3-tNL">
-                                                <rect key="frame" x="0.0" y="1.9999999999999982" width="80" height="31.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="2" width="80" height="22.666666666666664"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
@@ -297,7 +297,7 @@
                                                 </connections>
                                             </imageView>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ewN-J0-AP5">
-                                                <rect key="frame" x="313" y="2" width="80" height="32"/>
+                                                <rect key="frame" x="313" y="1.9999999999999982" width="80" height="23.333333333333336"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <gestureRecognizers/>
                                                 <constraints>
@@ -339,7 +339,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="99U-tE-00M" firstAttribute="leading" secondItem="nah-iM-gix" secondAttribute="leading" id="5cD-dA-aSG"/>
-                                    <constraint firstItem="jdQ-G1-vt0" firstAttribute="height" secondItem="99U-tE-00M" secondAttribute="height" multiplier="0.2" id="ARH-0S-n2E"/>
+                                    <constraint firstItem="jdQ-G1-vt0" firstAttribute="height" secondItem="99U-tE-00M" secondAttribute="height" multiplier="0.15" id="ARH-0S-n2E"/>
                                     <constraint firstItem="99U-tE-00M" firstAttribute="top" secondItem="nah-iM-gix" secondAttribute="top" id="LL2-qh-fet"/>
                                     <constraint firstAttribute="trailing" secondItem="99U-tE-00M" secondAttribute="trailing" id="jX9-ef-59v"/>
                                     <constraint firstAttribute="height" constant="175" id="mY6-u4-N6W"/>

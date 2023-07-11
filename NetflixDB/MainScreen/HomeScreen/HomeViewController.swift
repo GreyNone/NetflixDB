@@ -16,6 +16,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var lastReleaseTitleLabel: UILabel!
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var stackView: UIStackView!
+    private var isVisible = false
     private var movies: [Movie]?
     private let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     private var itemWidth: CGFloat {
@@ -27,6 +29,11 @@ class HomeViewController: UIViewController {
         default:
             return 150
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isVisible = true
     }
     
     //MARK: - ControllerLifecycle
@@ -69,16 +76,29 @@ class HomeViewController: UIViewController {
             guard let genresUrl = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en") else { return }
             let genresRequest = AF.request(genresUrl, method: HTTPMethod.get, headers: MoviesService.shared.headers)
             MoviesService.shared.genres(request: genresRequest) { fetchedGenres in
-                self?.genresLabel.text = ""
                 for lastReleaseGenre in lastRelease.genreIds! {
                     for genre in fetchedGenres {
                         if lastReleaseGenre == genre.id {
-                            self?.genresLabel.text?.append(genre.name + " ")
+                            let genreView = GenreView()
+                            genreView.genreLabel?.text = genre.name
+                            self?.stackView.addArrangedSubview(genreView)
                         }
                     }
                 }
             }
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if isVisible {
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isVisible = false
     }
     
     //MARK: - AdditionalMethod
@@ -88,9 +108,17 @@ class HomeViewController: UIViewController {
         
         return movies.sorted {dateFormatter.date(from: $0.releaseDate ?? "")! > dateFormatter.date(from: $1.releaseDate ?? "")!}
     }
+    
+    //MARK: - Actions
+    @IBAction func didTapOnAccountButton(_ sender: Any) {
+        let accountViewControllerStoryboard = UIStoryboard(name: "AccountViewController", bundle: nil)
+        let accountViewController = accountViewControllerStoryboard.instantiateViewController(identifier: "AccountViewController")
+        self.navigationController?.pushViewController(accountViewController, animated: true)
+    }
+    
 }
 
-//MARK: = UICollectionViewDataSource
+//MARK: - UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
