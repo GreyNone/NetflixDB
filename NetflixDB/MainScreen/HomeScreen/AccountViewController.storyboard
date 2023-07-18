@@ -38,6 +38,9 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapOnLogoutButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="eKd-yU-6MP"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Movies liked: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1TC-YY-pFz">
                                 <rect key="frame" x="40.000000000000007" y="248.00000000000003" width="102.66666666666669" height="20.333333333333343"/>

@@ -131,7 +131,7 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7U-2f-tIQ">
                                                         <rect key="frame" x="25" y="37.666666666666622" width="358" height="115.33333333333331"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="i06-Sw-D4m"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" id="i06-Sw-D4m"/>
                                                         </constraints>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Text">

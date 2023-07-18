@@ -64,7 +64,7 @@ class ComingSoonViewController: UIViewController {
         self.navigationItem.searchController = searchController
         
         guard let upcomingMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1") else { return }
-        let request = AF.request(upcomingMoviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+        let request = AF.request(upcomingMoviesUrl, method: HTTPMethod.get, headers: headers)
         MoviesService.shared.movies(request: request) { [weak self] fetchedMovies in
             self?.currentPage = fetchedMovies.page
             self?.upcomingMovies = fetchedMovies.movies
@@ -125,7 +125,7 @@ extension ComingSoonViewController: UICollectionViewDataSource {
                 return cell
             }
         }
-        cell.configure(image: UIImage(systemName: "questionmark")!)
+        cell.configure(image: UIImage(named: "posterPlaceholder")!)
         return cell
         
     }
@@ -156,7 +156,7 @@ extension ComingSoonViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if countRows(in: indexPath.section - 1) + indexPath.row == countAllRows() - 3 {
             guard let upcomingMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=\(currentPage + 1)") else { return }
-            let request = AF.request(upcomingMoviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+            let request = AF.request(upcomingMoviesUrl, method: HTTPMethod.get, headers: headers)
             MoviesService.shared.movies(request: request) { [weak self] fetchedMovies in
                 self?.currentPage = fetchedMovies.page
                 self?.upcomingMovies?.append(contentsOf: fetchedMovies.movies)
@@ -177,12 +177,7 @@ extension ComingSoonViewController: UICollectionViewDelegate {
             guard let upcomingMovies = upcomingMovies else { return }
             movie = upcomingMovies[indexPath.row]
         }
-        
-        movieDetailsViewController?.overview = movie.overview
-        movieDetailsViewController?.movieTitle = movie.title
-        movieDetailsViewController?.releaseDate = movie.releaseDate
-        movieDetailsViewController?.vote = movie.voteAverage
-        movieDetailsViewController?.backdropPath = movie.backdropPath
+
         movieDetailsViewController?.movieId = movie.id
         
         self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)

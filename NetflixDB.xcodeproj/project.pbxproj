@@ -10,6 +10,7 @@
 		973367902A5D49B700DD1ECC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9733678F2A5D49B700DD1ECC /* AccountViewController.swift */; };
 		973367922A5D49C900DD1ECC /* AccountViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 973367912A5D49C900DD1ECC /* AccountViewController.storyboard */; };
 		975633D62A5D8005002886B6 /* GenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975633D52A5D8005002886B6 /* GenreView.swift */; };
+		975633D82A5FF1AA002886B6 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975633D72A5FF1AA002886B6 /* List.swift */; };
 		F306FA802A498159006C20D9 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */; };
 		F306FA822A4996E5006C20D9 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA812A4996E5006C20D9 /* CacheManager.swift */; };
 		F306FA842A49B60E006C20D9 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA832A49B60E006C20D9 /* Genres.swift */; };
@@ -53,6 +54,7 @@
 		9733678F2A5D49B700DD1ECC /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		973367912A5D49C900DD1ECC /* AccountViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AccountViewController.storyboard; sourceTree = "<group>"; };
 		975633D52A5D8005002886B6 /* GenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreView.swift; sourceTree = "<group>"; };
+		975633D72A5FF1AA002886B6 /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
 		F306FA812A4996E5006C20D9 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		F306FA832A49B60E006C20D9 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				F36028F82A45BE2E00D98F25 /* Movies.swift */,
 				F306FA832A49B60E006C20D9 /* Genres.swift */,
 				F3247BE12A5403C900E3FFFC /* Tokens.swift */,
+				975633D72A5FF1AA002886B6 /* List.swift */,
 			);
 			path = Structures;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				F3D22C102A42F9AC0014F799 /* LoginViewController.swift in Sources */,
 				F306FA822A4996E5006C20D9 /* CacheManager.swift in Sources */,
 				F32CEB7B2A458F3B003028A8 /* MainTabBarController.swift in Sources */,
+				975633D82A5FF1AA002886B6 /* List.swift in Sources */,
 				F3D22BFC2A42ECA00014F799 /* OnboardingViewController.swift in Sources */,
 				F3247BE42A541C4500E3FFFC /* WebViewController.swift in Sources */,
 				F3333DD02A44678B006BFA7F /* BlocksPageViewController.swift in Sources */,

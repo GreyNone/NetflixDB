@@ -12,30 +12,18 @@ struct Movie: Decodable {
     var backdropPath: String?
     var genreIds: [Int]?
     var id: Int?
-    var originalLanguage: String?
-    var originalTitle: String?
-    var overview: String?
-    var popularity: CGFloat?
     var posterPath: String?
     var releaseDate: String?
     var title: String?
-    var voteAverage: CGFloat?
-    var voteCount: Int?
     
     enum CodingKeys: String,CodingKey {
         case isAdult = "adult"
         case backdropPath = "backdrop_path"
         case genreIds = "genre_ids"
         case id
-        case originalLanguage = "original_language"
-        case originalTitle = "original_title"
-        case overview
-        case popularity
         case posterPath = "poster_path"
         case releaseDate = "release_date"
         case title
-        case voteAverage = "vote_average"
-        case voteCount = "vote_count"
     }
 }
 
@@ -56,9 +44,9 @@ struct MovieDetail: Decodable {
     var originalTitle: String?
     var overview: String?
     var popularity: CGFloat?
-    var releaseData: String?
+    var releaseDate: String?
     var revenue: CGFloat?
-    var runtime: CGFloat?
+    var runtime: Int?
     var voteAverage: CGFloat?
     
     enum CodingKeys: String, CodingKey {
@@ -68,6 +56,7 @@ struct MovieDetail: Decodable {
         case originalTitle = "original_title"
         case overview
         case popularity
+        case releaseDate = "release_date"
         case revenue
         case runtime
         case voteAverage = "vote_average"

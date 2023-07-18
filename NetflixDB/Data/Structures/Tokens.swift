@@ -8,8 +8,8 @@
 import Foundation
 
 struct Session: Decodable {
-    var success: Bool
-    var sessionId: String
+    var success: Bool?
+    var sessionId: String?
     
     enum CodingKeys: String, CodingKey {
         case success
@@ -18,9 +18,9 @@ struct Session: Decodable {
 }
 
 struct RequestToken: Decodable {
-    var success: Bool
-    var expires: String
-    var token: String
+    var success: Bool?
+    var expires: String?
+    var token: String?
     
     enum CodingKeys: String, CodingKey {
         case success

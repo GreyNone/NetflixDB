@@ -30,7 +30,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(url: URL, for key: String) {
-        request = AF.request(url, method: HTTPMethod.get, headers: ImageService.shared.headers)
+        request = AF.request(url, method: HTTPMethod.get, headers: headers)
         if let request = request {
             ImageService.shared.image(request: request, key: key) { [weak self] image in
                 self?.posterImageView.image = image

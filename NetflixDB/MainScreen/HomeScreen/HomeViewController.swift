@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
-        let moviesRequest = AF.request(moviesUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+        let moviesRequest = AF.request(moviesUrl, method: HTTPMethod.get, headers: headers)
         MoviesService.shared.movies(request: moviesRequest) { [weak self] fetchedMovies in
             self?.movies = self?.sort(movies: fetchedMovies.movies)
             DispatchQueue.main.async {
@@ -59,9 +59,9 @@ class HomeViewController: UIViewController {
             let poster = lastRelease.posterPath ?? lastRelease.backdropPath
             
             if let poster = poster {
-                guard let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + (poster)) else { return }
+                guard let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + poster) else { return }
                 self?.movies?.remove(at: 0)
-                let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: ImageService.shared.headers)
+                let request = AF.request(mainPosterUrl, method: HTTPMethod.get, headers: headers)
                 ImageService.shared.image(request: request, key: poster) { image in
                     DispatchQueue.main.async {
                         self?.mainPosterImageView.image = image
@@ -74,7 +74,7 @@ class HomeViewController: UIViewController {
             }
             
             guard let genresUrl = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en") else { return }
-            let genresRequest = AF.request(genresUrl, method: HTTPMethod.get, headers: MoviesService.shared.headers)
+            let genresRequest = AF.request(genresUrl, method: HTTPMethod.get, headers: headers)
             MoviesService.shared.genres(request: genresRequest) { fetchedGenres in
                 for lastReleaseGenre in lastRelease.genreIds! {
                     for genre in fetchedGenres {
@@ -135,10 +135,14 @@ extension HomeViewController: UICollectionViewDataSource {
             cell.configure(image: image)
             return cell
         }
-
-        let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + (movie.posterPath ?? ""))
-        if let url = url {
-            cell.configure(url: url, for: movie.posterPath ?? "")
+        
+        let posterPath = movie.posterPath ?? movie.backdropPath
+        
+        if let posterPath {
+            guard let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + posterPath) else { return PosterCollectionViewCell() }
+            cell.configure(url: url, for: posterPath)
+        } else {
+            cell.configure(image: UIImage(named: "posterPlaceholder")!)
         }
         
         return cell
@@ -154,11 +158,6 @@ extension HomeViewController: UICollectionViewDelegate {
               let movieDetailsViewController = movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController")
                 as? MovieDetailsViewController else { return }
         
-        movieDetailsViewController.overview = movie.overview
-        movieDetailsViewController.movieTitle = movie.title
-        movieDetailsViewController.releaseDate = movie.releaseDate
-        movieDetailsViewController.vote = movie.voteAverage
-        movieDetailsViewController.backdropPath = movie.backdropPath
         movieDetailsViewController.movieId = movie.id
         
         self.navigationController?.pushViewController(movieDetailsViewController, animated: true)
