@@ -20,6 +20,7 @@ class PosterCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         posterImageView.image = nil
         request?.cancel()
     }

@@ -1,48 +1,48 @@
 //
-//  MovieCollectionViewCell.swift
+//  FavoritesTableVIewCellTableViewCell.swift
 //  NetflixDB
 //
-//  Created by Aliaksandr Vasilevich on 6/28/23.
+//  Created by Александр Василевич on 18.07.23.
 //
 
-import Foundation
 import UIKit
 import Alamofire
 
-class MovieCollectionViewCell: UICollectionViewCell {
-    
+class FavoritesTableViewCell: UITableViewCell {
+
     @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    static let identifier = "MovieCollectionViewCell"
-    private var request: DataRequest?
+    static let identifier = "FavoritesTableViewCell"
+    static var nib: UINib {
+        return UINib(nibName: "FavoritesTableViewCell", bundle: nil)
+    }
+    var request: DataRequest?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        posterImageView.layer.cornerRadius = 20
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         posterImageView.image = nil
-        titleLabel.text = nil
         request?.cancel()
     }
     
-    //MARK: - Configuration
-    func configure(image: UIImage, title: String) {
+    func configure(image: UIImage) {
         posterImageView.image = image
-        titleLabel.text = title
     }
     
-    func configure(url: URL, for key: String, title: String) {
+    func configure(url: URL, for key: String) {
         request = AF.request(url, method: HTTPMethod.get, headers: headers)
         if let request = request {
             ImageService.shared.image(request: request, key: key) { [weak self] image in
                 self?.posterImageView.image = image
-                self?.titleLabel.text = title
             }
         }
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
 }
-

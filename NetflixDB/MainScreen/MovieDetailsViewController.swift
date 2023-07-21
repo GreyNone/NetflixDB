@@ -19,9 +19,9 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak private var overviewLabel: UILabel!
     @IBOutlet weak private var collectionView: UICollectionView!
     @IBOutlet weak private var imageViewContainer: UIView!
-    @IBOutlet weak var likeImageView: UIImageView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var likeImageView: UIImageView!
+    @IBOutlet weak private var scrollView: UIScrollView!
+    @IBOutlet weak private var heightConstraint: NSLayoutConstraint!
     private var minStretchHeight: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
@@ -52,14 +52,16 @@ class MovieDetailsViewController: UIViewController {
             return 150
         }
     }
-    let insets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
-    var overview: String?
-    var movieTitle: String?
-    var vote: CGFloat?
-    var releaseDate: String?
-    var backdropPath: String?
+    private let insets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
+    private var overview: String?
+    private var movieTitle: String?
+    private var vote: CGFloat?
+    private var releaseDate: String?
+    private var backdropPath: String?
+    private var relatedMovies: [Movie]?
+    private var isLiked = false
     var movieId: Int?
-    var relatedMovies: [Movie]?
+    var movie: Movie?
     
     //MARK: - ControllerLifecycle
     override func viewDidLoad() {
@@ -70,24 +72,28 @@ class MovieDetailsViewController: UIViewController {
     
         scrollView.contentInset = UIEdgeInsets(top: initialViewHeight, left: 0, bottom: 0, right: 0)
         
+        //downloading backdrop if it exists or setting default backdrop if it doesnt
+        if let backdropPath = movie?.backdropPath {
+            guard let backdropUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + backdropPath) else { return }
+            let backdropRequest = AF.request(backdropUrl, method: HTTPMethod.get, headers: headers)
+            ImageService.shared.image(request: backdropRequest) { [weak self] image in
+                self?.posterImageView.image = image
+            }
+        } else {
+            self.posterImageView.image = UIImage(systemName: "questionmark")
+        }
+        
+        //downloading movie details
         guard let movieDetailsUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "?language=en-US") else { return }
         let movieDetailsRequest = AF.request(movieDetailsUrl, method: HTTPMethod.get, headers: headers)
         MoviesService.shared.movieDetails(request: movieDetailsRequest) { [weak self] movieDetail in
-            if let backdropPath = movieDetail.backdropPath {
-                guard let backdropUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + backdropPath) else { return }
-                let backdropRequest = AF.request(backdropUrl, method: HTTPMethod.get, headers: headers)
-                ImageService.shared.image(request: backdropRequest) { image in
-                    self?.posterImageView.image = image
-                }
-            } else {
-                self?.posterImageView.image = UIImage(systemName: "questionmark")
-            }
-            
+            //setting details
             self?.overviewLabel.text = movieDetail.overview
             self?.titleLabel.text = movieDetail.originalTitle
             self?.voteLabel.text = "\(movieDetail.voteAverage ?? 0.0) (IMDb)"
             self?.durationLabel.text = "\(movieDetail.runtime ?? 0) minutes"
             
+            //setting release date
             if let releaseDate = movieDetail.releaseDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -98,12 +104,21 @@ class MovieDetailsViewController: UIViewController {
                 self?.releaseDateLabel.text = "no release date"
             }
         }
-
+        
+        //downloading relatesMovies
         guard let relatedMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/similar?language=en-US&page=1") else { return }
         let relatedMoviewRequest = AF.request(relatedMoviesUrl, method: HTTPMethod.get, headers: headers)
         MoviesService.shared.movies(request: relatedMoviewRequest) { [weak self] fetchedMovies in
             self?.relatedMovies = fetchedMovies.movies
             self?.collectionView.reloadData()
+        }
+        
+        //setting isLiked to true if the movie is in favorites
+        for favoriteMovie in SessionManager.shared.favoriteMovies {
+            if favoriteMovie.id == movieId {
+                isLiked = true
+                likeImageView.image = UIImage(systemName: "heart.fill")
+            }
         }
     }
 
@@ -117,46 +132,36 @@ class MovieDetailsViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-
     //MARK: - Actions
     @IBAction func didTapOnBack(_ sender: UITapGestureRecognizer) {
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func didTapOnLike(_ sender: UITapGestureRecognizer) {
-        likeImageView.image = UIImage(systemName: "heart.fill")
-        
-//        let headers = [
-//          "accept": "application/json",
-//          "content-type": "application/json",
-//          "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MGNhZGEwMmVlMDNkMGY2NGI2OTUyZmM1ZTRjYjY5MyIsInN1YiI6IjY0OTU3NGEzZDVmZmNiMDBjNTk0YjM3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SYCl9DneiRF3uQ7rbXeRp1JEJ52-3h3ODaBLBhWDy4c"
-//        ]
-//        let parameters = [
-//          "media_type": "movie",
-//          "media_id": 550,
-//          "favorite": true
-//        ] as [String : Any]
-//
-//        let postData = try! JSONSerialization.data(withJSONObject: parameters, options: [])
-//
-//        let request = NSMutableURLRequest(url: NSURL(string: "https://api.themoviedb.org/3/account/20052144/favorite")! as URL,
-//                                                cachePolicy: .useProtocolCachePolicy,
-//                                            timeoutInterval: 10.0)
-//        request.httpMethod = "POST"
-//        request.allHTTPHeaderFields = headers
-//        request.httpBody = postData as Data
-//
-//        let session = URLSession.shared
-//        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-//          if (error != nil) {
-//            print(error as Any)
-//          } else {
-//            let httpResponse = response as? HTTPURLResponse
-//            print(httpResponse)
-//          }
-//        })
-//
-//        dataTask.resume()
+        guard let movieId = movieId else { return }
+        if isLiked {
+            SessionManager.shared.removeFromFavorites(movieId: movieId) { [weak self] success in
+                if success {
+                    let index = SessionManager.shared.favoriteMovies.firstIndex { movie in
+                        return movie.id == movieId
+                    }
+                    if let index = index {
+                        SessionManager.shared.favoriteMovies.remove(at: index)
+                    }
+                    self?.likeImageView.image = UIImage(systemName: "heart")
+                    self?.isLiked = false
+                }
+            }
+        } else {
+            SessionManager.shared.addToFavorites(movieId: movieId) { [weak self] success in
+                if success {
+                    guard let movie = self?.movie else { return }
+                    SessionManager.shared.favoriteMovies.append(movie)
+                    self?.likeImageView.image = UIImage(systemName: "heart.fill")
+                    self?.isLiked = true
+                }
+            }
+        }
     }
 }
 

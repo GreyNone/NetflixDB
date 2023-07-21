@@ -37,9 +37,15 @@ struct Movies: Decodable {
     }
 }
 
+struct FavoriteMovies: Decodable {
+    var movies: [Movie]?
+    
+    enum CodingKeys: String, CodingKey {
+        case movies = "items"
+    }
+}
+
 struct MovieDetail: Decodable {
-    var isAdult: Bool?
-    var backdropPath: String?
     var budget: CGFloat?
     var originalTitle: String?
     var overview: String?
@@ -50,8 +56,6 @@ struct MovieDetail: Decodable {
     var voteAverage: CGFloat?
     
     enum CodingKeys: String, CodingKey {
-        case isAdult = "adult"
-        case backdropPath = "backdrop_path"
         case budget
         case originalTitle = "original_title"
         case overview

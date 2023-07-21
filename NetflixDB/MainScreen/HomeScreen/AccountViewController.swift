@@ -15,6 +15,9 @@ class AccountViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        moviesLikedCounter.text = "\(SessionManager.shared.favoriteMovies.count)"
+        
         self.navigationController?.navigationBar.isHidden = false
     }
     
@@ -29,6 +32,7 @@ class AccountViewController: UIViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
+    
 
     //MARK: - Actions
     @IBAction func didTapOnLogoutButton(_ sender: UIButton) {

@@ -16,8 +16,10 @@ class SplashViewController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         if SessionManager.shared.isUserLoggedIn {
-            let mainTabBarController = MainTabBarController()
-            self.navigationController?.pushViewController(mainTabBarController, animated: true)
+            SessionManager.shared.getFavoriteMovies { success in
+                let mainTabBarController = MainTabBarController()
+                self.navigationController?.pushViewController(mainTabBarController, animated: true)
+            }
         } else {
             let onboardingStoryboard = UIStoryboard(name: "OnboardingViewController", bundle: nil)
             let onboardingViewController = onboardingStoryboard.instantiateViewController(identifier: "OnboardingViewController")

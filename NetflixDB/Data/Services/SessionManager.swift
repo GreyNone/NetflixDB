@@ -12,12 +12,15 @@ private enum Keys: String {
     case isUserLoggedIn
     case session
     case listId
+    case favoriteMovies
 }
 
-struct SessionManager {
+class SessionManager {
     
     static let shared = SessionManager()
     private let userDefaults = UserDefaults()
+    
+    var favoriteMovies = [Movie]()
     
     var isUserLoggedIn: Bool {
         return userDefaults.bool(forKey: Keys.isUserLoggedIn.rawValue)
@@ -46,13 +49,14 @@ struct SessionManager {
     func cleanDefaults() {
         userDefaults.removeObject(forKey: Keys.session.rawValue)
         userDefaults.removeObject(forKey: Keys.listId.rawValue)
+        userDefaults.removeObject(forKey: Keys.favoriteMovies.rawValue)
     }
     
     func login(login: String, password: String, completion: @escaping (Bool) -> Void) {
         guard let tokenUrl = URL(string: "https://api.themoviedb.org/3/authentication/token/new") else { return }
         let tokenRequest = AF.request(tokenUrl, method: HTTPMethod.get, headers: headers)
         //creating request token
-        tokenRequest.validate().responseDecodable(of: RequestToken.self) { (response) in
+        tokenRequest.validate().responseDecodable(of: RequestToken.self) { [weak self] (response) in
             guard let fetchedToken = response.value,
                 let success = fetchedToken.success else { return }
             
@@ -83,8 +87,8 @@ struct SessionManager {
                                   let success = session.success else { return }
                             
                             if success {
-                                set(session: sessionId)
-                                set(isUserLoggedIn: success)
+                                self?.set(session: sessionId)
+                                self?.set(isUserLoggedIn: success)
                             }
                             
                             //fetching lists
@@ -111,15 +115,18 @@ struct SessionManager {
                                         guard let newList = response.value,
                                               let listId = newList.listId else { return }
                                         
-                                        set(listId: listId)
+                                        self?.set(listId: listId)
+                                        completion(success)
                                     }
                                 } else {
-                                    //setting existing list
+                                    //setting list if it exists
                                     guard let id = result[0].id else { return }
-                                    set(listId: id)
+                                    self?.set(listId: id)
+                                    
+                                    self?.getFavoriteMovies { success in
+                                        completion(success)
+                                    }
                                 }
-                                
-                                completion(success)
                             }
                         }
                     }
@@ -127,4 +134,55 @@ struct SessionManager {
             }
         }
     }
+    
+    func addToFavorites(movieId: Int, completion: @escaping (Bool) -> Void) {
+        guard let favoritesAddUrl = URL(string: "https://api.themoviedb.org/3/list/\(SessionManager.shared.listId)/add_item") else { return }
+        
+        
+        let parameters = ["media_id": (movieId)] as [String : Any]
+        let favoritesAddRequest = AF.request(favoritesAddUrl,
+                                              method: HTTPMethod.post,
+                                              parameters: parameters,
+                                              headers: headers)
+        favoritesAddRequest.validate().response { response in
+            switch response.result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
+            }
+        }
+    }
+    
+    func removeFromFavorites(movieId: Int, completion: @escaping (Bool) -> Void) {
+        guard let favoritesRemoveUrl = URL(string: "https://api.themoviedb.org/3/list/\(SessionManager.shared.listId)/remove_item") else { return }
+        
+        let parameters = ["media_id": movieId] as [String : Any]
+        let favoritesRemoveRequest = AF.request(favoritesRemoveUrl,
+                                                method: HTTPMethod.post,
+                                                parameters: parameters,
+                                                headers: headers)
+        favoritesRemoveRequest.validate().response { response in
+            switch response.result {
+            case .success:
+                completion(true)
+            case .failure:
+                completion(false)
+            }
+        }
+    }
+    
+    func getFavoriteMovies(completion: @escaping (Bool) -> Void) {
+        guard let favoritesUrl = URL(string: "https://api.themoviedb.org/3/list/\(listId)") else { return }
+        
+        let favoritesRequest = AF.request(favoritesUrl,method: HTTPMethod.get, headers: headers)
+        favoritesRequest.validate().responseDecodable(of: FavoriteMovies.self) { [weak self] response in
+            guard let fetchedMovies = response.value,
+                  let fetchedFavoriteMovies = fetchedMovies.movies  else { return }
+            
+            self?.favoriteMovies = fetchedFavoriteMovies
+            completion(true)
+        }
+    }
 }
+

@@ -179,6 +179,7 @@ extension ComingSoonViewController: UICollectionViewDelegate {
         }
 
         movieDetailsViewController?.movieId = movie.id
+        movieDetailsViewController?.movie = movie
         
         self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)
     }

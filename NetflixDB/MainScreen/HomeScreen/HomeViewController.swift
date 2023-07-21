@@ -159,6 +159,7 @@ extension HomeViewController: UICollectionViewDelegate {
                 as? MovieDetailsViewController else { return }
         
         movieDetailsViewController.movieId = movie.id
+        movieDetailsViewController.movie = movie
         
         self.navigationController?.pushViewController(movieDetailsViewController, animated: true)
     }
