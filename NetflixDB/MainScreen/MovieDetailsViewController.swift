@@ -114,7 +114,7 @@ class MovieDetailsViewController: UIViewController {
         }
         
         //setting isLiked to true if the movie is in favorites
-        for favoriteMovie in SessionManager.shared.favoriteMovies {
+        SessionManager.shared.favoriteMovies.forEach { favoriteMovie in
             if favoriteMovie.id == movieId {
                 isLiked = true
                 likeImageView.image = UIImage(systemName: "heart.fill")
@@ -150,6 +150,7 @@ class MovieDetailsViewController: UIViewController {
                     }
                     self?.likeImageView.image = UIImage(systemName: "heart")
                     self?.isLiked = false
+                    SessionManager.shared.notify()
                 }
             }
         } else {
@@ -159,6 +160,7 @@ class MovieDetailsViewController: UIViewController {
                     SessionManager.shared.favoriteMovies.append(movie)
                     self?.likeImageView.image = UIImage(systemName: "heart.fill")
                     self?.isLiked = true
+                    SessionManager.shared.notify()
                 }
             }
         }

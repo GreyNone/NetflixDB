@@ -19,8 +19,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AMk-Ra-IfS" userLabel="ContainerView">
                                 <rect key="frame" x="0.0" y="59" width="393" height="426"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-b6-hxX">
+                                    <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vde-b6-hxX">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="426"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="yPH-ij-wkj" appends="YES" id="kxH-zw-76v"/>
+                                        </connections>
                                     </imageView>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQ9-ER-Iiw">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="426"/>
@@ -105,6 +109,9 @@
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" imagePlacement="top" title="Like"/>
+                                                <connections>
+                                                    <action selector="didTapOnLikeButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jY1-Q2-Ah1"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-ip-5yq">
                                                 <rect key="frame" x="168.66666666666666" y="5" width="56" height="32.666666666666664"/>
@@ -249,12 +256,18 @@
                     <connections>
                         <outlet property="collectionView" destination="eYX-bn-xXl" id="Rcg-om-zpJ"/>
                         <outlet property="lastReleaseTitleLabel" destination="3Pe-ip-5yq" id="7ow-dp-WtL"/>
+                        <outlet property="likeButton" destination="Njd-HO-fZU" id="1rN-Js-Hak"/>
                         <outlet property="mainPosterImageView" destination="Vde-b6-hxX" id="9Xr-Nk-hFx"/>
                         <outlet property="stackView" destination="ANW-Ze-YP4" id="O4I-Da-dW9"/>
                         <outlet property="visualEffectView" destination="xQ9-ER-Iiw" id="Utz-aQ-x2o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yPH-ij-wkj">
+                    <connections>
+                        <action selector="didTapOnMainPoster:" destination="Y6W-OH-hqX" id="3hk-Mu-gX6"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
         </scene>

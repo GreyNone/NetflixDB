@@ -16,6 +16,7 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
  
         tableView.register(FavoritesTableViewCell.nib, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
+        SessionManager.shared.addObserver(observer: self)
     }
 }
 
@@ -66,5 +67,12 @@ extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 175
+    }
+}
+
+extension FavoritesViewController: Observer {
+    
+    func update() {
+        self.tableView.reloadData()
     }
 }

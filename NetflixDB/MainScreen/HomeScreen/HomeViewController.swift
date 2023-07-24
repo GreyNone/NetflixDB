@@ -17,8 +17,11 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var genresLabel: UILabel!
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var likeButton: UIButton!
     private var isVisible = false
+    private var isLiked = false
     private var movies: [Movie]?
+    private var lastRelease: Movie?
     private let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     private var itemWidth: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
@@ -42,22 +45,33 @@ class HomeViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
         
+        //downloading latest popular releases
         guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
         let moviesRequest = AF.request(moviesUrl, method: HTTPMethod.get, headers: headers)
         MoviesService.shared.movies(request: moviesRequest) { [weak self] fetchedMovies in
+            //sorting latest releases by date
             self?.movies = self?.sort(movies: fetchedMovies.movies)
+            
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
             
-            guard let lastRelease = self?.movies?[0] else { return }
-            
-            if let isAdult = lastRelease.isAdult, !isAdult {
+            self?.lastRelease = self?.movies?[0]
+            //checking if the latest is liked by the user
+            SessionManager.shared.favoriteMovies.forEach { favoriteMovie in
+                if favoriteMovie.id == self?.lastRelease?.id {
+                    self?.isLiked = true
+                    self?.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                }
+            }
+            //if the latest movie is not for adults,then remove the blur
+            if let isAdult = self?.lastRelease?.isAdult, !isAdult {
                 self?.visualEffectView.removeFromSuperview()
             }
             
-            let poster = lastRelease.posterPath ?? lastRelease.backdropPath
+            let poster = self?.lastRelease?.posterPath ?? self?.lastRelease?.backdropPath
             
+            //downloading poster or backdrop if it exists
             if let poster = poster {
                 guard let mainPosterUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + poster) else { return }
                 self?.movies?.remove(at: 0)
@@ -65,18 +79,22 @@ class HomeViewController: UIViewController {
                 ImageService.shared.image(request: request, key: poster) { image in
                     DispatchQueue.main.async {
                         self?.mainPosterImageView.image = image
-                        self?.lastReleaseTitleLabel.text = lastRelease.title
+                        self?.lastReleaseTitleLabel.text = self?.lastRelease?.title
                     }
                 }
             } else {
-                self?.mainPosterImageView.image = UIImage(systemName: "questionmark")
-                self?.lastReleaseTitleLabel.text = lastRelease.title
+                //setting default image if poster doesn't exists
+                self?.mainPosterImageView.image = UIImage(named: "posterPlaceholder")
+                self?.lastReleaseTitleLabel.text = self?.lastRelease?.title
             }
             
+            //downloading all genres for movies
             guard let genresUrl = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en") else { return }
             let genresRequest = AF.request(genresUrl, method: HTTPMethod.get, headers: headers)
             MoviesService.shared.genres(request: genresRequest) { fetchedGenres in
-                for lastReleaseGenre in lastRelease.genreIds! {
+                //setting genres for the latest release
+                guard let genreIds = self?.lastRelease?.genreIds else { return }
+                for lastReleaseGenre in genreIds {
                     for genre in fetchedGenres {
                         if lastReleaseGenre == genre.id {
                             let genreView = GenreView()
@@ -116,6 +134,44 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(accountViewController, animated: true)
     }
     
+    @IBAction func didTapOnMainPoster(_ sender: Any) {
+        let movieDetailsViewControllerStoryboard = UIStoryboard(name: "MovieDetailsViewController", bundle: nil)
+        let movieDetailsViewController = movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController") as? MovieDetailsViewController
+        
+        movieDetailsViewController?.movieId = lastRelease?.id
+        movieDetailsViewController?.movie = lastRelease
+        
+        self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)
+    }
+    
+    @IBAction func didTapOnLikeButton(_ sender: Any) {
+        guard let movieId = lastRelease?.id else { return }
+        if isLiked {
+            SessionManager.shared.removeFromFavorites(movieId: movieId) { [weak self] success in
+                if success {
+                    let index = SessionManager.shared.favoriteMovies.firstIndex { movie in
+                        return movie.id == movieId
+                    }
+                    if let index = index {
+                        SessionManager.shared.favoriteMovies.remove(at: index)
+                    }
+                    self?.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                    self?.isLiked = false
+                    SessionManager.shared.notify()
+                }
+            }
+        } else {
+            SessionManager.shared.addToFavorites(movieId: movieId) { [weak self] success in
+                if success {
+                    guard let movie = self?.lastRelease else { return }
+                    SessionManager.shared.favoriteMovies.append(movie)
+                    self?.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    self?.isLiked = true
+                    SessionManager.shared.notify()
+                }
+            }
+        }
+    }
 }
 
 //MARK: - UICollectionViewDataSource

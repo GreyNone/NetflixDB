@@ -22,7 +22,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-gg-bOJ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="679.66666666666663"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy3-6v-BoJ">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy3-6v-BoJ" userLabel="Title container">
                                                 <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2V-fY-usd">
@@ -80,7 +80,7 @@
                                                     <constraint firstAttribute="bottom" secondItem="gAg-87-psZ" secondAttribute="bottom" constant="15" id="nLI-3Z-fNi"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvf-Ms-JAq">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvf-Ms-JAq" userLabel="Release date container">
                                                 <rect key="frame" x="0.0" y="128" width="393" height="108.66666666666669"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flr-vD-PZG">
@@ -125,7 +125,7 @@
                                                     <constraint firstItem="flr-vD-PZG" firstAttribute="leading" secondItem="mvf-Ms-JAq" secondAttribute="leading" constant="25" id="y6j-cI-rfc"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYB-ta-Oft">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYB-ta-Oft" userLabel="Synopsis container">
                                                 <rect key="frame" x="0.0" y="236.66666666666669" width="393" height="163"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7U-2f-tIQ">
@@ -171,7 +171,7 @@
                                                     <constraint firstItem="k7U-2f-tIQ" firstAttribute="top" secondItem="B9P-01-QQN" secondAttribute="bottom" constant="10" id="erd-2i-RIO"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYK-Bo-jYg">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYK-Bo-jYg" userLabel="Related movies container">
                                                 <rect key="frame" x="0.0" y="399.66666666666674" width="393" height="280"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mww-8K-WFu">

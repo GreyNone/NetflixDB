@@ -19,6 +19,7 @@ class SessionManager {
     
     static let shared = SessionManager()
     private let userDefaults = UserDefaults()
+    private var observers = NSMutableSet()
     
     var favoriteMovies = [Movie]()
     
@@ -138,7 +139,6 @@ class SessionManager {
     func addToFavorites(movieId: Int, completion: @escaping (Bool) -> Void) {
         guard let favoritesAddUrl = URL(string: "https://api.themoviedb.org/3/list/\(SessionManager.shared.listId)/add_item") else { return }
         
-        
         let parameters = ["media_id": (movieId)] as [String : Any]
         let favoritesAddRequest = AF.request(favoritesAddUrl,
                                               method: HTTPMethod.post,
@@ -182,6 +182,26 @@ class SessionManager {
             
             self?.favoriteMovies = fetchedFavoriteMovies
             completion(true)
+        }
+    }
+}
+
+//MARK: - Observer protocol
+extension SessionManager: Subject {
+    
+    func addObserver(observer: Observer) {
+        observers.add(WeakObserver(value: observer))
+    }
+    
+    func removeObserver(observer: Observer) {
+        observers.remove(observer)
+    }
+    
+    func notify() {
+        for observer in observers {
+            guard let weakObserver = observer as? WeakObserver,
+                  let value = weakObserver.value  else { return }
+            value.update()
         }
     }
 }
