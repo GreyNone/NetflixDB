@@ -56,7 +56,7 @@ extension FavoritesViewController: UITableViewDataSource {
                 cell.configure(image: image)
                 return cell
             }
-            let backdropUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + poster)!
+            let backdropUrl = URL(string: "https://image.tmdb.org/t/p/" + "w500" + poster)!
             cell.configure(url: backdropUrl, for: poster)
         } else {
             cell.configure(image: UIImage(systemName: "questionmark")!)

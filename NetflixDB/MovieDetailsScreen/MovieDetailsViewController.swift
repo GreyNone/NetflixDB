@@ -17,7 +17,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak private var voteLabel: UILabel!
     @IBOutlet weak private var releaseDateLabel: UILabel!
     @IBOutlet weak private var overviewLabel: UILabel!
-    @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet weak private var moviesCollectionView: UICollectionView!
+    @IBOutlet weak private var actorsCollectionView: UICollectionView!
     @IBOutlet weak private var imageViewContainer: UIView!
     @IBOutlet weak private var likeImageView: UIImageView!
     @IBOutlet weak private var scrollView: UIScrollView!
@@ -59,6 +60,7 @@ class MovieDetailsViewController: UIViewController {
     private var releaseDate: String?
     private var backdropPath: String?
     private var relatedMovies: [Movie]?
+    private var actors: [Actor]?
     private var isLiked = false
     var movieId: Int?
     var movie: Movie?
@@ -74,7 +76,7 @@ class MovieDetailsViewController: UIViewController {
         
         //downloading backdrop if it exists or setting default backdrop if it doesnt
         if let backdropPath = movie?.backdropPath {
-            guard let backdropUrl = URL(string: "https://image.tmdb.org/t/p/" + "original" + backdropPath) else { return }
+            guard let backdropUrl = URL(string: "https://image.tmdb.org/t/p/" + "w500" + backdropPath) else { return }
             let backdropRequest = AF.request(backdropUrl, method: HTTPMethod.get, headers: headers)
             ImageService.shared.image(request: backdropRequest) { [weak self] image in
                 self?.posterImageView.image = image
@@ -105,12 +107,20 @@ class MovieDetailsViewController: UIViewController {
             }
         }
         
+        //downloading actors
+        guard let actorsUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/credits") else { return }
+        let actorsRequest = AF.request(actorsUrl,method: HTTPMethod.get, headers: headers)
+        MoviesService.shared.actors(request: actorsRequest) { [weak self] actors in
+            self?.actors = actors
+            self?.actorsCollectionView.reloadData()
+        }
+        
         //downloading relatesMovies
         guard let relatedMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/similar?language=en-US&page=1") else { return }
         let relatedMoviewRequest = AF.request(relatedMoviesUrl, method: HTTPMethod.get, headers: headers)
         MoviesService.shared.movies(request: relatedMoviewRequest) { [weak self] fetchedMovies in
             self?.relatedMovies = fetchedMovies.movies
-            self?.collectionView.reloadData()
+            self?.moviesCollectionView.reloadData()
         }
         
         //setting isLiked to true if the movie is in favorites
@@ -183,44 +193,83 @@ extension MovieDetailsViewController: UIScrollViewDelegate {
 extension MovieDetailsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let count = relatedMovies?.count else { return 0 }
-        return count
+        if collectionView == moviesCollectionView {
+            guard let count = relatedMovies?.count else { return 0 }
+            return count
+        } else {
+            guard let count = actors?.count else { return 0}
+            return count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath)
-                as? MovieCollectionViewCell,
-              let relatedMovie = relatedMovies?[indexPath.row] else { return MovieCollectionViewCell() }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: relatedMovie.releaseDate ?? "") ?? Date()
-        dateFormatter.dateFormat = "yyyy"
-
-        let fullMovieTitle = (relatedMovie.title ?? "placeholder") + "(" + dateFormatter.string(from: date) + ")"
-    
-        if let image = CacheManager.shared.getValue(for: relatedMovie.posterPath ?? "") {
-            cell.configure(image: image, title: fullMovieTitle)
+        if collectionView == moviesCollectionView {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier, for: indexPath)
+                    as? MovieCollectionViewCell,
+                  let relatedMovie = relatedMovies?[indexPath.row] else { return MovieCollectionViewCell() }
+            
+            //changing date format
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let date = dateFormatter.date(from: relatedMovie.releaseDate ?? "") ?? Date()
+            dateFormatter.dateFormat = "yyyy"
+            
+            let fullMovieTitle = (relatedMovie.title ?? "placeholder") + "(" + dateFormatter.string(from: date) + ")"
+            
+            //checking if the image is already downloaded and stored in cache
+            if let image = CacheManager.shared.getValue(for: relatedMovie.posterPath ?? "") {
+                cell.configure(image: image, title: fullMovieTitle)
+                return cell
+            }
+            
+            //getting posterPath if it exists or backdropPath if it doesn't
+            let posterPath = relatedMovie.posterPath ?? relatedMovie.backdropPath
+            
+            //loading poster or setting default image if it doesn't exist
+            if let posterPath {
+                guard let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + posterPath) else { return MovieCollectionViewCell() }
+                cell.configure(url: url, for: posterPath, title: fullMovieTitle)
+            } else {
+                cell.configure(image: UIImage(named: "posterPlaceholder")!, title: fullMovieTitle)
+            }
+            
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ActorCollectionViewCell.identifier, for: indexPath)
+                    as? ActorCollectionViewCell,
+                  let actor = actors?[indexPath.row] else { return ActorCollectionViewCell() }
+            
+            if let image = CacheManager.shared.getValue(for: actor.profilePath ?? "") {
+                cell.configure(image: image,
+                               name: actor.name ?? "No info",
+                               character: actor.character ?? "No info",
+                               role: actor.department ?? "No info")
+                return cell
+            }
+            
+            if let profilePath = actor.profilePath {
+                guard let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + profilePath) else { return ActorCollectionViewCell() }
+                cell.configure(url: url,
+                               for: profilePath,
+                               name: actor.name ?? "No info",
+                               character: actor.character ?? "No info",
+                               role: actor.department ?? "No info")
+            } else {
+                cell.configure(image: UIImage(named: "user")!,
+                               name: actor.name ?? "No info",
+                               character: actor.character ?? "No info",
+                               role: actor.department ?? "No info")
+            }
+            
             return cell
         }
-        
-        let posterPath = relatedMovie.posterPath ?? relatedMovie.backdropPath
-        
-        if let posterPath {
-            guard let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + posterPath) else { return MovieCollectionViewCell() }
-            cell.configure(url: url, for: posterPath, title: fullMovieTitle)
-        } else {
-            cell.configure(image: UIImage(named: "posterPlaceholder")!, title: fullMovieTitle)
-        }
-        
-        return cell
     }
 }
 
 //MARK: - UICollectionViewDelegateFlowLayout
 extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: itemWidth, height: self.collectionView.bounds.height - insets.top - insets.bottom)
+        return .init(width: itemWidth, height: self.moviesCollectionView.bounds.height - insets.top - insets.bottom)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

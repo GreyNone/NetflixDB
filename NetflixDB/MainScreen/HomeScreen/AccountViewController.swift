@@ -37,7 +37,8 @@ class AccountViewController: UIViewController {
     //MARK: - Actions
     @IBAction func didTapOnLogoutButton(_ sender: UIButton) {
         SessionManager.shared.set(isUserLoggedIn: false)
-//        self.tabBarController?.navigationController?.dismiss(animated: true)
         SessionManager.shared.cleanDefaults()
+        CacheManager.shared.clean()
+        self.navigationController?.navigationController?.popToRootViewController(animated: true)
     }
 }

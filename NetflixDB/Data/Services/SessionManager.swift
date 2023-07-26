@@ -123,10 +123,7 @@ class SessionManager {
                                     //setting list if it exists
                                     guard let id = result[0].id else { return }
                                     self?.set(listId: id)
-                                    
-                                    self?.getFavoriteMovies { success in
-                                        completion(success)
-                                    }
+                                    completion(success)
                                 }
                             }
                         }

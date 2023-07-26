@@ -32,4 +32,11 @@ final class MoviesService {
             completion(movieDetails)
         }
     }
+    
+    func actors(request: DataRequest, completion: @escaping ([Actor]) -> Void) {
+        request.validate().responseDecodable(of: Actors.self) { (response) in
+            guard let actors = response.value else { return }
+            completion(actors.actors)
+        }
+    }
 }

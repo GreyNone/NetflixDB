@@ -18,11 +18,14 @@ class CacheManager {
             let image = imageFromCache as? UIImage
             return image
         }
-        
         return nil
     }
     
     func write(value: UIImage, for key: String) {
         imageCache.setObject(value, forKey: key as AnyObject)
+    }
+    
+    func clean() {
+        imageCache.removeAllObjects()
     }
 }

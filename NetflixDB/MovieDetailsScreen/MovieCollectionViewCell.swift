@@ -24,6 +24,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         posterImageView.image = nil
         titleLabel.text = nil
         request?.cancel()
