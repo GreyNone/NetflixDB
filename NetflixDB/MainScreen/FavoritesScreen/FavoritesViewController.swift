@@ -11,6 +11,16 @@ import UIKit
 class FavoritesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    private var posterViewHeight: CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return 175
+        case .pad:
+            return 300
+        default:
+            return 100
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +76,7 @@ extension FavoritesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 175
+        return posterViewHeight
     }
 }
 

@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
+import AVKit
 import Alamofire
+import YouTubeiOSPlayerHelper
 
 class MovieDetailsViewController: UIViewController {
     
@@ -23,6 +25,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak private var likeImageView: UIImageView!
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var heightConstraint: NSLayoutConstraint!
+    private var playerView: YTPlayerView?
     private var minStretchHeight: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
@@ -54,13 +57,9 @@ class MovieDetailsViewController: UIViewController {
         }
     }
     private let insets = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 0)
-    private var overview: String?
-    private var movieTitle: String?
-    private var vote: CGFloat?
-    private var releaseDate: String?
-    private var backdropPath: String?
     private var relatedMovies: [Movie]?
     private var actors: [Actor]?
+    private var videos: [Video]?
     private var isLiked = false
     var movieId: Int?
     var movie: Movie?
@@ -117,10 +116,17 @@ class MovieDetailsViewController: UIViewController {
         
         //downloading relatesMovies
         guard let relatedMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/similar?language=en-US&page=1") else { return }
-        let relatedMoviewRequest = AF.request(relatedMoviesUrl, method: HTTPMethod.get, headers: headers)
-        MoviesService.shared.movies(request: relatedMoviewRequest) { [weak self] fetchedMovies in
+        let relatedMoviesRequest = AF.request(relatedMoviesUrl, method: HTTPMethod.get, headers: headers)
+        MoviesService.shared.movies(request: relatedMoviesRequest) { [weak self] fetchedMovies in
             self?.relatedMovies = fetchedMovies.movies
             self?.moviesCollectionView.reloadData()
+        }
+        
+        //downloading videos
+        guard let videosUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/videos") else { return }
+        let videosRequest = AF.request(videosUrl, method: HTTPMethod.get, headers: headers)
+        VideosService.shared.videos(request: videosRequest) { [weak self] videos in
+            self?.videos = videos
         }
         
         //setting isLiked to true if the movie is in favorites
@@ -142,6 +148,19 @@ class MovieDetailsViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
+    private func setupPlayerView() {
+        playerView = YTPlayerView()
+        if let playerView = playerView {
+            imageViewContainer.addSubview(playerView)
+            
+            playerView.translatesAutoresizingMaskIntoConstraints = false
+            playerView.leadingAnchor.constraint(equalTo: imageViewContainer.leadingAnchor).isActive = true
+            playerView.trailingAnchor.constraint(equalTo: imageViewContainer.trailingAnchor).isActive = true
+            playerView.topAnchor.constraint(equalTo: imageViewContainer.topAnchor).isActive = true
+            playerView.bottomAnchor.constraint(equalTo: imageViewContainer.bottomAnchor).isActive = true
+        }
+    }
+
     //MARK: - Actions
     @IBAction func didTapOnBack(_ sender: UITapGestureRecognizer) {
         self.navigationController?.popViewController(animated: true)
@@ -174,6 +193,11 @@ class MovieDetailsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func didTapOnPlayButton(_ sender: UIButton) {
+        setupPlayerView()
+        playerView?.load(withVideoId: "BdJKm16Co6M")
     }
 }
 

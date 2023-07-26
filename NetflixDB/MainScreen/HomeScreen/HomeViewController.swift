@@ -11,32 +11,49 @@ import Alamofire
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var mainPosterImageView: UIImageView!
-    @IBOutlet weak var lastReleaseTitleLabel: UILabel!
-    @IBOutlet weak var genresLabel: UILabel!
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var mainPosterImageView: UIImageView!
+    @IBOutlet private weak var lastReleaseTitleLabel: UILabel!
+    @IBOutlet private weak var genresLabel: UILabel!
+    @IBOutlet private weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var likeButton: UIButton!
+    @IBOutlet private weak var mainPosterHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
     private var isVisible = false
     private var isLiked = false
     private var movies: [Movie]?
     private var lastRelease: Movie?
     private let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    private var posterViewHeight: CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return 400
+        case .pad:
+            return 700
+        default:
+            return 100
+        }
+    }
+    private var collectionViewHeight: CGFloat {
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            return 250
+        case .pad:
+            return 400
+        default:
+            return 100
+        }
+    }
     private var itemWidth: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .pad:
-            return 250
+            return 300
         case .phone:
             return 175
         default:
             return 150
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        isVisible = true
     }
     
     //MARK: - ControllerLifecycle
@@ -106,6 +123,14 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mainPosterHeightConstraint.constant = posterViewHeight
+        collectionViewHeightConstraint.constant = collectionViewHeight
+        isVisible = true
+    }
+    
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)

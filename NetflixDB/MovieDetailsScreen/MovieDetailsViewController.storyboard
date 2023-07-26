@@ -211,7 +211,7 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="74W-fC-B6y">
-                                                                            <rect key="frame" x="40.333333333333336" y="0.0" width="121.33333333333329" height="120"/>
+                                                                            <rect key="frame" x="50.666666666666657" y="0.0" width="101" height="130"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gDs-Ve-Fun">
                                                                             <rect key="frame" x="63.333333333333336" y="151.33333333333334" width="75.666666666666657" height="20.333333333333343"/>
@@ -240,7 +240,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aA-Ix-UMZ">
-                                                                            <rect key="frame" x="78.666666666666671" y="126.99999999999999" width="45" height="16.333333333333329"/>
+                                                                            <rect key="frame" x="78.666666666666671" y="137" width="45" height="6.3333333333333428"/>
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Name">
                                                                                     <attributes>
@@ -258,10 +258,10 @@
                                                                         <constraint firstItem="74W-fC-B6y" firstAttribute="top" secondItem="Ojn-Qy-Yua" secondAttribute="top" id="5Nl-xg-9WQ"/>
                                                                         <constraint firstItem="gDs-Ve-Fun" firstAttribute="centerX" secondItem="74W-fC-B6y" secondAttribute="centerX" id="8jz-Hh-pii"/>
                                                                         <constraint firstAttribute="bottom" secondItem="CSl-1h-371" secondAttribute="bottom" id="Ovw-mi-bTK"/>
-                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="height" secondItem="Ojn-Qy-Yua" secondAttribute="height" multiplier="0.6" id="TY6-Ro-zzy"/>
+                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="height" secondItem="Ojn-Qy-Yua" secondAttribute="height" multiplier="0.65" id="TY6-Ro-zzy"/>
                                                                         <constraint firstItem="5aA-Ix-UMZ" firstAttribute="centerX" secondItem="74W-fC-B6y" secondAttribute="centerX" id="gz2-hX-KQU"/>
                                                                         <constraint firstItem="gDs-Ve-Fun" firstAttribute="top" secondItem="5aA-Ix-UMZ" secondAttribute="bottom" constant="8" symbolic="YES" id="ucB-n5-6mk"/>
-                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="width" secondItem="Ojn-Qy-Yua" secondAttribute="width" multiplier="0.6" id="uvU-Ql-Jqz"/>
+                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="width" secondItem="Ojn-Qy-Yua" secondAttribute="width" multiplier="0.5" id="uvU-Ql-Jqz"/>
                                                                         <constraint firstItem="74W-fC-B6y" firstAttribute="centerX" secondItem="Ojn-Qy-Yua" secondAttribute="centerX" id="xnz-Ea-HU8"/>
                                                                         <constraint firstItem="CSl-1h-371" firstAttribute="centerX" secondItem="74W-fC-B6y" secondAttribute="centerX" id="yeV-S9-vzk"/>
                                                                         <constraint firstItem="CSl-1h-371" firstAttribute="top" secondItem="gDs-Ve-Fun" secondAttribute="bottom" constant="8" symbolic="YES" id="zbZ-3N-fds"/>
@@ -455,6 +455,9 @@
                                             </attributedString>
                                             <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="didTapOnPlayButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="OmS-7H-6NC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

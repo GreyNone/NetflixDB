@@ -15,6 +15,9 @@
 		976ECE3C2A66EE33001DA8F5 /* FavoritesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 976ECE3A2A66EE33001DA8F5 /* FavoritesTableViewCell.xib */; };
 		976ECE3E2A6AA3BB001DA8F5 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976ECE3D2A6AA3BB001DA8F5 /* Observer.swift */; };
 		9783BF032A7104B40013CE3B /* GenreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9783BF022A7104B40013CE3B /* GenreView.xib */; };
+		9783BF082A715CFF0013CE3B /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 9783BF072A715CFF0013CE3B /* YouTubeiOSPlayerHelper */; };
+		9783BF0A2A7162940013CE3B /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9783BF092A7162940013CE3B /* Videos.swift */; };
+		9783BF0C2A7164E60013CE3B /* VideosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9783BF0B2A7164E60013CE3B /* VideosService.swift */; };
 		97B0EBB42A6EC23500018A55 /* Actors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0EBB32A6EC23500018A55 /* Actors.swift */; };
 		97B0EBB62A6EC9E000018A55 /* ActorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0EBB52A6EC9E000018A55 /* ActorCollectionViewCell.swift */; };
 		F306FA802A498159006C20D9 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */; };
@@ -65,6 +68,8 @@
 		976ECE3A2A66EE33001DA8F5 /* FavoritesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesTableViewCell.xib; sourceTree = "<group>"; };
 		976ECE3D2A6AA3BB001DA8F5 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		9783BF022A7104B40013CE3B /* GenreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreView.xib; sourceTree = "<group>"; };
+		9783BF092A7162940013CE3B /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
+		9783BF0B2A7164E60013CE3B /* VideosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosService.swift; sourceTree = "<group>"; };
 		97B0EBB32A6EC23500018A55 /* Actors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actors.swift; sourceTree = "<group>"; };
 		97B0EBB52A6EC9E000018A55 /* ActorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionViewCell.swift; sourceTree = "<group>"; };
 		F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3D22C0D2A42F4A30014F799 /* Moya in Frameworks */,
+				9783BF082A715CFF0013CE3B /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,9 +232,10 @@
 			isa = PBXGroup;
 			children = (
 				F306FA812A4996E5006C20D9 /* CacheManager.swift */,
-				F386502F2A4AD759008C9F41 /* ImageService.swift */,
-				F38650312A4AF0AC008C9F41 /* MoviesService.swift */,
 				F3247BE52A54216800E3FFFC /* SessionManager.swift */,
+				F38650312A4AF0AC008C9F41 /* MoviesService.swift */,
+				F386502F2A4AD759008C9F41 /* ImageService.swift */,
+				9783BF0B2A7164E60013CE3B /* VideosService.swift */,
 				976ECE3D2A6AA3BB001DA8F5 /* Observer.swift */,
 			);
 			path = Services;
@@ -240,6 +247,7 @@
 				F36028F82A45BE2E00D98F25 /* Movies.swift */,
 				F306FA832A49B60E006C20D9 /* Genres.swift */,
 				97B0EBB32A6EC23500018A55 /* Actors.swift */,
+				9783BF092A7162940013CE3B /* Videos.swift */,
 				F3247BE12A5403C900E3FFFC /* Tokens.swift */,
 				975633D72A5FF1AA002886B6 /* List.swift */,
 			);
@@ -295,6 +303,7 @@
 			name = NetflixDB;
 			packageProductDependencies = (
 				F3D22C0C2A42F4A30014F799 /* Moya */,
+				9783BF072A715CFF0013CE3B /* YouTubeiOSPlayerHelper */,
 			);
 			productName = NetflixDB;
 			productReference = F3D22BF42A42ECA00014F799 /* NetflixDB.app */;
@@ -326,6 +335,7 @@
 			mainGroup = F3D22BEB2A42ECA00014F799;
 			packageReferences = (
 				F3D22C0B2A42F4A30014F799 /* XCRemoteSwiftPackageReference "Moya" */,
+				9783BF062A715CFF0013CE3B /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
 			productRefGroup = F3D22BF52A42ECA00014F799 /* Products */;
 			projectDirPath = "";
@@ -386,9 +396,11 @@
 				F31CA0AD2A4C65BA00965F29 /* MovieCollectionViewCell.swift in Sources */,
 				F306FA842A49B60E006C20D9 /* Genres.swift in Sources */,
 				F33C9CDB2A432D4A00781F70 /* SplashViewController.swift in Sources */,
+				9783BF0A2A7162940013CE3B /* Videos.swift in Sources */,
 				F3333DD32A44681A006BFA7F /* DescriptionViewController.swift in Sources */,
 				F31CA0A92A4C36A800965F29 /* MovieDetailsViewController.swift in Sources */,
 				F3D22BFA2A42ECA00014F799 /* SceneDelegate.swift in Sources */,
+				9783BF0C2A7164E60013CE3B /* VideosService.swift in Sources */,
 				97B0EBB62A6EC9E000018A55 /* ActorCollectionViewCell.swift in Sources */,
 				F3D22C152A4315400014F799 /* LoginTextField.swift in Sources */,
 				F3247BE22A5403C900E3FFFC /* Tokens.swift in Sources */,
@@ -618,6 +630,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9783BF062A715CFF0013CE3B /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/youtube/youtube-ios-player-helper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		F3D22C0B2A42F4A30014F799 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
@@ -629,6 +649,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9783BF072A715CFF0013CE3B /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9783BF062A715CFF0013CE3B /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
+		};
 		F3D22C0C2A42F4A30014F799 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F3D22C0B2A42F4A30014F799 /* XCRemoteSwiftPackageReference "Moya" */;
