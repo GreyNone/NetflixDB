@@ -25,6 +25,8 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak private var likeImageView: UIImageView!
     @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var tableViewContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var videosTableView: UITableView!
     private var playerView: YTPlayerView?
     private var minStretchHeight: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
@@ -71,7 +73,11 @@ class MovieDetailsViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
     
+        //Moving scrollView's down so our imageView could stretch
         scrollView.contentInset = UIEdgeInsets(top: initialViewHeight, left: 0, bottom: 0, right: 0)
+        
+        //TableView setup
+        videosTableView.register(VideoTableViewCell.nib, forCellReuseIdentifier: VideoTableViewCell.identifier)
         
         //downloading backdrop if it exists or setting default backdrop if it doesnt
         if let backdropPath = movie?.backdropPath {
@@ -127,6 +133,7 @@ class MovieDetailsViewController: UIViewController {
         let videosRequest = AF.request(videosUrl, method: HTTPMethod.get, headers: headers)
         VideosService.shared.videos(request: videosRequest) { [weak self] videos in
             self?.videos = videos
+            self?.videosTableView.reloadData()
         }
         
         //setting isLiked to true if the movie is in favorites
@@ -141,23 +148,36 @@ class MovieDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         heightConstraint.constant = initialViewHeight
+        tableViewContainerHeightConstraint.constant = 0
+        navigationItem.setHidesBackButton(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
+        navigationItem.setHidesBackButton(false, animated: false)
     }
     
+    //MARK: - PlayerView setup
     private func setupPlayerView() {
         playerView = YTPlayerView()
         if let playerView = playerView {
             imageViewContainer.addSubview(playerView)
+            playerView.delegate = self
             
             playerView.translatesAutoresizingMaskIntoConstraints = false
             playerView.leadingAnchor.constraint(equalTo: imageViewContainer.leadingAnchor).isActive = true
             playerView.trailingAnchor.constraint(equalTo: imageViewContainer.trailingAnchor).isActive = true
             playerView.topAnchor.constraint(equalTo: imageViewContainer.topAnchor).isActive = true
             playerView.bottomAnchor.constraint(equalTo: imageViewContainer.bottomAnchor).isActive = true
+            
+            self.navigationController?.navigationBar.isHidden = false
+            let barItem = UIBarButtonItem(barButtonSystemItem: .done,
+                                          target: self,
+                                          action: #selector(didTapOnCloseButton(sender: )))
+            barItem.tintColor = .red
+            self.navigationItem.rightBarButtonItem = barItem
         }
     }
 
@@ -196,8 +216,16 @@ class MovieDetailsViewController: UIViewController {
     }
     
     @IBAction func didTapOnPlayButton(_ sender: UIButton) {
-        setupPlayerView()
-        playerView?.load(withVideoId: "BdJKm16Co6M")
+        self.tableViewContainerHeightConstraint.constant = 200
+        UIView.animate(withDuration: 0.5 ) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func didTapOnCloseButton(sender: UIBarButtonItem) {
+        navigationController?.navigationBar.isHidden = true
+        playerView?.stopVideo()
+        playerView?.removeFromSuperview()
     }
 }
 
@@ -221,7 +249,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
             guard let count = relatedMovies?.count else { return 0 }
             return count
         } else {
-            guard let count = actors?.count else { return 0}
+            guard let count = actors?.count else { return 0 }
             return count
         }
     }
@@ -302,5 +330,60 @@ extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return insets.left
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension MovieDetailsViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let count = videos?.count else { return 0 }
+        return count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "VideoTableViewCell") as? VideoTableViewCell,
+              let video = videos?[indexPath.row] else { return VideoTableViewCell() }
+        
+        cell.titleLabel.text = video.name
+        cell.hostingLabel.text = video.site
+        cell.typeLabel.text = video.type
+        if let isOfficial = video.isOfficial {
+            cell.isOfficialLabel.textColor = isOfficial ? UIColor.green : UIColor.red
+        } else {
+            cell.isOfficialLabel.textColor = .gray
+        }
+        
+        return cell
+    }
+}
+
+//MARK: - UITableViewDelegate
+extension MovieDetailsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let video = videos?[indexPath.row],
+              let id = video.key else { return }
+        
+        setupPlayerView()
+        tableViewContainerHeightConstraint.constant = 0
+        UIView.animate(withDuration: 0.5 ) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
+        playerView?.load(withVideoId: id, playerVars: ["playsinline" : 1])
+    }
+}
+
+//MARK: - YTPlayerViewDelegate
+extension MovieDetailsViewController: YTPlayerViewDelegate {
+    
+    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
+        playerView.playVideo()
+    }
+    
+    func playerView(_ playerView: YTPlayerView, didChangeTo state: YTPlayerState) {
+
     }
 }

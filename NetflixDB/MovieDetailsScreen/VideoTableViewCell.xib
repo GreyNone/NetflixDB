@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoTableViewCell" rowHeight="121" id="KGk-i7-Jjw" customClass="VideoTableViewCell" customModule="NetflixDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="334" height="121"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="334" height="121"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igq-nf-S3h">
+                        <rect key="frame" x="10" y="5" width="314" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="eKB-uX-mcA"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment content="Title">
+                                <attributes>
+                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="17" name="Arial-BoldItalicMT"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7h-wj-JJh">
+                        <rect key="frame" x="10" y="30" width="37" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="dT6-s2-JEG"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment content="Type">
+                                <attributes>
+                                    <color key="NSColor" red="0.97133975364687264" green="1" blue="0.95945391116533385" alpha="0.89803921568627454" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="17" name="ArialMT"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXT-cl-SAJ">
+                        <rect key="frame" x="9.9999999999999964" y="55" width="57.666666666666657" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="zis-Hy-7xO"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment content="Hosting">
+                                <attributes>
+                                    <color key="NSColor" red="0.94809987141619689" green="1" blue="0.92804918001317627" alpha="0.89803921568627454" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="17" name="ArialMT"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujp-6d-v8x">
+                        <rect key="frame" x="9.9999999999999964" y="80" width="51.666666666666657" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="g7L-qB-BNq"/>
+                        </constraints>
+                        <attributedString key="attributedText">
+                            <fragment content="Official">
+                                <attributes>
+                                    <color key="NSColor" red="0.12300225086599292" green="1" blue="0.0" alpha="0.89803921568627454" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <font key="NSFont" size="17" name="ArialMT"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <constraints>
+                    <constraint firstItem="igq-nf-S3h" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="1qP-7l-BTj"/>
+                    <constraint firstItem="igq-nf-S3h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="D30-gd-6Dv"/>
+                    <constraint firstItem="ujp-6d-v8x" firstAttribute="top" secondItem="fXT-cl-SAJ" secondAttribute="bottom" constant="5" id="Kq4-ff-Dg0"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ujp-6d-v8x" secondAttribute="bottom" constant="10" id="Qs5-7e-oeL"/>
+                    <constraint firstAttribute="trailing" secondItem="igq-nf-S3h" secondAttribute="trailing" constant="10" id="XRz-dK-CuW"/>
+                    <constraint firstItem="ujp-6d-v8x" firstAttribute="leading" secondItem="igq-nf-S3h" secondAttribute="leading" id="bWT-3r-0Lh"/>
+                    <constraint firstItem="Z7h-wj-JJh" firstAttribute="leading" secondItem="igq-nf-S3h" secondAttribute="leading" id="lfH-Vq-r3J"/>
+                    <constraint firstItem="Z7h-wj-JJh" firstAttribute="top" secondItem="igq-nf-S3h" secondAttribute="bottom" constant="5" id="nSO-7c-P6L"/>
+                    <constraint firstItem="fXT-cl-SAJ" firstAttribute="leading" secondItem="igq-nf-S3h" secondAttribute="leading" id="oLi-cw-p4H"/>
+                    <constraint firstItem="fXT-cl-SAJ" firstAttribute="top" secondItem="Z7h-wj-JJh" secondAttribute="bottom" constant="5" id="rR2-Cm-k2V"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="hostingLabel" destination="fXT-cl-SAJ" id="gPA-yB-DyS"/>
+                <outlet property="isOfficialLabel" destination="ujp-6d-v8x" id="YHX-ad-t8M"/>
+                <outlet property="titleLabel" destination="igq-nf-S3h" id="jAd-jQ-1rF"/>
+                <outlet property="typeLabel" destination="Z7h-wj-JJh" id="5it-bW-inH"/>
+            </connections>
+            <point key="canvasLocation" x="129.7709923664122" y="47.535211267605639"/>
+        </tableViewCell>
+    </objects>
+</document>

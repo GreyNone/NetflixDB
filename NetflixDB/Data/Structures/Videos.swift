@@ -11,12 +11,14 @@ struct Video: Decodable {
     var name: String?
     var key: String?
     var site: String?
+    var type: String?
     var isOfficial: Bool?
     
     enum CodingKeys: String, CodingKey {
         case name
         case key
         case site
+        case type
         case isOfficial = "official"
     }
 }

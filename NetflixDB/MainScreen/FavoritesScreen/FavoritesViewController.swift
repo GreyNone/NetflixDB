@@ -26,10 +26,12 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
  
         tableView.register(FavoritesTableViewCell.nib, forCellReuseIdentifier: FavoritesTableViewCell.identifier)
+//        tableView.isEditing = true
         SessionManager.shared.addObserver(observer: self)
     }
 }
 
+//MARK: - UITableViewDelegate
 extension FavoritesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -45,8 +47,26 @@ extension FavoritesViewController: UITableViewDelegate {
         
         self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        //Getting movie id in order to remove it from favorites
+        guard let movieId = SessionManager.shared.favoriteMovies[indexPath.row].id else { return }
+        if editingStyle == .delete {
+            SessionManager.shared.removeFromFavorites(movieId: movieId) { [weak self] success in
+                if success {
+                    SessionManager.shared.favoriteMovies.remove(at: indexPath.row)
+                    self?.tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+    }
 }
 
+//MARK: - UITableViewDAtaSource
 extension FavoritesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

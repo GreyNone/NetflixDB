@@ -18,6 +18,8 @@
 		9783BF082A715CFF0013CE3B /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 9783BF072A715CFF0013CE3B /* YouTubeiOSPlayerHelper */; };
 		9783BF0A2A7162940013CE3B /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9783BF092A7162940013CE3B /* Videos.swift */; };
 		9783BF0C2A7164E60013CE3B /* VideosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9783BF0B2A7164E60013CE3B /* VideosService.swift */; };
+		9783BF0F2A717E020013CE3B /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9783BF0D2A717E020013CE3B /* VideoTableViewCell.swift */; };
+		9783BF102A717E020013CE3B /* VideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9783BF0E2A717E020013CE3B /* VideoTableViewCell.xib */; };
 		97B0EBB42A6EC23500018A55 /* Actors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0EBB32A6EC23500018A55 /* Actors.swift */; };
 		97B0EBB62A6EC9E000018A55 /* ActorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0EBB52A6EC9E000018A55 /* ActorCollectionViewCell.swift */; };
 		F306FA802A498159006C20D9 /* PosterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */; };
@@ -70,6 +72,8 @@
 		9783BF022A7104B40013CE3B /* GenreView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenreView.xib; sourceTree = "<group>"; };
 		9783BF092A7162940013CE3B /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
 		9783BF0B2A7164E60013CE3B /* VideosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosService.swift; sourceTree = "<group>"; };
+		9783BF0D2A717E020013CE3B /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		9783BF0E2A717E020013CE3B /* VideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoTableViewCell.xib; sourceTree = "<group>"; };
 		97B0EBB32A6EC23500018A55 /* Actors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actors.swift; sourceTree = "<group>"; };
 		97B0EBB52A6EC9E000018A55 /* ActorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorCollectionViewCell.swift; sourceTree = "<group>"; };
 		F306FA7F2A498159006C20D9 /* PosterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				F31CA0AA2A4C36BB00965F29 /* MovieDetailsViewController.storyboard */,
 				F31CA0AC2A4C65BA00965F29 /* MovieCollectionViewCell.swift */,
 				97B0EBB52A6EC9E000018A55 /* ActorCollectionViewCell.swift */,
+				9783BF0D2A717E020013CE3B /* VideoTableViewCell.swift */,
+				9783BF0E2A717E020013CE3B /* VideoTableViewCell.xib */,
 			);
 			path = MovieDetailsScreen;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 				F36028EE2A45948100D98F25 /* HomeViewController.storyboard in Resources */,
 				F36028F62A4599F200D98F25 /* FavoritesViewController.storyboard in Resources */,
 				F3D22C042A42ECA20014F799 /* LaunchScreen.storyboard in Resources */,
+				9783BF102A717E020013CE3B /* VideoTableViewCell.xib in Resources */,
 				F3D22C132A43081A0014F799 /* LoginViewController.storyboard in Resources */,
 				F33C9CDD2A432D5A00781F70 /* SplashViewController.storyboard in Resources */,
 				F3D22C012A42ECA20014F799 /* Assets.xcassets in Resources */,
@@ -384,6 +391,7 @@
 				97B0EBB42A6EC23500018A55 /* Actors.swift in Sources */,
 				F3247BE62A54216800E3FFFC /* SessionManager.swift in Sources */,
 				F3D22C102A42F9AC0014F799 /* LoginViewController.swift in Sources */,
+				9783BF0F2A717E020013CE3B /* VideoTableViewCell.swift in Sources */,
 				F306FA822A4996E5006C20D9 /* CacheManager.swift in Sources */,
 				F32CEB7B2A458F3B003028A8 /* MainTabBarController.swift in Sources */,
 				975633D82A5FF1AA002886B6 /* List.swift in Sources */,

@@ -131,7 +131,6 @@ class HomeViewController: UIViewController {
         isVisible = true
     }
     
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         if isVisible {
