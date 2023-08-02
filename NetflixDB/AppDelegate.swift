@@ -26,6 +26,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tabBarApperance.backgroundColor = UIColor.black
             UITabBar.appearance().scrollEdgeAppearance = tabBarApperance
             UITabBar.appearance().standardAppearance = tabBarApperance
+            
+            
+            let titleTextAttributesSelected = [NSAttributedString.Key.foregroundColor: UIColor.red]
+            UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesSelected, for: .normal)
+            
+            let titleTextAttributesSelected2 = [NSAttributedString.Key.foregroundColor: UIColor.black]
+            UISegmentedControl.appearance().setTitleTextAttributes(titleTextAttributesSelected2, for: .selected)
         }
         return true
     }

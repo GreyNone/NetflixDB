@@ -91,9 +91,7 @@ class MovieDetailsViewController: UIViewController {
         }
         
         //downloading movie details
-        guard let movieDetailsUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "?language=en-US") else { return }
-        let movieDetailsRequest = AF.request(movieDetailsUrl, method: HTTPMethod.get, headers: headers)
-        MoviesService.shared.movieDetails(request: movieDetailsRequest) { [weak self] movieDetail in
+        MoviesService.shared.movieDetails(movieId: movieId ?? 0) { [weak self] movieDetail in
             //setting details
             self?.overviewLabel.text = movieDetail.overview
             self?.titleLabel.text = movieDetail.originalTitle
@@ -113,25 +111,19 @@ class MovieDetailsViewController: UIViewController {
         }
         
         //downloading actors
-        guard let actorsUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/credits") else { return }
-        let actorsRequest = AF.request(actorsUrl,method: HTTPMethod.get, headers: headers)
-        MoviesService.shared.actors(request: actorsRequest) { [weak self] actors in
+        MoviesService.shared.actors(movieId: movieId ?? 0) { [weak self] actors in
             self?.actors = actors
             self?.actorsCollectionView.reloadData()
         }
         
-        //downloading relatesMovies
-        guard let relatedMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/similar?language=en-US&page=1") else { return }
-        let relatedMoviesRequest = AF.request(relatedMoviesUrl, method: HTTPMethod.get, headers: headers)
-        MoviesService.shared.movies(request: relatedMoviesRequest) { [weak self] fetchedMovies in
+        //downloading relatedMovies
+        MoviesService.shared.relatedMovies(movieId: movieId ?? 0) { [weak self] fetchedMovies in
             self?.relatedMovies = fetchedMovies.movies
             self?.moviesCollectionView.reloadData()
         }
         
         //downloading videos
-        guard let videosUrl = URL(string: "https://api.themoviedb.org/3/movie/" + "\(movieId ?? 0)" + "/videos") else { return }
-        let videosRequest = AF.request(videosUrl, method: HTTPMethod.get, headers: headers)
-        VideosService.shared.videos(request: videosRequest) { [weak self] videos in
+        MoviesService.shared.videos(movieId: movieId ?? 0) { [weak self] videos in
             self?.videos = videos
             self?.videosTableView.reloadData()
         }

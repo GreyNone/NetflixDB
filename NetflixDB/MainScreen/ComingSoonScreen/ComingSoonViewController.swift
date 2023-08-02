@@ -12,9 +12,11 @@ import Alamofire
 class ComingSoonViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private var upcomingMovies: [Movie]?
+    private var upcomingMovies = [Movie]()
+    private var topRatedMovies = [Movie]()
     private var filteredMovies: [Movie]?
-    private var currentPage = 0
+    private var currentUpcomingPage = 1
+    private var currentTopRatedPage = 1
     private let searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -23,6 +25,7 @@ class ComingSoonViewController: UIViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !searchBarIsEmpty
     }
+    private var isSwitched = false
     private let insets = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
     private var columns: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
@@ -61,12 +64,13 @@ class ComingSoonViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchTextField.backgroundColor = .systemGray2
 //        searchController.searchBar.searchTextField.textAlignment = .center
+        searchController.searchBar.showsScopeBar = true
+        searchController.searchBar.scopeButtonTitles = ["Upcoming", "Top Rated"]
+        
         self.navigationItem.searchController = searchController
         
-        guard let upcomingMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1") else { return }
-        let request = AF.request(upcomingMoviesUrl, method: HTTPMethod.get, headers: headers)
-        MoviesService.shared.movies(request: request) { [weak self] fetchedMovies in
-            self?.currentPage = fetchedMovies.page
+        MoviesService.shared.upcomingMovies(page: currentUpcomingPage) { [weak self] fetchedMovies in
+            self?.currentUpcomingPage = fetchedMovies.page
             self?.upcomingMovies = fetchedMovies.movies
             self?.collectionView.reloadData()
         }
@@ -92,9 +96,9 @@ extension ComingSoonViewController: UICollectionViewDataSource {
         if isFiltering {
             guard let count = filteredMovies?.count else { return 0 }
             return count
+        } else {
+            return isSwitched ? topRatedMovies.count : upcomingMovies.count
         }
-        guard let count = upcomingMovies?.count else { return 0 }
-        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -102,14 +106,21 @@ extension ComingSoonViewController: UICollectionViewDataSource {
                 as? PosterCollectionViewCell else { return PosterCollectionViewCell() }
         
         var movie: Movie
-        
+
         if isFiltering {
             guard let filteredMovies = filteredMovies else { return PosterCollectionViewCell() }
             movie = filteredMovies[indexPath.row]
         } else {
-            guard let upcomingMovies = upcomingMovies else { return PosterCollectionViewCell() }
-            movie = upcomingMovies[indexPath.row]
+            movie = isSwitched ? topRatedMovies[indexPath.row] : upcomingMovies[indexPath.row]
         }
+        
+//        if isFiltering {
+//            movie = filteredMovies?[indexPath.row]
+//        } else {
+//            movie = upcomingMovies[indexPath.row]
+//        }
+        
+//        movie = isFiltering ? filteredMovies[indexPath.row] : upcomingMovies[indexPath.row]
         
         let poster = movie.posterPath ?? movie.backdropPath
         
@@ -155,12 +166,18 @@ extension ComingSoonViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if countRows(in: indexPath.section - 1) + indexPath.row == countAllRows() - 3 {
-            guard let upcomingMoviesUrl = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=\(currentPage + 1)") else { return }
-            let request = AF.request(upcomingMoviesUrl, method: HTTPMethod.get, headers: headers)
-            MoviesService.shared.movies(request: request) { [weak self] fetchedMovies in
-                self?.currentPage = fetchedMovies.page
-                self?.upcomingMovies?.append(contentsOf: fetchedMovies.movies)
-                self?.collectionView.reloadData()
+            if !isSwitched {
+                MoviesService.shared.upcomingMovies(page: currentUpcomingPage + 1) { [weak self] fetchedMovies in
+                    self?.currentUpcomingPage = fetchedMovies.page
+                    self?.upcomingMovies.append(contentsOf: fetchedMovies.movies)
+                    self?.collectionView.reloadData()
+                }
+            } else {
+                MoviesService.shared.topRatedMovies(page: currentTopRatedPage + 1) { [weak self] fetchedMovies in
+                    self?.currentTopRatedPage = fetchedMovies.page
+                    self?.topRatedMovies.append(contentsOf: fetchedMovies.movies)
+                    self?.collectionView.reloadData()
+                }
             }
         }
     }
@@ -174,8 +191,7 @@ extension ComingSoonViewController: UICollectionViewDelegate {
             guard let filteredMovies = filteredMovies else { return }
             movie = filteredMovies[indexPath.row]
         } else {
-            guard let upcomingMovies = upcomingMovies else { return }
-            movie = upcomingMovies[indexPath.row]
+            movie = isSwitched ? topRatedMovies[indexPath.row] : upcomingMovies[indexPath.row]
         }
 
         movieDetailsViewController?.movieId = movie.id
@@ -232,9 +248,10 @@ extension ComingSoonViewController: UISearchResultsUpdating {
     }
     
     private func filterDataForSearchText(searchText: String) {
-        guard let upcomingMovies = upcomingMovies else { return }
+        let dataToFilter: [Movie]
+        dataToFilter = isSwitched ? topRatedMovies : upcomingMovies
         filteredMovies = []
-        upcomingMovies.forEach({ movie in
+        dataToFilter.forEach({ movie in
             if let title = movie.title {
                 if title.lowercased().contains(searchText.lowercased()) {
                     filteredMovies?.append(movie)
@@ -252,7 +269,23 @@ extension ComingSoonViewController: UISearchControllerDelegate {
 
 //MARK: - UISearchBarDelegate
 extension ComingSoonViewController: UISearchBarDelegate {
-    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        if selectedScope == 1 {
+            if topRatedMovies.isEmpty {
+                MoviesService.shared.topRatedMovies(page: currentTopRatedPage) { [weak self] fetchedMovies in
+                    self?.currentTopRatedPage = fetchedMovies.page
+                    self?.topRatedMovies = fetchedMovies.movies
+                    self?.isSwitched = true
+                    self?.collectionView.reloadData()
+                    return
+                }
+            }
+            isSwitched = true
+        } else {
+            isSwitched = false
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 

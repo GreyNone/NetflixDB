@@ -63,9 +63,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         //downloading latest popular releases
-        guard let moviesUrl = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1") else { return }
-        let moviesRequest = AF.request(moviesUrl, method: HTTPMethod.get, headers: headers)
-        MoviesService.shared.movies(request: moviesRequest) { [weak self] fetchedMovies in
+        MoviesService.shared.popularMovies { [weak self] fetchedMovies in
             //sorting latest releases by date
             self?.movies = self?.sort(movies: fetchedMovies.movies)
             
@@ -106,9 +104,7 @@ class HomeViewController: UIViewController {
             }
             
             //downloading all genres for movies
-            guard let genresUrl = URL(string: "https://api.themoviedb.org/3/genre/movie/list?language=en") else { return }
-            let genresRequest = AF.request(genresUrl, method: HTTPMethod.get, headers: headers)
-            MoviesService.shared.genres(request: genresRequest) { fetchedGenres in
+            MoviesService.shared.genres { fetchedGenres in
                 //setting genres for the latest release
                 guard let genreIds = self?.lastRelease?.genreIds else { return }
                 for lastReleaseGenre in genreIds {
