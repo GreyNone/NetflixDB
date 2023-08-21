@@ -41,8 +41,7 @@ extension FavoritesViewController: UITableViewDelegate {
         
         let movieDetailsViewControllerStoryboard = UIStoryboard(name: "MovieDetailsViewController", bundle: nil)
         let movieDetailsViewController = movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController") as? MovieDetailsViewController
-        
-        movieDetailsViewController?.movieId = favoriteMovie.id
+
         movieDetailsViewController?.movie = favoriteMovie
         
         self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)

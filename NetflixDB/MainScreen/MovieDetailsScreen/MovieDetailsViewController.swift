@@ -24,10 +24,13 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak private var imageViewContainer: UIView!
     @IBOutlet weak private var likeImageView: UIImageView!
     @IBOutlet weak private var scrollView: UIScrollView!
-    @IBOutlet weak private var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var posterImageViewContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak private var tableViewContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var moviesCollectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak private var actorsCollectionviewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var videosTableView: UITableView!
     private var playerView: YTPlayerView?
+    private var imageViewHeightBeforeTransition = 0.0
     private var minStretchHeight: CGFloat {
         switch UIDevice.current.userInterfaceIdiom {
         case .phone:
@@ -62,17 +65,14 @@ class MovieDetailsViewController: UIViewController {
     private var relatedMovies: [Movie]?
     private var actors: [Actor]?
     private var videos: [Video]?
+    private var posterKeys = [String]()
     private var isLiked = false
-    var movieId: Int?
     var movie: Movie?
     
     //MARK: - ControllerLifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isHidden = true
-        tabBarController?.tabBar.isHidden = true
-    
         //Moving scrollView's down so our imageView could stretch
         scrollView.contentInset = UIEdgeInsets(top: initialViewHeight, left: 0, bottom: 0, right: 0)
         
@@ -91,7 +91,7 @@ class MovieDetailsViewController: UIViewController {
         }
         
         //downloading movie details
-        MoviesService.shared.movieDetails(movieId: movieId ?? 0) { [weak self] movieDetail in
+        MoviesService.shared.movieDetails(movieId: movie?.id ?? 0) { [weak self] movieDetail in
             //setting details
             self?.overviewLabel.text = movieDetail.overview
             self?.titleLabel.text = movieDetail.originalTitle
@@ -111,26 +111,34 @@ class MovieDetailsViewController: UIViewController {
         }
         
         //downloading actors
-        MoviesService.shared.actors(movieId: movieId ?? 0) { [weak self] actors in
+        MoviesService.shared.actors(movieId: movie?.id ?? 0) { [weak self] actors in
+            if actors.isEmpty {
+                self?.actorsCollectionviewHeightConstraint.constant = 0
+                return
+            }
             self?.actors = actors
             self?.actorsCollectionView.reloadData()
         }
         
         //downloading relatedMovies
-        MoviesService.shared.relatedMovies(movieId: movieId ?? 0) { [weak self] fetchedMovies in
+        MoviesService.shared.relatedMovies(movieId: movie?.id ?? 0) { [weak self] fetchedMovies in
+            if fetchedMovies.movies.isEmpty {
+                self?.moviesCollectionViewHeightConstraint.constant = 0
+                return
+            }
             self?.relatedMovies = fetchedMovies.movies
             self?.moviesCollectionView.reloadData()
         }
         
         //downloading videos
-        MoviesService.shared.videos(movieId: movieId ?? 0) { [weak self] videos in
+        MoviesService.shared.videos(movieId: movie?.id ?? 0) { [weak self] videos in
             self?.videos = videos
             self?.videosTableView.reloadData()
         }
         
         //setting isLiked to true if the movie is in favorites
         SessionManager.shared.favoriteMovies.forEach { favoriteMovie in
-            if favoriteMovie.id == movieId {
+            if favoriteMovie.id == movie?.id {
                 isLiked = true
                 likeImageView.image = UIImage(systemName: "heart.fill")
             }
@@ -139,8 +147,15 @@ class MovieDetailsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        heightConstraint.constant = initialViewHeight
+        if imageViewHeightBeforeTransition == 0 {
+            posterImageViewContainerHeightConstraint.constant = initialViewHeight
+        } else {
+            posterImageViewContainerHeightConstraint.constant = imageViewHeightBeforeTransition
+        }
+//        heightConstraint.constant = initialViewHeight
         tableViewContainerHeightConstraint.constant = 0
+        navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
         navigationItem.setHidesBackButton(true, animated: false)
     }
     
@@ -149,6 +164,11 @@ class MovieDetailsViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.navigationBar.isHidden = true
         navigationItem.setHidesBackButton(false, animated: false)
+    }
+    
+    deinit {
+        //Cleaning all relatedMovies and Actors images
+        CacheManager.shared.cleanImagesFor(keys: posterKeys)
     }
     
     //MARK: - PlayerView setup
@@ -179,7 +199,7 @@ class MovieDetailsViewController: UIViewController {
     }
     
     @IBAction func didTapOnLike(_ sender: UITapGestureRecognizer) {
-        guard let movieId = movieId else { return }
+        guard let movieId = movie?.id else { return }
         if isLiked {
             SessionManager.shared.removeFromFavorites(movieId: movieId) { [weak self] success in
                 if success {
@@ -228,7 +248,26 @@ extension MovieDetailsViewController: UIScrollViewDelegate {
         if scrollView == self.scrollView {
             let yoffset = initialViewHeight - (scrollView.contentOffset.y + initialViewHeight)
             let headerHeight = max(min(yoffset, initialViewHeight), minStretchHeight)
-            heightConstraint.constant = headerHeight
+            posterImageViewContainerHeightConstraint.constant = headerHeight
+        }
+    }
+}
+
+//MARK: - UICollectionViewDelegate
+extension MovieDetailsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == actorsCollectionView {
+            let actor = actors?[indexPath.row]
+            
+            imageViewHeightBeforeTransition = posterImageViewContainerHeightConstraint.constant
+            
+            let actorDetailsStoryboard = UIStoryboard(name: "ActorDetailsViewController", bundle: nil)
+            let actorDetailsViewController = actorDetailsStoryboard.instantiateViewController(withIdentifier: "ActorDetailsViewController")
+                as? ActorDetailsViewController
+            actorDetailsViewController?.actor = actor
+            navigationItem.backButtonTitle = ""
+            self.navigationController?.pushViewController(actorDetailsViewController ?? actorDetailsStoryboard.instantiateViewController(identifier: "ActorDetailsViewController"), animated: true)
         }
     }
 }
@@ -263,6 +302,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
             //checking if the image is already downloaded and stored in cache
             if let image = CacheManager.shared.getValue(for: relatedMovie.posterPath ?? "") {
                 cell.configure(image: image, title: fullMovieTitle)
+//                posterKeys.append(relatedMovie.posterPath ?? "")
                 return cell
             }
             
@@ -273,6 +313,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
             if let posterPath {
                 guard let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + posterPath) else { return MovieCollectionViewCell() }
                 cell.configure(url: url, for: posterPath, title: fullMovieTitle)
+                posterKeys.append(posterPath)
             } else {
                 cell.configure(image: UIImage(named: "posterPlaceholder")!, title: fullMovieTitle)
             }
@@ -288,6 +329,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
                                name: actor.name ?? "No info",
                                character: actor.character ?? "No info",
                                role: actor.department ?? "No info")
+//                posterKeys.append(actor.profilePath ?? "")
                 return cell
             }
             
@@ -298,6 +340,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
                                name: actor.name ?? "No info",
                                character: actor.character ?? "No info",
                                role: actor.department ?? "No info")
+                posterKeys.append(profilePath)
             } else {
                 cell.configure(image: UIImage(named: "user")!,
                                name: actor.name ?? "No info",

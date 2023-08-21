@@ -194,7 +194,6 @@ extension ComingSoonViewController: UICollectionViewDelegate {
             movie = isSwitched ? topRatedMovies[indexPath.row] : upcomingMovies[indexPath.row]
         }
 
-        movieDetailsViewController?.movieId = movie.id
         movieDetailsViewController?.movie = movie
         
         self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)

@@ -32,15 +32,15 @@ struct Actors: Decodable {
 }
 
 struct ActorDetails: Decodable {
-    var biography: String
-    var birthday: String
-    var deathday: String
-    var gender: Int
-    var department: String
-    var name: String
-    var placeOfBirth: String
+    var biography: String?
+    var birthday: String?
+    var deathday: String?
+    var gender: Int?
+    var department: String?
+    var name: String?
+    var placeOfBirth: String?
     
-    enum CodingKeys: String, CodingKeys {
+    enum CodingKeys: String, CodingKey {
         case biography
         case birthday
         case deathday

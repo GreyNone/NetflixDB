@@ -25,6 +25,12 @@ class CacheManager {
         imageCache.setObject(value, forKey: key as AnyObject)
     }
     
+    func cleanImagesFor(keys: [String]) {
+        for key in keys {
+            imageCache.removeObject(forKey: key as AnyObject)
+        }
+    }
+    
     func clean() {
         imageCache.removeAllObjects()
     }

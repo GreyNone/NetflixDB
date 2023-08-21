@@ -233,10 +233,10 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="74W-fC-B6y">
-                                                                            <rect key="frame" x="30.333333333333329" y="0.0" width="141.33333333333337" height="130"/>
+                                                                            <rect key="frame" x="50.666666666666657" y="0.0" width="101" height="130"/>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gDs-Ve-Fun">
-                                                                            <rect key="frame" x="63.333333333333336" y="151.33333333333334" width="75.666666666666657" height="20.333333333333343"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="gDs-Ve-Fun">
+                                                                            <rect key="frame" x="0.0" y="159.33333333333334" width="202" height="20.333333333333343"/>
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Character">
                                                                                     <attributes>
@@ -248,27 +248,27 @@
                                                                             </attributedString>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSl-1h-371">
-                                                                            <rect key="frame" x="84.333333333333329" y="179.66666666666666" width="33.333333333333329" height="20.333333333333343"/>
-                                                                            <attributedString key="attributedText">
-                                                                                <fragment content="Role">
-                                                                                    <attributes>
-                                                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                        <font key="NSFont" metaFont="system" size="17"/>
-                                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                                                    </attributes>
-                                                                                </fragment>
-                                                                            </attributedString>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aA-Ix-UMZ">
-                                                                            <rect key="frame" x="78.666666666666671" y="137" width="45" height="6.3333333333333428"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aA-Ix-UMZ">
+                                                                            <rect key="frame" x="0.0" y="130" width="202" height="29.333333333333343"/>
                                                                             <attributedString key="attributedText">
                                                                                 <fragment content="Name">
                                                                                     <attributes>
                                                                                         <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                                         <font key="NSFont" metaFont="system" size="17"/>
-                                                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                    </attributes>
+                                                                                </fragment>
+                                                                            </attributedString>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSl-1h-371">
+                                                                            <rect key="frame" x="0.0" y="179.66666666666666" width="202" height="20.333333333333343"/>
+                                                                            <attributedString key="attributedText">
+                                                                                <fragment content="Role">
+                                                                                    <attributes>
+                                                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <font key="NSFont" metaFont="system" size="17"/>
+                                                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                                     </attributes>
                                                                                 </fragment>
                                                                             </attributedString>
@@ -276,17 +276,20 @@
                                                                         </label>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="5aA-Ix-UMZ" firstAttribute="top" secondItem="74W-fC-B6y" secondAttribute="bottom" constant="7" id="59N-o0-blK"/>
-                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="top" secondItem="Ojn-Qy-Yua" secondAttribute="top" id="5Nl-xg-9WQ"/>
-                                                                        <constraint firstItem="gDs-Ve-Fun" firstAttribute="centerX" secondItem="74W-fC-B6y" secondAttribute="centerX" id="8jz-Hh-pii"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="CSl-1h-371" secondAttribute="bottom" id="Ovw-mi-bTK"/>
-                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="height" secondItem="Ojn-Qy-Yua" secondAttribute="height" multiplier="0.65" id="TY6-Ro-zzy"/>
-                                                                        <constraint firstItem="5aA-Ix-UMZ" firstAttribute="centerX" secondItem="74W-fC-B6y" secondAttribute="centerX" id="gz2-hX-KQU"/>
-                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="width" secondItem="Ojn-Qy-Yua" secondAttribute="width" multiplier="0.7" id="krX-zn-ZOh"/>
-                                                                        <constraint firstItem="gDs-Ve-Fun" firstAttribute="top" secondItem="5aA-Ix-UMZ" secondAttribute="bottom" constant="8" symbolic="YES" id="ucB-n5-6mk"/>
-                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="centerX" secondItem="Ojn-Qy-Yua" secondAttribute="centerX" id="xnz-Ea-HU8"/>
-                                                                        <constraint firstItem="CSl-1h-371" firstAttribute="centerX" secondItem="74W-fC-B6y" secondAttribute="centerX" id="yeV-S9-vzk"/>
-                                                                        <constraint firstItem="CSl-1h-371" firstAttribute="top" secondItem="gDs-Ve-Fun" secondAttribute="bottom" constant="8" symbolic="YES" id="zbZ-3N-fds"/>
+                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="width" secondItem="Ojn-Qy-Yua" secondAttribute="width" multiplier="0.5" id="1vr-ai-7m6"/>
+                                                                        <constraint firstItem="gDs-Ve-Fun" firstAttribute="top" secondItem="5aA-Ix-UMZ" secondAttribute="bottom" id="6zK-7J-kXa"/>
+                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="height" secondItem="Ojn-Qy-Yua" secondAttribute="height" multiplier="0.65" id="CdO-mB-Dqg"/>
+                                                                        <constraint firstItem="gDs-Ve-Fun" firstAttribute="leading" secondItem="Ojn-Qy-Yua" secondAttribute="leading" id="OR6-sF-KIf"/>
+                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="centerX" secondItem="Ojn-Qy-Yua" secondAttribute="centerX" id="RAi-wb-uiN"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="CSl-1h-371" secondAttribute="trailing" id="Re7-r7-mBf"/>
+                                                                        <constraint firstItem="CSl-1h-371" firstAttribute="leading" secondItem="Ojn-Qy-Yua" secondAttribute="leading" id="Saz-uf-UBn"/>
+                                                                        <constraint firstItem="5aA-Ix-UMZ" firstAttribute="leading" secondItem="Ojn-Qy-Yua" secondAttribute="leading" id="Tnl-nu-EOA"/>
+                                                                        <constraint firstItem="74W-fC-B6y" firstAttribute="top" secondItem="Ojn-Qy-Yua" secondAttribute="top" id="UQT-Ey-Q6k"/>
+                                                                        <constraint firstItem="5aA-Ix-UMZ" firstAttribute="top" secondItem="74W-fC-B6y" secondAttribute="bottom" id="aMX-GC-pVc"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="CSl-1h-371" secondAttribute="bottom" id="gAS-aP-jDN"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="5aA-Ix-UMZ" secondAttribute="trailing" id="ggU-Bu-Hv6"/>
+                                                                        <constraint firstItem="CSl-1h-371" firstAttribute="top" secondItem="gDs-Ve-Fun" secondAttribute="bottom" id="jSX-Ge-rAH"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="gDs-Ve-Fun" secondAttribute="trailing" id="rXH-wa-uh8"/>
                                                                     </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <size key="customSize" width="202" height="200"/>
@@ -513,13 +516,15 @@
                     <size key="freeformSize" width="393" height="1200"/>
                     <connections>
                         <outlet property="actorsCollectionView" destination="loz-WJ-tsO" id="4ej-GS-Ncg"/>
+                        <outlet property="actorsCollectionviewHeightConstraint" destination="02y-SO-3mx" id="6g5-nF-Xvk"/>
                         <outlet property="durationLabel" destination="gAg-87-psZ" id="rCU-5q-bg1"/>
-                        <outlet property="heightConstraint" destination="mY6-u4-N6W" id="WLO-ms-tSv"/>
                         <outlet property="imageViewContainer" destination="nah-iM-gix" id="GMx-bb-e6V"/>
                         <outlet property="likeImageView" destination="ewN-J0-AP5" id="EdJ-ky-1Ua"/>
                         <outlet property="moviesCollectionView" destination="Mww-8K-WFu" id="xjV-6x-gjJ"/>
+                        <outlet property="moviesCollectionViewHeightConstraint" destination="pTD-7f-ZXv" id="J1C-Na-9dU"/>
                         <outlet property="overviewLabel" destination="k7U-2f-tIQ" id="Hmd-mp-3Te"/>
                         <outlet property="posterImageView" destination="99U-tE-00M" id="hjM-OY-FPz"/>
+                        <outlet property="posterImageViewContainerHeightConstraint" destination="mY6-u4-N6W" id="I0g-WO-jLE"/>
                         <outlet property="releaseDateLabel" destination="5a2-KK-IwE" id="5Wa-eN-bqB"/>
                         <outlet property="scrollView" destination="uBw-3E-SMC" id="Ygh-dz-pOl"/>
                         <outlet property="tableViewContainerHeightConstraint" destination="N54-yC-YP6" id="Ueg-7j-x3O"/>

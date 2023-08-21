@@ -84,4 +84,13 @@ final class MoviesService {
             completion(videos.videos)
         }
     }
+    
+    func actorDetails(actorId: Int, completion: @escaping (ActorDetails) -> Void) {
+        guard let actorDetailsUrl = URL(string: "https://api.themoviedb.org/3/person/" + "\(actorId)" + "?language=en-US") else { return }
+        let actorDetailsRequest = AF.request(actorDetailsUrl, method: HTTPMethod.get, headers: headers)
+        actorDetailsRequest.validate().responseDecodable(of: ActorDetails.self) { (response) in
+            guard let actorDetails = response.value else { return }
+            completion(actorDetails)
+        }
+    }
 }

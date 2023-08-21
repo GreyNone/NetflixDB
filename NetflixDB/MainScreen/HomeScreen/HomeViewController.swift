@@ -158,7 +158,6 @@ class HomeViewController: UIViewController {
         let movieDetailsViewControllerStoryboard = UIStoryboard(name: "MovieDetailsViewController", bundle: nil)
         let movieDetailsViewController = movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController") as? MovieDetailsViewController
         
-        movieDetailsViewController?.movieId = lastRelease?.id
         movieDetailsViewController?.movie = lastRelease
         
         self.navigationController?.pushViewController(movieDetailsViewController ?? movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController"), animated: true)
@@ -233,8 +232,7 @@ extension HomeViewController: UICollectionViewDelegate {
         guard let movie = movies?[indexPath.row],
               let movieDetailsViewController = movieDetailsViewControllerStoryboard.instantiateViewController(identifier: "MovieDetailsViewController")
                 as? MovieDetailsViewController else { return }
-        
-        movieDetailsViewController.movieId = movie.id
+
         movieDetailsViewController.movie = movie
         
         self.navigationController?.pushViewController(movieDetailsViewController, animated: true)
