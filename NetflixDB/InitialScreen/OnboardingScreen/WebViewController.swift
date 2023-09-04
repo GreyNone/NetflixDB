@@ -26,8 +26,10 @@ class WebViewController: UIViewController {
         view = webView
         
         let url = URL(string: "https://www.themoviedb.org/signup")
-        let myrequest = URLRequest(url: url!)
-        webView.load(myrequest)
+        if let url = url {
+            let loadRequest = URLRequest(url: url)
+            webView.load(loadRequest)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

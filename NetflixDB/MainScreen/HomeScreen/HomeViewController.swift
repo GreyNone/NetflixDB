@@ -144,7 +144,7 @@ class HomeViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        return movies.sorted {dateFormatter.date(from: $0.releaseDate ?? "")! > dateFormatter.date(from: $1.releaseDate ?? "")!}
+        return movies.sorted { (dateFormatter.date(from: $0.releaseDate ?? "") ?? Date()) > (dateFormatter.date(from: $1.releaseDate ?? "") ?? Date()) }
     }
     
     //MARK: - Actions
@@ -217,7 +217,9 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let url = URL(string: "https://image.tmdb.org/t/p/" + "w200" + posterPath) else { return PosterCollectionViewCell() }
             cell.configure(url: url, for: posterPath)
         } else {
-            cell.configure(image: UIImage(named: "posterPlaceholder")!)
+            if let posterPlaceholderImage = UIImage(named: "posterPlaceholder") {
+                cell.configure(image: posterPlaceholderImage)
+            }
         }
         
         return cell

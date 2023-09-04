@@ -104,7 +104,7 @@ class MovieDetailsViewController: UIViewController {
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 let date = dateFormatter.date(from: releaseDate)
                 dateFormatter.dateFormat = "MMMM d,yyyy"
-                self?.releaseDateLabel.text = dateFormatter.string(from: date!)
+                self?.releaseDateLabel.text = dateFormatter.string(from: date ?? Date())
             } else {
                 self?.releaseDateLabel.text = "no release date"
             }
@@ -315,7 +315,9 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
                 cell.configure(url: url, for: posterPath, title: fullMovieTitle)
                 posterKeys.append(posterPath)
             } else {
-                cell.configure(image: UIImage(named: "posterPlaceholder")!, title: fullMovieTitle)
+                if let posterPlaceholderImage = UIImage(named: "posterPlaceholder") {
+                    cell.configure(image: posterPlaceholderImage, title: fullMovieTitle)
+                }
             }
             
             return cell

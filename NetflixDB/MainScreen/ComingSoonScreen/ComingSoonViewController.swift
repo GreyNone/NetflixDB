@@ -136,7 +136,9 @@ extension ComingSoonViewController: UICollectionViewDataSource {
                 return cell
             }
         }
-        cell.configure(image: UIImage(named: "posterPlaceholder")!)
+        if let posterPlaceholderImage = UIImage(named: "posterPlaceholder") {
+            cell.configure(image: posterPlaceholderImage)
+        }
         return cell
         
     }
