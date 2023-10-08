@@ -28,15 +28,15 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-dC-UpK">
-                                <rect key="frame" x="25" y="104" width="343" height="112"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBQ-dC-UpK">
+                                <rect key="frame" x="25" y="103.99999999999999" width="343" height="156.66666666666663"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">You can't sign up for Netflix in the app. We know it's a hassle. After you're a member, you can start watching in the app. Scroll &gt; to learn more </string>
+                                        <string key="content">You can't sign up for Netflix in the app. We know it's a hassle. After you're a member, you can start watching in the app. Scroll &gt; to learn more (It's better to login with Login: GreyNone password: movieDB and use VPN)</string>
                                         <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="20" name="ArialMT"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -50,6 +50,7 @@
                             <constraint firstItem="PBQ-dC-UpK" firstAttribute="top" secondItem="ZD9-vU-icM" secondAttribute="bottom" constant="17" id="7bu-4j-tDJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="PBQ-dC-UpK" secondAttribute="trailing" constant="25" id="9Tx-2U-iMm"/>
                             <constraint firstItem="ZD9-vU-icM" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="9tA-UO-gGs"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PBQ-dC-UpK" secondAttribute="bottom" constant="10" id="bvc-3i-ID8"/>
                             <constraint firstItem="ZD9-vU-icM" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="iR7-N3-xy0"/>
                             <constraint firstItem="PBQ-dC-UpK" firstAttribute="centerX" secondItem="ZD9-vU-icM" secondAttribute="centerX" id="zqI-G9-rIl"/>
                         </constraints>
